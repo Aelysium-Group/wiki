@@ -64,6 +64,7 @@ const config = {
           editUrl:
             'https://github.com/Aelysium-Group/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
+        // The BLOG function is not used and this configuration is useless.
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
@@ -108,7 +109,6 @@ const config = {
             position: 'left',
             label: 'Misc',
           },
-          //{to: '/blog', label: 'Blog', position: 'left'},
           {
             type: 'localeDropdown',
             position: 'right',
@@ -135,11 +135,11 @@ const config = {
             items: [
               {
                 label: 'Tutorial',
-                to: '/docs/intro',
+                to: '/intro',
               },
               {
                 label: 'Tutorial1',
-                to: '/docs/intro',
+                to: '/intro',
               },
             ],
           },
@@ -155,10 +155,6 @@ const config = {
           {
             title: 'More',
             items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
               {
                 label: 'GitHub',
                 href: 'https://github.com/Aelysium-Group',
