@@ -1,8 +1,4 @@
----
-title: Intro
-displayed_sidebar: default_sidebar
-sidebar_position: 1
----
+
 
 # Tutorial Intro12
 

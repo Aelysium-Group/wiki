@@ -20,7 +20,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'Aelysium Group', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  projectName: 'wiki', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -48,6 +48,7 @@ const config = {
       {
         maxSearchResults: 6,
       },
+      
     ],
   ],
 
@@ -59,19 +60,15 @@ const config = {
         docs: {
           routeBasePath: '/',
           sidebarPath: require.resolve('./config/sidebars.ts'),
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/Aelysium-Group/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
-        // The BLOG function is not used and this configuration is useless.
+        /* The BLOG function is not used and this configuration is useless.
         blog: {
           showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/Aelysium-Group/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },
+        },*/
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
@@ -91,11 +88,19 @@ const config = {
           src: 'images/logo.png',
         },
         items: [
+          /*
           {
             type: 'docSidebar',
             sidebarId: 'default_sidebar',
             position: 'left',
-            label: 'Tutorial',
+            label: 'ALL',
+          },
+          */
+          {
+            type: 'docSidebar',
+            sidebarId: 'wiki_nav_sidebar',
+            position: 'left',
+            label: 'Wiki',
           },
           {
             type: 'docSidebar',
@@ -134,12 +139,12 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/intro',
+                label: 'Wiki',
+                to: '/wiki',
               },
               {
-                label: 'Tutorial1',
-                to: '/intro',
+                label: 'Plugins Wiki',
+                to: '/wiki/plugins-wiki',
               },
             ],
           },
