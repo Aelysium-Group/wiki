@@ -61,7 +61,7 @@ const config = {
           routeBasePath: '/',
           sidebarPath: require.resolve('./config/sidebars.ts'),
           editUrl:
-            'https://github.com/Aelysium-Group/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/Aelysium-Group/wiki',
         },
         /* The BLOG function is not used and this configuration is useless.
         blog: {
@@ -119,13 +119,13 @@ const config = {
             position: 'right',
             dropdownItemsAfter: [
               {
-                to: 'https://my-site.com/help-us-translate',
+                to: 'https://github.com/Aelysium-Group/wiki',
                 label: 'Help us translate',
               },
             ],
           },
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/Aelysium-Group',
             position: 'right',
             className: 'header-github-link',
             'aria-label': 'GitHub repository',
