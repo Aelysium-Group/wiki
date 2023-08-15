@@ -8,7 +8,7 @@ const { Script } = require('vm');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Aelysium Wiki',
-  tagline: 'Oops',
+  tagline: 'Need help? Click the link below for the wiki',
   favicon: 'images/favicon.ico',
 
   // Set the production url of your site here

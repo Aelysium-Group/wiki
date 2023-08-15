@@ -1,6 +1,6 @@
 {
   "name": "aelysium-wiki",
-  "version": "2.4.3",
+  "version": "0.0.1-alpha",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",

@@ -1,5 +1,5 @@
 ---
-title: Installation Guide
+title: 📖 Installation Guide
 sidebar_position: 1
 ---
 So you’d like to switch to RustyConnector?
@@ -34,10 +34,10 @@ It should be noted that RC is built to be reliable. The only point it should be 
 ### Setting Up RC-Velocity
 Load the latest version of RustyConnector into your Velocity server! RC-Velocity and RC-Paper are both contained in the same jar so no need to worry about two separate jars!
 
-- Start up your server. This will cause RC-Velocity to load the initial [config.yml](https://github.com/Aelysium-Group/rusty-connector/wiki/RustyConnector-Configs#configyml-velocity) for you to start configuring.
+- Start up your server. This will cause RC-Velocity to load the initial [config.yml](../config/config-latest#configyml-velocity) for you to start configuring.
 - Additionally, RC will create a file called ‘private.key’. This is the private key that will be used to validate messages. Make sure that you NEVER share this key with anyone!
-- Open [config.yml](https://github.com/Aelysium-Group/rusty-connector/wiki/RustyConnector-Configs#configyml-velocity) and set up your RC families (Read more about Families [here](https://github.com/Aelysium-Group/rusty-connector/wiki/Family) for more info.) Make sure you edit `root-family.name` to match whichever family should be your default.
-- Add your [Redis](https://github.com/Aelysium-Group/rusty-connector/wiki/Redis) information.
+- Open [config.yml](../config/config-latest#configyml-velocity) and set up your RC families (Read more about Families [here](./Family) for more info.) Make sure you edit `root-family.name` to match whichever family should be your default.
+- Add your [Redis](./faq#redis) information.
 - Restart your velocity server.
 
 RC-Velocity will process your information and create family configs for each family that you've defined. Be sure to take a look at these configs and make changes to them as you see fit.
@@ -45,7 +45,7 @@ RC-Velocity will process your information and create family configs for each fam
 At this point, we are now ready to set up RC-Paper!
 
 ### Setting up RC-Paper
-Load RustyConnector onto your Paper server! Preferably make sure that the RustyConnector version on your paper server is always updated to be the same as the one on your velocity server. Start the server and allow RC-Paper to generate a [config.yml](https://github.com/Aelysium-Group/rusty-connector/wiki/RustyConnector-Configs#configyml-paper).
+Load RustyConnector onto your Paper server! Preferably make sure that the RustyConnector version on your paper server is always updated to be the same as the one on your velocity server. Start the server and allow RC-Paper to generate a [config.yml](../config/config-latest#configyml-paper).
 - Copy the private key from RC-Velocity and paste it into `private.key` on RC-Paper. __The private.key from RC-Paper MUST match private.key from RC-Velocity__.
 - Set `name` to whatever you'd like. Each server name should be unique so you can tell servers apart while reading logs.
 - Set `address` to equal what you would normally paste into the `velocity.toml` (for example: `127.0.0.1:25565`)
@@ -57,4 +57,4 @@ Load RustyConnector onto your Paper server! Preferably make sure that the RustyC
 It's important to take note that RC is specifically written in a top-down way. Paper servers never actually know if the Velocity server is listening. The Paper servers can only send their registration requests into the data channel and assume that the proxy has received them. As such, if any RC-Paper information is invalid and prevents the server from registering, that information will be shown on RC-Velocity and not RC-Paper. RC-Paper will not know if it has been registered unless players start joining it.
 
 Everything should be working now! Try joining!
-In order to switch between the families in your RC-Velocity, you'll need to use the [`/rc send` Command](https://github.com/Aelysium-Group/rusty-connector/wiki/Commands).
+In order to switch between the families in your RC-Velocity, you'll need to use the [`/rc send` Command](../Commands).

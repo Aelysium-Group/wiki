@@ -21,7 +21,7 @@ function HomepageHeader() {
           id="homepage.visitMyBlog"
           description="The homepage message to ask the user to visit my blog"
           values={{}}>
-          {'You can also visit my'}
+          {"Let's Go"}
         </Translate>
           </Link>
         </div>

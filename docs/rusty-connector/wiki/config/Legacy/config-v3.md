@@ -1,6 +1,6 @@
 ---
 title: Config V3
-sidebar_position: 1
+sidebar_position: 3
 ---
 # Contents
 ## RC-Velocity
