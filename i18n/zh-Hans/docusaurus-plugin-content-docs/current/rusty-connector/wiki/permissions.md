@@ -1,3 +1,9 @@
+---
+title: "📌 权限节点"
+description: "有关Rusty Connector的指令权限节点"
+sidebar_position: 4
+displayed_sidebar: plugins_wiki_rusty_connector
+---
 `rustyconnector.*` | Bypass all permission checks. Full permission.
 ## Whitelist
 `rustyconnector.whitelist.*` | Bypass all RC-Velocity whitelists.

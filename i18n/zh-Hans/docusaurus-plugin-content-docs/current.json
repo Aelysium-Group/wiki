@@ -3,16 +3,44 @@
     "message": "Next",
     "description": "The label for version current"
   },
-  "sidebar.tutorialSidebar.category.Tutorial - Basics": {
-    "message": "Tutorial - Basics123",
-    "description": "The label for category Tutorial - Basics in sidebar tutorialSidebar"
+  "sidebar.wiki_nav_sidebar.category.📥 Download": {
+    "message": "📥 Download",
+    "description": "The label for category 📥 Download in sidebar wiki_nav_sidebar"
   },
-  "sidebar.tutorialSidebar.category.Tutorial - Basics.link.generated-index.description": {
-    "message": "5 minutes to learn the most important Docusaurus concepts.",
-    "description": "The generated-index page description for category Tutorial - Basics in sidebar tutorialSidebar"
+  "sidebar.wiki_nav_sidebar.category.plugins": {
+    "message": "plugins",
+    "description": "The label for category plugins in sidebar wiki_nav_sidebar"
   },
-  "sidebar.tutorialSidebar.category.Tutorial - Extras": {
-    "message": "Tutorial - Extras",
-    "description": "The label for category Tutorial - Extras in sidebar tutorialSidebar"
+  "sidebar.wiki_nav_sidebar.category.📚 Plugins Wiki": {
+    "message": "📚 Plugins Wiki",
+    "description": "The label for category 📚 Plugins Wiki in sidebar wiki_nav_sidebar"
+  },
+  "sidebar.plugins_wiki_rusty_connector.category.Rusty Connector": {
+    "message": "Rusty Connector",
+    "description": "The label for category Rusty Connector in sidebar plugins_wiki_rusty_connector"
+  },
+  "sidebar.plugins_wiki_rusty_connector.category.Rusty Connector.link.generated-index.description": {
+    "message": "Text Content",
+    "description": "The generated-index page description for category Rusty Connector in sidebar plugins_wiki_rusty_connector"
+  },
+  "sidebar.plugins_wiki_rusty_connector.category.📖 Getting Started": {
+    "message": "📖 快速入门",
+    "description": "The label for category 📖 Getting Started in sidebar plugins_wiki_rusty_connector"
+  },
+  "sidebar.plugins_wiki_rusty_connector.category.⚒️ Config": {
+    "message": "⚒️ 插件配置",
+    "description": "The label for category ⚒️ Config in sidebar plugins_wiki_rusty_connector"
+  },
+  "sidebar.plugins_wiki_rusty_connector.category.⚠️ Legacy Config": {
+    "message": "⚠️ 旧版配置",
+    "description": "The label for category ⚠️ Legacy Config in sidebar plugins_wiki_rusty_connector"
+  },
+  "sidebar.plugins_wiki_rusty_connector.category.⚒️ Config Mgration": {
+    "message": "⚒️ 配置迁移",
+    "description": "The label for category ⚒️ Config Mgration in sidebar plugins_wiki_rusty_connector"
+  },
+  "sidebar.plugins_wiki_rusty_connector.category.🧰 Development": {
+    "message": "🧰 开发文档",
+    "description": "The label for category 🧰 Development in sidebar plugins_wiki_rusty_connector"
   }
 }

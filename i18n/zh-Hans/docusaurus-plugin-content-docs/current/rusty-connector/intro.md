@@ -1,9 +1,11 @@
 ---
 slug: './'
 id: rusty-connector
-title: 👋 Welcome
+title: 👋 欢迎
 sidebar_position: 1
 displayed_sidebar: plugins_wiki_rusty_connector
+tags:
+  - rusty connector
 ---
 ![Aelysium Wordmark Image](https://github.com/Aelysium-Group/.github/blob/main/images/rustyconnector-wordmark.png?raw=true)
 # Wiki
@@ -61,6 +63,6 @@ That said, I am my own developer and I have no intentions of changing my policie
 Unless your Velocity server is maxing out on RAM, this is not physically possible. RustyConnector doesn't actually deal with player connections. All it does is tell Velocity where to connect players. Velocity handles all of the connection details itself.
 If your network is lagging, check to make sure that your Velocity server isn't overloaded! It might be time to scale horizontally!
 
-## "Do you have plans to support other servers like Bungeecord, Spigot, or Sponge?"
-If there is enough interest in supporting a different server type, I'll certainly look into making it happen!
-Regarding Spigot and Bungeecord. Frankly, they are older server software that are slowly being replaced by Velocity and Paper. As such, I'm not entirely interested in supporting them. However, just because of principle I may go and provide support for Spigot. We'll see what people want :)
+## "你们是否计划支持其他服务器，如 Bungeecord、Spigot 或 Sponge？"
+如果有足够的兴趣支持不同的服务器类型，我一定会考虑实现它！
+关于Spigot和Bungeecord。坦率地说，它们都是比较老的服务器软件，正在慢慢被Velocity和Paper所取代。因此，我对支持它们并不完全感兴趣。不过，出于原则，我可能会为Spigot提供支持。我们将看看人们想要什么:)

@@ -289,5 +289,9 @@
   "theme.tags.tagsPageTitle": {
     "message": "标签",
     "description": "The title of the tag list page"
+  },
+  "homepage.visitMyBlog": {
+    "message": "Let's Go",
+    "description": "The homepage message to ask the user to visit my blog"
   }
 }

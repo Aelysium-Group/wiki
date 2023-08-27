@@ -1,10 +1,10 @@
 {
   "title": {
-    "message": "My Site",
+    "message": "Aelysium",
     "description": "The title in the navbar"
   },
   "logo.alt": {
-    "message": "My Site Logo",
+    "message": "Aelysium Wiki Logo",
     "description": "The alt text of navbar logo"
   },
   "item.label.Tutorial": {
@@ -18,5 +18,17 @@
   "item.label.GitHub": {
     "message": "GitHub",
     "description": "Navbar item with label GitHub"
+  },
+  "item.label.Wiki": {
+    "message": "Wiki",
+    "description": "Navbar item with label Wiki"
+  },
+  "item.label.Rusty Connector": {
+    "message": "Rusty Connector",
+    "description": "Navbar item with label Rusty Connector"
+  },
+  "item.label.Misc": {
+    "message": "杂项",
+    "description": "Navbar item with label Misc"
   }
 }

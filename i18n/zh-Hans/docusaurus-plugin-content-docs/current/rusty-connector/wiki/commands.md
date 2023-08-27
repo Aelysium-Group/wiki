@@ -1,7 +1,7 @@
 ---
-title: ⚙️ Commands
-description: "RustyConnector Commands"
-sidebar_position: 3
+title: ⚙️ 插件指令
+description: "有关Rusty Connector的指令"
+sidebar_position: 4
 displayed_sidebar: plugins_wiki_rusty_connector
 ---
 Commands marked with an asterisk `*` are player useable. Otherwise, all commands are only allowed to be used from the console.
