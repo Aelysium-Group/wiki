@@ -81,7 +81,7 @@ const config = {
         title: 'Aelysium',
         logo: {
           alt: 'Aelysium Logo',
-          src: 'images/logo.png',
+          src: 'images/aelysium-logo.png',
         },
         items: [
           /*
@@ -94,21 +94,9 @@ const config = {
           */
           {
             type: 'docSidebar',
-            sidebarId: 'wiki_nav_sidebar',
-            position: 'left',
-            label: 'Wiki',
-          },
-          {
-            type: 'docSidebar',
             sidebarId: 'plugins_wiki_rusty_connector',
             position: 'left',
-            label: 'Rusty Connector',
-          },
-          {
-            type: 'docSidebar',
-            sidebarId: 'misc_sidebar',
-            position: 'left',
-            label: 'Misc',
+            label: 'RustyConnector',
           },
           {
             type: 'localeDropdown',

@@ -1,5 +1,5 @@
-label: "Rusty Connector"
+label: "Docs"
 position: 1
 link:
   type: generated-index
-  description: "RustyConnector Wiki Navigation"
+  description: "RustyConnector documentation"

@@ -1,6 +1,6 @@
 ---
-title: 🧶 Families
-sidebar_position: 2
+title: 🟥 Redis
+sidebar_position: 4
 ---
 Families are the backbone of RustyConnector.
 They can be thought of as "server collections." Minecraft servers always have a "theme" and therefore they always belong to a family.
@@ -78,7 +78,7 @@ attempts: 5
    ---| 3. [PrimaryServer2](127.0.0.1:25567) [45 (40 <> 50) w-100]
    ---| 4. [BackupServer1](127.0.0.1:25568) [3 (40 <> 50) w-0]
 ```
-That was probably a little confusing to look at. For a full breakdown of what all the data means you can read [this snippet](./family#reading-the-load-balancer-in-the-console).
+That was probably a little confusing to look at. For a full breakdown of what all the data means you can read [this snippet](./Family#reading-the-load-balancer-in-the-console).
 
 In the example above, we have four servers registered to a family with a Least Connection Algorithm.
 One of the servers has its own whitelist allowing only VIP players to join it.
@@ -122,3 +122,11 @@ Not much is very clear to the human eye. These messages have been written to com
 # Don't use `/server`
 RustyConnector specifically disables the `/server` command. Instead, you can use `/rc send` to send players to different families or servers.
 However, if you're trying to use `/rc send` to send players to specific servers you should stop yourself. If you're using RustyConnector, you should really be [thinking in terms of families](#thinking-in-terms-of-families) otherwise you're throwing away a number of benefits that RustyConnector provides to you.
+
+## Redis
+Redis is an ultra-fast database technology typically used for database caching.
+It's main difference from a traditional database is that it stores data on RAM as opposed to something like a Hard Drive. This means that data retrieval is ultra-fast.
+Additionally, Redis can be used for sending messages across data channels. This is the main use that RC takes advantage of!
+By moving messaging into a separate system we allow plugin messaging channels to remain clear for other uses.
+
+You can set up a small, free, Redis server [here](https://redis.com/)! It's worth noting that the free Redis plan is not going to be suitable for larger networks. But chances are, if you're a larger network, you can certainly afford the cost of a higher-end Redis server.

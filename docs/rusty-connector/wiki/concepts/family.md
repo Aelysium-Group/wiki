@@ -1,6 +1,6 @@
 ---
-title: 🤔 FAQ
-sidebar_position: 4
+title: 🧶 Families
+sidebar_position: 2
 ---
 Families are the backbone of RustyConnector.
 They can be thought of as "server collections." Minecraft servers always have a "theme" and therefore they always belong to a family.
@@ -8,8 +8,8 @@ By grouping servers into families you are able to assign load balancers and fami
 Let's dive in!
 
 ## How do they work?
-You configure your families in [config.yml](../config/config-latest#configyml-velocity), from there RustyConnector will create a custom config for your family in the `families` folder. This config will allow you to make further edits to your family!
-If you remove a family from [config.yml](../config/config-latest#configyml-velocity) that family will no longer be registered on RustyConnector and servers will no longer be able to register to it.
+You configure your families in `families.yml`, from there RustyConnector will create a custom config for your family in the `families` folder. This config will allow you to make further edits to your family!
+If you remove a family from `families.yml` that family will no longer be registered on RustyConnector and servers will no longer be able to register to it.
 When you setup your families you must define a family as your `root-family`. This is the family that players will automatically load into when they log onto your network.
 
 ## Thinking in terms of "families"
@@ -17,14 +17,12 @@ In traditional Minecraft management, you know each server individually by name a
 When working in an RC Network; you should be thinking in terms of families instead of individual servers.
 You aren't sending players to a specific hub server anymore. Instead, you send those players to the `hub` family and THAT family will decide what server it routes players to.
 
-## [family.scalar.yml](../config/config-latest#familyscalaryml-velocity) and [family.static.yml](../config/config-latest#familystaticyml-velocity)
-Once you add a family name to [config.yml](../config/config-latest#configyml-velocity), RC-Velocity will make a dedicated family config for that specific family. The name of the file will be the name that you set in [config.yml](../config/config-latest#configyml-velocity).
+## `family.scalar.yml` and `family.static.yml`
+Once you add a family name to `families.yml`, RC-Velocity will make a dedicated family config for that specific family. The name of the file will be the name that you set in `families.yml`.
 
 - - -
 
 # Scalar Families
-[See the config.](../config/config-latest#familyscalaryml-velocity)
-
 Scalar families are specifically built to work best for stateless Minecraft servers. Scalar families don’t care about anything other than connecting a player to the family.
 ## On connect
 When a player connects to a Scalar family, it will consolidate the load balancer and connect the player to the best server for them.
@@ -37,8 +35,6 @@ If a player connects to the family, leaves, and connects again. There’s no gua
 - - -
 
 # Static Families
-[See the config.](../config/config-latest#familystaticyml-velocity)
-
 Static families are specifically built to work best for statefull Minecraft servers. Static families will attempt to connect players to the same server as the one they joined when they first connected to the family.
 ## On first connection
 When a player connects to a Static Family for the first time, it will consolidate the load balancer and connect the player to the best server for them. Once the player has successfully connected to the family. The server that they connected to will be saved as the Home Server for that player.
@@ -53,16 +49,16 @@ If a player’s home server is unavailable you can configure how you want the fa
 - Family Specific Whitelist
 
 ## Pre-Requisites
-In order to use Static Families, you’ll be required to setup MySQL in your [config.yml](../config/config-latest#configyml-velocity)
+In order to use Static Families, you’ll be required to set up MySQL in `families.yml`
 
 - - -
 
 # Load Balancing
 ## Algorithm
 Every family in RustyConnector has its own dedicated load balancer.
-By default, the load balancer will use the [Round Robin Algorithm](https://www.nginx.com/resources/glossary/round-robin-load-balancing/) however you can also use a [Least Connection Algorithm](https://docs.citrix.com/en-us/citrix-adc/current-release/load-balancing/load-balancing-customizing-algorithms/leastconnection-method.html) if you'd like.
+By default, the load balancer will use the [Round Robin Algorithm](https://www.nginx.com/resources/glossary/round-robin-load-balancing/) however you can also use a few other algorithms if you'd like instead.
 
-Additionally, you can set your algorithm to consider weighted values when it sorts. When the load balancer is weighted you can set the `weight` value in RC-Paper's [config.yml](../config/config-latest#configyml-paper) to cause specific servers to gain priority over others.
+Additionally, you can set your algorithm to consider weighted values when it sorts. When the load balancer is weighted you can set the `weight` value in RC-Paper's `config.yml` to cause specific servers to gain priority over others.
 
 In the future, we plan to implement additional algorithms, for now though we have two total.
 
@@ -78,7 +74,7 @@ attempts: 5
    ---| 3. [PrimaryServer2](127.0.0.1:25567) [45 (40 <> 50) w-100]
    ---| 4. [BackupServer1](127.0.0.1:25568) [3 (40 <> 50) w-0]
 ```
-That was probably a little confusing to look at. For a full breakdown of what all the data means you can read [this snippet](./Family#reading-the-load-balancer-in-the-console).
+That was probably a little confusing to look at. For a full breakdown of what all the data means you can read [this snippet](https://github.com/Aelysium-Group/rusty-connector/wiki/Family#reading-the-load-balancer-in-the-console).
 
 In the example above, we have four servers registered to a family with a Least Connection Algorithm.
 One of the servers has its own whitelist allowing only VIP players to join it.
@@ -109,12 +105,12 @@ Not much is very clear to the human eye. These messages have been written to com
    ---| 1. [ server-name ]( address ) [player-count (player-soft-cap <> player-hard-cap) server-weight] <<<<< insertion-point
    ---| 2. [ server-name ]( address ) [player-count (player-soft-cap <> player-hard-cap) server-weight]
 ```
-- `server-name` | Represents the server name set in RC-Paper's [config.yml](../config/config-latest#configyml-paper).
-- `address` | Represents the server address set in RC-Paper's [config.yml](../config/config-latest#configyml-paper)
+- `server-name` | Represents the server name set in RC-Paper's `config.yml`.
+- `address` | Represents the server address set in RC-Paper's `config.yml`
 - `player-count` | Represents the current player count on this server.
-- `player-soft-cap` | Represents the soft cap of this server, set in RC-Paper's [config.yml](../config/config-latest#configyml-paper)
-- `player-hard-cap` | Represents the hard cap of this server, set in RC-Paper's [config.yml](../config/config-latest#configyml-paper)
-- `server-weight` | Represents the weight level of this server, set in RC-Paper's [config.yml](../config/config-latest#configyml-paper)
+- `player-soft-cap` | Represents the soft cap of this server, set in RC-Paper's `config.yml`
+- `player-hard-cap` | Represents the hard cap of this server, set in RC-Paper's `config.yml`
+- `server-weight` | Represents the weight level of this server, set in RC-Paper's `config.yml`
 - `insertion-point` | Shows which server a player will attempt to connect to first if they joined that family at that specific moment in time.
 
 - - -
@@ -122,11 +118,3 @@ Not much is very clear to the human eye. These messages have been written to com
 # Don't use `/server`
 RustyConnector specifically disables the `/server` command. Instead, you can use `/rc send` to send players to different families or servers.
 However, if you're trying to use `/rc send` to send players to specific servers you should stop yourself. If you're using RustyConnector, you should really be [thinking in terms of families](#thinking-in-terms-of-families) otherwise you're throwing away a number of benefits that RustyConnector provides to you.
-
-## Redis
-Redis is an ultra-fast database technology typically used for database caching.
-It's main difference from a traditional database is that it stores data on RAM as opposed to something like a Hard Drive. This means that data retrieval is ultra-fast.
-Additionally, Redis can be used for sending messages across data channels. This is the main use that RC takes advantage of!
-By moving messaging into a separate system we allow plugin messaging channels to remain clear for other uses.
-
-You can set up a small, free, Redis server [here](https://redis.com/)! It's worth noting that the free Redis plan is not going to be suitable for larger networks. But chances are, if you're a larger network, you can certainly afford the cost of a higher-end Redis server.

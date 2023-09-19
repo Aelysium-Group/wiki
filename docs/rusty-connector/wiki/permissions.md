@@ -1,7 +1,7 @@
 ---
 title: 📌 Permissions
 description: "RustyConnector Permission Commands"
-sidebar_position: 4
+sidebar_position: 101
 displayed_sidebar: plugins_wiki_rusty_connector
 ---
 `rustyconnector.*` | Bypass all permission checks. Full permission.

@@ -1,5 +1,6 @@
 ---
 title: 🔖 Discord Webhooks
+position: 0
 ---
 
 ## What's this?
@@ -8,7 +9,8 @@ All webhook messages are referred to as "alerts." When a particular event occurs
 
 ## Alert Privacy
 Discord Webhooks will NEVER include private details such as IP Addresses in alerts!
-Because of this, you should make sure you are setting human-readable names in your RC-Paper configurations.
+Instead they will use the family and server names that you set in your config files!
+Because of this, you should make sure you are setting human-readable names in your RC configurations.
 
 ## Scope
 You can set the scope of a webhook using the scope flag.

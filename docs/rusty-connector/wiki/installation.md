@@ -1,5 +1,5 @@
 ---
-title: 📖 Installation Guide
+title: 📖 Installation
 sidebar_position: 1
 ---
 So you’d like to switch to RustyConnector?

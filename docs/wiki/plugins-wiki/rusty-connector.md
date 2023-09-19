@@ -1,5 +1,5 @@
 ---
 slug: '/rusty-connector/'
-title: '📖 Wiki - Rusty Connector'
+title: '📖 Wiki - RustyConnector'
 ---
 <!-- Redirection only -->
