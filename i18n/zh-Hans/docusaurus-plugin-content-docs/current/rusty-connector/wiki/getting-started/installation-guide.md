@@ -34,9 +34,9 @@ It should be noted that RC is built to be reliable. The only point it should be 
 ### Setting Up RC-Velocity
 Load the latest version of RustyConnector into your Velocity server! RC-Velocity and RC-Paper are both contained in the same jar so no need to worry about two separate jars!
 
-- Start up your server. This will cause RC-Velocity to load the initial [config.yml](../config/config-latest#configyml-velocity) for you to start configuring.
+- Start up your server. This will cause RC-Velocity to load the initial config.yml for you to start configuring.
 - Additionally, RC will create a file called ‘private.key’. This is the private key that will be used to validate messages. Make sure that you NEVER share this key with anyone!
-- Open [config.yml](../config/config-latest#configyml-velocity) and set up your RC families (Read more about Families [here](./Family) for more info.) Make sure you edit `root-family.name` to match whichever family should be your default.
+- Open config.yml and set up your RC families (Read more about Families [here](./Family) for more info.) Make sure you edit `root-family.name` to match whichever family should be your default.
 - Add your [Redis](./faq#redis) information.
 - Restart your velocity server.
 
@@ -57,4 +57,4 @@ Load RustyConnector onto your Paper server! Preferably make sure that the RustyC
 It's important to take note that RC is specifically written in a top-down way. Paper servers never actually know if the Velocity server is listening. The Paper servers can only send their registration requests into the data channel and assume that the proxy has received them. As such, if any RC-Paper information is invalid and prevents the server from registering, that information will be shown on RC-Velocity and not RC-Paper. RC-Paper will not know if it has been registered unless players start joining it.
 
 Everything should be working now! Try joining!
-In order to switch between the families in your RC-Velocity, you'll need to use the [`/rc send` Command](../Commands).
+In order to switch between the families in your RC-Velocity, you'll need to use the [`/rc send` Command](./).

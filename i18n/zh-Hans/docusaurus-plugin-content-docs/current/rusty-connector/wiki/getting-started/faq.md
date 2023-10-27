@@ -8,8 +8,8 @@ By grouping servers into families you are able to assign load balancers and fami
 Let's dive in!
 
 ## How do they work?
-You configure your families in [config.yml](../config/config-latest#configyml-velocity), from there RustyConnector will create a custom config for your family in the `families` folder. This config will allow you to make further edits to your family!
-If you remove a family from [config.yml](../config/config-latest#configyml-velocity) that family will no longer be registered on RustyConnector and servers will no longer be able to register to it.
+You configure your families in config.yml, from there RustyConnector will create a custom config for your family in the `families` folder. This config will allow you to make further edits to your family!
+If you remove a family from config.yml that family will no longer be registered on RustyConnector and servers will no longer be able to register to it.
 When you setup your families you must define a family as your `root-family`. This is the family that players will automatically load into when they log onto your network.
 
 ## Thinking in terms of "families"
@@ -18,7 +18,7 @@ When working in an RC Network; you should be thinking in terms of families inste
 You aren't sending players to a specific hub server anymore. Instead, you send those players to the `hub` family and THAT family will decide what server it routes players to.
 
 ## [family.scalar.yml](../config/config-latest#familyscalaryml-velocity) and [family.static.yml](../config/config-latest#familystaticyml-velocity)
-Once you add a family name to [config.yml](../config/config-latest#configyml-velocity), RC-Velocity will make a dedicated family config for that specific family. The name of the file will be the name that you set in [config.yml](../config/config-latest#configyml-velocity).
+Once you add a family name to config.yml, RC-Velocity will make a dedicated family config for that specific family. The name of the file will be the name that you set in config.yml.
 
 - - -
 
@@ -53,7 +53,7 @@ If a player’s home server is unavailable you can configure how you want the fa
 - Family Specific Whitelist
 
 ## Pre-Requisites
-In order to use Static Families, you’ll be required to setup MySQL in your [config.yml](../config/config-latest#configyml-velocity)
+In order to use Static Families, you’ll be required to setup MySQL in your config.yml
 
 - - -
 
