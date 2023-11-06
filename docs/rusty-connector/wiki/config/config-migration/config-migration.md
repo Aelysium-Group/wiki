@@ -15,17 +15,11 @@ We do not provide "leap upgrade" documentation. If you wish to upgrade between m
 
 If you don't want to worry about trying to update your configs. You can simply delete all your config files and RustyConnector will generate new files in the version that it needs. From there you can re-configure RustyConnector to your needs.
 
-# RC-Velocity Config Versions
+# RustyConnector Config Versions
 | Config Version | Plugin Versions | Upgrade |
 | -----------    | -----------     | ------- |
 | Config v1 | `v0.3.x (beta)` |  |
 | Config v2 | `v0.4.x (beta)` | [![Wiki](https://badgen.net/badge/From/Config%20v1/blue?icon=codeclimate)](./Update-from-Config-v1-to-v2) |
 | Config v3 | `v0.5.x (beta)` | [![Wiki](https://badgen.net/badge/From/Config%20v2/blue?icon=codeclimate)](./Update-from-Config-v2-to-v3) |
-| Config v4 (Latest) | `v0.6.x (beta)` | [![Wiki](https://badgen.net/badge/From/Config%20v3/blue?icon=codeclimate)](./Update-from-Config-v3-to-v4) |
-
-# RC-Paper Config Versions
-| Config Version | Plugin Versions | Upgrade |
-| -----------    | -----------     | ------- |
-| Config v1 | `v0.3.x (beta)` |  |
-| Config v2 | `v0.4.x (beta)` | [![Wiki](https://badgen.net/badge/From/Config%20v1/blue?icon=codeclimate)](./Update-from-Config-v1-to-v2) |
-| Config v3 (Latest) | `v0.5.x (beta)` | [![Wiki](https://badgen.net/badge/From/Config%20v2/blue?icon=codeclimate)](./Update-from-Config-v1-to-v2) |
+| Config v4 | `v0.6.x (beta)` | [![Wiki](https://badgen.net/badge/From/Config%20v2/blue?icon=codeclimate)](./Update-from-Config-v2-to-v3) |
+| Config v5 (Latest) | `v0.7.x (beta)` | [![Wiki](https://badgen.net/badge/From/Config%20v3/blue?icon=codeclimate)](./Update-from-Config-v4-to-v5) |
