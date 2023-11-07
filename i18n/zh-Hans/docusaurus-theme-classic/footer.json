@@ -29,6 +29,6 @@
   },
   "link.item.label.Plugins Wiki": {
     "message": "插件Wiki",
-    "description": "The label of footer link with label=Plugins Wiki linking to /wiki/plugins-wiki"
+    "description": "The label of footer link with label=Plugins Wiki linking to "
   }
 }

@@ -114,19 +114,6 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
-            items: [
-              {
-                label: 'Wiki',
-                to: '/wiki',
-              },
-              {
-                label: 'Plugins Wiki',
-                to: '/wiki/plugins-wiki',
-              },
-            ],
-          },
-          {
             title: 'Community',
             items: [
               {
