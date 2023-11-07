@@ -12,7 +12,7 @@ const config = {
   favicon: 'images/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://wiki.aelysium.group',
+  url: 'https://wiki.aelysium.group/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -59,12 +59,6 @@ const config = {
           editUrl:
             'https://github.com/Aelysium-Group/wiki',
         },
-        /* The BLOG function is not used and this configuration is useless.
-        blog: {
-          showReadingTime: true,
-          editUrl:
-            'https://github.com/Aelysium-Group/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },*/
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },

@@ -1,6 +1,6 @@
 ---
-title: 🧶 Families
-sidebar_position: 2
+title: 🎰 Scalar Family
+position: 2
 ---
 Families are the backbone of RustyConnector.
 They can be thought of as "server collections." Minecraft servers always have a "theme" and therefore they always belong to a family.
@@ -11,11 +11,6 @@ Let's dive in!
 You configure your families in `families.yml`, from there RustyConnector will create a custom config for your family in the `families` folder. This config will allow you to make further edits to your family!
 If you remove a family from `families.yml` that family will no longer be registered on RustyConnector and servers will no longer be able to register to it.
 When you setup your families you must define a family as your `root-family`. This is the family that players will automatically load into when they log onto your network.
-
-## Thinking in terms of "families"
-In traditional Minecraft management, you know each server individually by name and you would send players to a specific server.
-When working in an RC Network; you should be thinking in terms of families instead of individual servers.
-You aren't sending players to a specific hub server anymore. Instead, you send those players to the `hub` family and THAT family will decide what server it routes players to.
 
 ## `family.scalar.yml` and `family.static.yml`
 Once you add a family name to `families.yml`, RC-Velocity will make a dedicated family config for that specific family. The name of the file will be the name that you set in `families.yml`.

@@ -1,0 +1,127 @@
+---
+title: 📖 Installation
+description: "Ready to switch? Let's go!"
+sidebar_position: 1
+displayed_sidebar: plugins_wiki_rusty_connector
+---
+
+import Tabs from '@theme/Tabs';
+
+import TabItem from '@theme/TabItem';
+
+So you’d like to switch to RustyConnector?
+Here’s a crash course on how to get started!
+
+First thing first, let’s understand how the plug-in works.
+
+## How it works
+Creating a RustyConnector network involves setting up RC on your Proxy server as well as on your individual MCLoaders.
+::::tip DID YOU CATCH THAT?
+RustyConnector supports a whole slew of different sources! Expand the tabs below to get an idea of how we refer to things in these docs.
+
+<Tabs>
+    <TabItem value="proxy" label="Proxy">
+        While reading the RustyConnector docs, you'll see us refer to "Proxy" a lot.
+        "Proxy" always refers to the copy of RustyConnector running on Velocity. In fact sometimes we might just say "Velocity".
+        <br />
+        When we refer to "Velocity" or "Proxy" we are referring RustyConnector, not necessarily the proxy itself.
+        If we are referring to the Velocity proxy itself we will specifically refer to it as "Velocity Server".
+    </TabItem>
+    <TabItem value="mcloader" label="MCLoader">
+        RustyConnector supports loads of different Minecraft loaders like Paper, Folia, and Fabric.
+        These softwares are referred to as "MCLoader" or just "Loader" (Always a capital <code>L</code>). "MCLoader" refers to the copy of RC that runs on a loader like Paper, Folia, or Fabric. 
+        <br />
+        When we refer to "MCLoader" we are referring RustyConnector, not necessarily the minecraft loader itself.
+    </TabItem>
+</Tabs>
+
+:::info
+You'll just about never see the word "server" used in the RustyConnector docs.
+This is because using "server" is too ambiguous, are you referring to the proxy? An MCLoader? The physical machine running one of your MCLoaders?
+
+Because of the ambiguity, don't use "server" when working with RustyConnector.
+:::
+
+::::
+
+:::info
+You must have working Redis and MariaDB databases for RustyConnector to opperate!
+:::
+
+All RustyConnector communication happens over Redis.
+Velocity is the main powerhouse of your RustyConnector Network. On boot, Velocity will load your configs and begin listening for MCLoaders over Redis.
+Anytime an MCLoader server boots it will automatically attempt to establish a Magic Link connection with the Proxy. If the connection is successful, the MCLoader will be registered into one of the predefined server families. (You can read up on Families [here](./concepts/family.md))
+
+If an MCLoader shuts down or crashes, it's Magic Link with the Proxy will be broken and the MCLoader will be removed from the Proxy's pool of available Loaders.
+
+There are more details involved however this is the basis of how this system works.
+If you have ten MCLoaders, they can all start and stop at any time and their Magic Links with the Proxy will be gracefully handled accordingly.
+
+## Pre-Requisites
+RustyConnector completely replaces the `[servers]` part of your `velocity.toml` configuration file.
+As such, once your RC network is built and ready to go, you won't have to open this config anymore to manage your servers.
+That said, the Velocity Server itself **REQUIRES** that you have at least one server defined in it. Feel free to just set this to a loopback address like `127.0.0.1:0`.
+
+Additionally you'll have to have both a Redis and MariaDB database ready to go in order to use RustyConnector. 
+
+## Getting Started
+### Setting up the Proxy
+1. Load the latest version of RustyConnector into your Velocity Server.
+2. Start your Velocity Server.
+:::info
+This will cause RustyConnector to load some initial config files for you to mess with.
+Notice how there's a file called `private.key`? This key is used to encrypt and decrypt packets transported over Redis. When you set up your MCLoaders you'll want to copy this file over to them.
+:::
+3. Open `families.yml` and set up your RC families.
+:::note
+You can read more about Families [here](./concepts/family.md). Make sure you edit `root-family.name` to match whichever family should be your default.
+:::
+4. In `connectors.yml` enter your Redis and MariaDB information.
+:::info
+Redis requires that you set a username, however you aren't required to set a password.
+:::
+
+5. Restart your velocity server.
+:::note
+RustyConnector will process your information and create family configs in the `families` folder. Be sure to take a look at these configs and make changes to them as you see fit.
+:::
+At this point, we are now ready to set up our first MCLoader!
+
+### Setting up an MCLoader
+Load RustyConnector onto your MCLoader of choice. Make sure that RustyConnector has support for it.
+
+Ensure that the version of RustyConnector running on your MCLoader is always the same as the version running on your Velocity Server.
+
+1. Start your MCLoader so that RustyConnector can generate configs for you.
+2. Copy the `private.key` file from your proxy and paste it into your MCLoader.
+3. Open the `config.yml`
+4. Set `name` to be whatever you'd like.
+:::info
+It's usually best to make the name something that somewhat describes the server. For example `survival-1`.
+The names you list in your MCLoaders must always be unique, do not set duplicate names.
+:::
+5. Set `address`.
+:::info
+Address can be set to the same thing that you would normally paste into th `velocity.toml` (for example: `127.0.0.1:25565`).
+The address should represent what players would connect to if they wanted to join this MCLoader.
+Make sure that if the address of this MCLoader changes you also change it here!
+:::
+6. Set `family`.
+:::info
+Family should be set so that it matches the name of one of the families you listed on the Proxy in `families.yml`.
+If the family doesn't exist, the MCLoader will fail to register to the Proxy.
+:::
+7. Set your player caps to a level that you are happy with.
+8. In `connectors.yml` enter your Redis information. Make sure it's the same as the information used on the PRoxy.
+9. Restart your MCLoader.
+
+Everything should be working now!
+Once the MCLoader is able to establish a Magic Link with the Proxy, you should see a green confirmation message in the console.
+
+:::info
+It's important to take note that RustyConnector is specifically written in a top-down way. MCLoaders never actually know if the Proxy exists and is ready to establish a Magic Link. The MCLoaders can only attempt to establish a Magic Link and wait for a response from the Proxy.
+:::
+
+:::danger Lets be clear
+Once you setup RustyConnector, you are now a **RustyConnector Network** and you need to follow [The RC Law](the_law).
+:::
