@@ -45,12 +45,12 @@ Because of the ambiguity, don't use "server" when working with RustyConnector.
 ::::
 
 :::info
-You must have working Redis and MariaDB databases for RustyConnector to opperate!
+You must have working Redis and MariaDB databases for RustyConnector to operate!
 :::
 
 All RustyConnector communication happens over Redis.
 Velocity is the main powerhouse of your RustyConnector Network. On boot, Velocity will load your configs and begin listening for MCLoaders over Redis.
-Anytime an MCLoader server boots it will automatically attempt to establish a Magic Link connection with the Proxy. If the connection is successful, the MCLoader will be registered into one of the predefined server families. (You can read up on Families [here](./concepts/family.md))
+Anytime an MCLoader server boots it will automatically attempt to establish a Magic Link connection with the Proxy. If the connection is successful, the MCLoader will be registered into one of the predefined server families.
 
 If an MCLoader shuts down or crashes, it's Magic Link with the Proxy will be broken and the MCLoader will be removed from the Proxy's pool of available Loaders.
 
@@ -74,7 +74,7 @@ Notice how there's a file called `private.key`? This key is used to encrypt and 
 :::
 3. Open `families.yml` and set up your RC families.
 :::note
-You can read more about Families [here](./concepts/family.md). Make sure you edit `root-family.name` to match whichever family should be your default.
+You can read more about Families [here](./concepts/families/families.md). Make sure you edit `root-family.name` to match whichever family should be your default.
 :::
 4. In `connectors.yml` enter your Redis and MariaDB information.
 :::info
