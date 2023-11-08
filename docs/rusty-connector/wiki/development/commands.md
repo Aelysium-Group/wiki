@@ -7,7 +7,7 @@ displayed_sidebar: plugins_wiki_rusty_connector
 Commands marked with an asterisk `*` are player useable. Otherwise, all commands are only allowed to be used from the console.
 If you want to allow players to use some commands, use a plugin like EssentialsX or CMI to make a command alias.
 
-# Proxy COmmands
+# Proxy Commands
 
 `/rc family` | View all registered families.
 
