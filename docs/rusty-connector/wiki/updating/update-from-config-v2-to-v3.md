@@ -1,5 +1,5 @@
 ---
-title: ℹ️ Migrating from V2 to V3
+title: ℹ️ Updating from V2 to V3
 sidebar_position: 3
 ---
 On this page, we will walk you through how to update your config from v2 to v3!

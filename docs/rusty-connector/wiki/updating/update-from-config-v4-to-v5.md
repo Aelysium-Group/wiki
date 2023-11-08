@@ -1,5 +1,5 @@
 ---
-title: ℹ️ Migrating from v4 to V5
+title: ℹ️ Updating from v4 to V5
 sidebar_position: 5
 ---
 On this page, we will walk you through how to update your config from v4 to v5!

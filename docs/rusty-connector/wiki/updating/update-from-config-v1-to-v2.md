@@ -1,5 +1,5 @@
 ---
-title: ℹ️ Migrating from V1 to V2
+title: ℹ️ Updating from V1 to V2
 sidebar_position: 2
 ---
 On this page, we will walk you through how to update your config from v1 to v2!

@@ -1,8 +1,5 @@
 ---
-id: index
-slug: './'
-title: ⚒️ Config Migration Guide
-sidebar_position: 1
+title: ⚒️ Config Updating
 ---
 RustyConnector configs may change over time.
 Use the following documents to consolidate changes between the config versions.

@@ -1,5 +1,5 @@
 ---
-title: ℹ️ Migrating from V3 to V4
+title: ℹ️ Updating from V3 to V4
 sidebar_position: 4
 ---
 On this page, we will walk you through how to update your config from v3 to v4!
