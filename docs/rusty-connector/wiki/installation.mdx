@@ -6,17 +6,17 @@ displayed_sidebar: plugins_wiki_rusty_connector
 ---
 
 import Tabs from '@theme/Tabs';
-
 import TabItem from '@theme/TabItem';
 
-So you’d like to switch to RustyConnector?
-Here’s a crash course on how to get started!
+So you'd like to switch to RustyConnector?
+Here's a crash course on how to get started!
 
-First thing first, let’s understand how the plug-in works.
+First thing first, let's understand how the plug-in works.
 
 ## How it works
 Creating a RustyConnector network involves setting up RC on your Proxy server as well as on your individual MCLoaders.
-::::tip DID YOU CATCH THAT?
+ <details>
+  <summary>Did you catch that?</summary>
 RustyConnector supports a whole slew of different sources! Expand the tabs below to get an idea of how we refer to things in these docs.
 
 <Tabs>
@@ -35,14 +35,14 @@ RustyConnector supports a whole slew of different sources! Expand the tabs below
     </TabItem>
 </Tabs>
 
-:::info
+:::caution
 You'll just about never see the word "server" used in the RustyConnector docs.
 This is because using "server" is too ambiguous, are you referring to the proxy? An MCLoader? The physical machine running one of your MCLoaders?
 
 Because of the ambiguity, don't use "server" when working with RustyConnector.
 :::
 
-::::
+</details>
 
 :::info
 You must have working Redis and MariaDB databases for RustyConnector to operate!
@@ -74,7 +74,7 @@ Notice how there's a file called `private.key`? This key is used to encrypt and 
 :::
 3. Open `families.yml` and set up your RC families.
 :::note
-You can read more about Families [here](./concepts/families/families.md). Make sure you edit `root-family.name` to match whichever family should be your default.
+You can read more about Families [here](./concepts/families). Make sure you edit `root-family.name` to match whichever family should be your default.
 :::
 4. In `connectors.yml` enter your Redis and MariaDB information.
 :::info
@@ -123,5 +123,5 @@ It's important to take note that RustyConnector is specifically written in a top
 :::
 
 :::danger Lets be clear
-Once you setup RustyConnector, you are now a **RustyConnector Network** and you need to follow [The RC Law](the_law).
+Once you setup RustyConnector, you are now a **RustyConnector Network** and you need to follow <TheLawTag>The Law</TheLawTag>.
 :::

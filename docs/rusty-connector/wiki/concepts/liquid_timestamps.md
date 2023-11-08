@@ -2,7 +2,7 @@
 title: 🌊 Liquid Timestamp
 ---
 While working with RustyConnector configurations. You may encounter a liquid timestamp.
-These data points allow you to define a string value which will be translated into a unit of time.
+These data types allow you to define a string value which will be translated into a unit of time.
 
 ## Syntax
 Liquid Timestamps use the following syntax:
@@ -17,8 +17,9 @@ Liquid Timestamps use the following syntax:
 | Name     | ID Key | Description                                                                 |
 | -----    | -----  | -----                                                                       |
 | `Second` | `s`    | Unit of time representing a second. The plural "Seconds" is also supported. |
+| `Minute` | `m`    | Unit of time representing a minute. The plural "Minutes" is also supported. |
+| `Hour`   | `h`    | Unit of time representing a n hour. The plural "Hours" is also supported.   |
 | `Day`    | `d`    | Unit of time representing a day. The plural "Days" is also supported.       |
-| `Month`  | `m`    | Unit of time representing a month. The plural "Months" is also supported.   |
 
 All time units are case insensitive.
 
@@ -28,10 +29,11 @@ The time formats don't care if you:
 - Use caps ("day" versus "DAY")
 - Use whitespaces ("1d" versus "1 d")
 
-## Examples
-- "30 Months"
-- "2d"
-- "1 hour"
-- "17HOURS"
-- "11days"
-- "18 m"
+:::info Examples
+- `30 Minutes`
+- `2d`
+- `1 hour`
+- `17HOURS`
+- `11days`
+- `18 m`
+:::

@@ -1,13 +1,13 @@
 ---
 title: ⚙️ Commands
 description: "RustyConnector Commands"
-sidebar_position: 100
+sidebar_position: 3
 displayed_sidebar: plugins_wiki_rusty_connector
 ---
 Commands marked with an asterisk `*` are player useable. Otherwise, all commands are only allowed to be used from the console.
 If you want to allow players to use some commands, use a plugin like EssentialsX or CMI to make a command alias.
 
-# RustyConnector Velocity
+# Proxy COmmands
 
 `/rc family` | View all registered families.
 
@@ -33,7 +33,9 @@ If you want to allow players to use some commands, use a plugin like EssentialsX
 
 *`/tpa` | Teleport to another player within the family. (Works across servers within that family.)
 
-# RustyConnector Paper
+*`/hub` | Teleport a family's parent family.
+
+# MCLoader Commands
 ### NOTE: Because of an unknown bug, all RC-Paper commands must be executed using the plugin prefix: `rustyconnector-paper:rc` instead of just `rc`.
 
 `/rustyconnector-paper:rc send <username> <family name>` | Sends a player to a specific family.
@@ -41,3 +43,7 @@ If you want to allow players to use some commands, use a plugin like EssentialsX
 `/rustyconnector-paper:rc register` | Attempts to register the server to the proxy.
 
 `/rustyconnector-paper:rc unregister` | Attempts to unregister the server from the proxy.
+
+`/rustyconnector-paper:rc lock` | Locks this MCLoader, preventing players from connecting to it without specifically being sent to it by the Proxy.
+
+`/rustyconnector-paper:rc unlock` | Unlocks this MCLoader, allowing players to connect to it via it's family.

@@ -2,12 +2,9 @@
 title: 👮 Whitelist
 sidebar_position: 3
 ---
-RustyConnector allows you to set whitelists for your entire network, specific families, or individual servers.
+RustyConnector allows you to set whitelists for both your entire network and specific families!
 
-With RustyConnector whitelists, you can create as many pre-defined whitelists as you like. Switching between these whitelists is as easy as changing the name of the whitelist to use inside of your RC-Velocity config or inside of an RC-Velocity family config.
-
-You can also reload whitelists dynamically using a reload [Command](../Commands).
-Use `/rc reload` to see available reload commands.
+With RustyConnector whitelists, you can create as many pre-defined whitelists as you like. Switching between these whitelists is as easy as changing the name of the whitelist in your configs.
 
 # Network Wide Whitelists
 - In config.yml on RC-Velocity, go to the `whitelist` section.
@@ -31,4 +28,4 @@ Use `/rc reload` to see available reload commands.
 - Restart RC-Velocity
 
 # Server-Specific Whitelists
-RustyConnectior doesn't have a custom implementation for server-specific whitelists. Instead, use Paper's built-in whitelist system via the `/whitelist` command.
+RustyConnectior doesn't have a custom implementation for Loader-specific whitelists. Instead, use your MCLoader's built-in whitelist system via the `/whitelist` command.
