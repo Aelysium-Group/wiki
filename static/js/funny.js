@@ -1,15 +1,15 @@
 /**
  * Hey, don't look, this is really not an egg :P
  */
-const egg_title1 = "馃寣 PowerNukkitX"
+const egg_title1 = "Aelysium-Group"
 const egg_title2 = "Just an egg :D"
 const egg_content = `
-馃彙 WebSite: https://www.powernukkitx.com
-馃搶 GitHub:  https://github.com/powernukkitx
-馃摉 Document: https://powernukkitx.com/doc
+WebSite: https://www.aelysium.group
+GitHub:  https://github.com/Aelysium-Group
+Discord: https://join.aelysium.group
+Document: https://wiki.aelysium.group
 ----------------------------------------
-馃帀 Congratulations on finding this egg!
-馃敡 Web Version: 1.0
+Congratulations on finding this egg!
 `
 const egg_style_title1 = `
 font-size: 20px;
