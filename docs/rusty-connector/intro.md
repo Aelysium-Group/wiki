@@ -1,9 +1,6 @@
 ---
-slug: './'
-id: rusty-connector
-title: 👋 Welcome
+title: Introduction
 sidebar_position: 1
-displayed_sidebar: plugins_wiki_rusty_connector
 ---
 ![Aelysium Wordmark Image](https://github.com/Aelysium-Group/.github/blob/main/images/rustyconnector-wordmark.png?raw=true)
 # Wiki

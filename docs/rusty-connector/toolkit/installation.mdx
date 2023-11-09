@@ -1,0 +1,53 @@
+---
+title: ⚒️ Installation
+description: "Ready to switch? Let's go!"
+sidebar_position: 1
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+:::danger
+This page is still under construction
+:::
+
+:::caution
+This page is for the RustyConnector API.
+For the plugin wiki, go [here](/rusty-connector/docs/installation).
+:::
+
+The RustyConnector Toolkit grants you access to the power of RustyConnector through a custom Java API!
+
+## Requirements
+- Java 17 or later
+
+## Getting Started
+You can import the RustyConnector Tollkit via Maven and Gradle.
+
+<Tabs>
+    <TabItem value="maven" label="Maven">
+        <pre><code>
+        </code></pre>
+    </TabItem>
+    <TabItem value="gradle" label="Gradle">
+        <pre><code>compileOnly ''</code></pre>
+    </TabItem>
+</Tabs>
+
+Once imported, you can access the RustyConnector Toolkit from either the Proxy or MCLoader
+<Tabs>
+    <TabItem value="proxy" label="Proxy">
+        <pre><code>
+            VelocityTinder tinder = RustyConnectorToolkit.getProxyAPI();
+            <br/><br/>
+            System.out.println(tinder.flame().version());
+        </code></pre>
+    </TabItem>
+    <TabItem value="mcloader" label="MCLoader">
+        <pre><code>
+            MCLoaderTinder tinder = RustyConnectorToolkit.getMCLoaderAPI();
+            <br/><br/>
+            System.out.println(tinder.flame().version());
+        </code></pre>
+    </TabItem>
+</Tabs>

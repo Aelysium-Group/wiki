@@ -13,7 +13,7 @@ export default function DynamicTag (props) { return (
               background: "rgba(255, 255, 255, 0.5)"
             },
         }}
-        href={`/rusty-connector/wiki/${props.href}`}
+        href={`/rusty-connector/docs/${props.href}`}
         title={props.title}
     >
         <span style={{paddingRight:"2px"}}>{props.emoji}</span>
