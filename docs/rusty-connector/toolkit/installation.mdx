@@ -1,5 +1,4 @@
 ---
-slug: './'
 title: ⚒️ Installation
 description: "Ready to switch? Let's go!"
 sidebar_position: 1
@@ -23,32 +22,52 @@ The RustyConnector Toolkit grants you access to the power of RustyConnector thro
 - Java 17 or later
 
 ## Getting Started
-You can import the RustyConnector Tollkit via Maven and Gradle.
+You can import the RustyConnector Toolkit via Maven and Gradle.
 
 <Tabs>
     <TabItem value="maven" label="Maven">
         <pre><code>
+            <span>&lt;dependency&gt;</span><br />
+            <span>    &lt;groupId&gt;maven.modrinth&lt;/groupId&gt;</span><br />
+            <span>    &lt;artifactId&gt;rusty-connector&lt;/artifactId&gt;</span><br />
+            <span>    &lt;version&gt;0.8.0&lt;/version&gt;</span><br />
+            <span>    &lt;classifier&gt;rustyconnector-toolkit&lt;/classifier&gt;</span><br />
+            <span>&lt;/dependency&gt;</span><br />
         </code></pre>
     </TabItem>
     <TabItem value="gradle" label="Gradle">
-        <pre><code>compileOnly ''</code></pre>
+        <pre><code>compileOnly "maven.modrinth:rusty-connector:0.8.0:rustyconnector-toolkit"</code></pre>
     </TabItem>
 </Tabs>
 
-Once imported, you can access the RustyConnector Toolkit from either the Proxy or MCLoader
-<Tabs>
-    <TabItem value="proxy" label="Proxy">
-        <pre><code>
-            VelocityTinder tinder = RustyConnectorToolkit.getProxyAPI();
-            <br/><br/>
-            System.out.println(tinder.flame().version());
-        </code></pre>
-    </TabItem>
-    <TabItem value="mcloader" label="MCLoader">
-        <pre><code>
-            MCLoaderTinder tinder = RustyConnectorToolkit.getMCLoaderAPI();
-            <br/><br/>
-            System.out.println(tinder.flame().version());
-        </code></pre>
-    </TabItem>
-</Tabs>
+Once imported, you can access the RustyConnector Toolkit from either the Proxy or MCLoader.
+In order to be used properly, you must ensure that RustyConnector is added as a dependency in your plugin.
+
+## Accessing Toolkit
+Toolkit can be accessed using the `RustyConnector.Toolkit` package.
+When writing a proxy plugin, you access toolkit using either the `.proxy()` or `.mcLoader()` accessors which will return an `Optional`.
+The Optional will throw an exception if the api for the specific RustyConnector loader hasn't been registered yet.
+If you properly set RustyConnector as a dependency in your plugin, this shouldn't happen.
+```java title="Proxy Plugin"
+VelocityTinder tinder = RustyConnector.Toolkit.proxy().orElseThrow();
+```
+```java title="MCLoader Plugin"
+MCLoaderTinder tinder = RustyConnector.Toolkit.mcLoader().orElseThrow();
+```
+
+## Accessing Flame
+The Flame is the running kernel of RustyConnector.
+As a module developer, you have no way of knowing if or when the Flame is available.
+Instead you hook into the `Tinder#onStart` and `Tinder#onStop` methods to react to Flame availability.
+```java title="Proxy Plugin"
+VelocityTinder tinder = RustyConnector.Toolkit.proxy().orElseThrow();
+
+tinder.onStart(flame -> {
+    System.out.println(flame.versionAsString());
+});
+
+tinder.onStop(() -> {
+    logger.log("Lost connection to RustyConnector! Waiting for it to restart...");
+});
+```
+If a flame already exists and you call `Tinder#onStart`, it will immediately return the existing flame to the passed `Consumer`.

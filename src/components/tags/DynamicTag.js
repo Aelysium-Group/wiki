@@ -5,9 +5,9 @@ export default function DynamicTag (props) { return (
         style={{
             textDecoration: "none",
             display: "inline-block",
-            background: "rgba(255, 255, 255, 0.1)",
             padding: "0px 8px 0px 5px",
             borderRadius: "20px",
+            backdropFilter: "invert(0.1)",
 
             "&:hover": {
               background: "rgba(255, 255, 255, 0.5)"
