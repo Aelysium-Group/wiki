@@ -15,6 +15,8 @@ A difference between an Item Reference and something native to Java such as a `W
 Alternatively, an Item Reference is more like a "prebuilt search query". Whether or not the item actually exists isn't known until `.get()` is called.
 
 ## Family
+Searches for a family based on the ID assigned to it in `families.yml`.
+
 ```java
 Family family = new Family.Reference(familyID).get();
 ```
@@ -33,6 +35,7 @@ Family family = new Family.Reference(familyID).get(true);
 :::
 
 ## MCLoader
+Searches for an MCLoader with the specified `ServerInfo`.
 ```java
 MCLoader mcLoader = new MCLoader.Reference(ServerInfo).get();
 ```
@@ -43,6 +46,7 @@ MCLoader mcLoader = new MCLoader.Reference(ServerInfo).get();
 
 ## Player
 ### UUID-based Reference
+Searches for a player based on their UUID.
 ```java
 Player player = new Player.Reference(UUID.randomUUID()).get();
 ```
@@ -51,6 +55,7 @@ Player player = new Player.Reference(UUID.randomUUID()).get();
 :::
 
 ### Username-based Reference
+Searches for a player based on their Username.
 ```java
 String username = "Notch";
 Player player = new Player.UsernameReference(username).get();
