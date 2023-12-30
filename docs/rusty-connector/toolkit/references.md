@@ -35,9 +35,9 @@ Family family = new Family.Reference(familyID).get(true);
 :::
 
 ## MCLoader
-Searches for an MCLoader with the specified `ServerInfo`.
+Searches for an MCLoader with the specified `UUID`.
 ```java
-MCLoader mcLoader = new MCLoader.Reference(ServerInfo).get();
+MCLoader mcLoader = new MCLoader.Reference(uuid).get();
 ```
 
 :::info
@@ -61,7 +61,7 @@ String username = "Notch";
 Player player = new Player.UsernameReference(username).get();
 ```
 :::info
-`Player.UsernameReference` performs a `.stream().filter()` and isn't optimized by the HashMap that `Player.Reference` uses.
+`Player.UsernameReference` is backed by two Hash-Map references, one of them is backed by the database. Responses should be pretty fast but may be delayed.
 :::
 
 ## Exceptions
