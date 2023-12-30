@@ -20,29 +20,14 @@ Magic Link also employs AES 256-bit end-to-end encryption via its Secure Transit
 Custom Packets can be created during runtime using the packet builder.
 ```java title="Proxy Plugin"
 GenericPacket packet = new GenericPacket.Builder()
-        .id(PacketIdentification.from("RC_MY_MODULE", "NAME_OF_PACKET"))
-        .origin(PacketOrigin.PROXY)
-        .address(target_address)
+        .identification(PacketIdentification.from("RC_MY_MODULE", "NAME_OF_PACKET"))
+        .toMCLoader(target_uuid)
         .build();
 ```
 
-`id` - The ID of the packet. This is important for when you create Packet Listeners.
+`identification` - The ID of the packet. This is important for when you create Packet Listeners.
 
-`origin` - The origin that this packet is from. (`PROXY`, or `MCLOADER`)
-
-`address` - The address associated with the packet.
-
-:::caution
-When creating packets, it's important to keep track of the origin they're being sent from.
-
-If origin is `PROXY`, then `address` should be the address of an MCLoader. The packet will then be sent to that specific MCLoader.
-
-If origin is `MCLOADER`, then `address` should be the address of the MCLoader which is sending the packet. This way the Proxy knows who sent the packet.
-
-`address` should __NEVER__ be the address of the Proxy.
-
-Failing to follow these guidelines will result in your packets being ignored.
-:::
+`toMCLoader` - Marks the MCLoader that this packet should be sent to.
 
 ### Packet Identification
 When a packet is created, it needs to be assigned identification.
@@ -67,9 +52,8 @@ Adding a custom parameter is as easy as using the `.parameter()` method along wi
 `PacketParameter` lets you set parameters of type `int`, `long`, `double`, `String`, and `boolean`.
 ```java title="Proxy Plugin"
 GenericPacket packet = new GenericPacket.Builder()
-        .id(PacketIdentification.from("MY_MODULE", "NAME_OF_PACKET"))
-        .address(target_address)
-        .origin(PacketOrigin.PROXY)
+        .identification(PacketIdentification.from("MY_MODULE", "NAME_OF_PACKET"))
+        .toMCLoader(target_uuid)
         .parameter("example_int", new PacketParameter(1000))
         .parameter("example_long", new PacketParameter(1000000000000))
         .parameter("example_double", new PacketParameter(2.5))
@@ -103,9 +87,8 @@ All packets are of type `GenericPacket`. However, you can make a simple wrapper 
 /**
  * The following is a packet wrapper for the following example packet:
  * GenericPacket packet = new GenericPacket.Builder()
- *      .id(PacketIdentification.from("MY_MODULE", "CUSTOM_PACKET"))
- *      .address(target_address)
- *      .origin(PacketOrigin.PROXY)
+ *      .identification(PacketIdentification.from("MY_MODULE", "CUSTOM_PACKET"))
+ *      .toMCLoader(target_uuid)
  *      .parameter("example_data", "hello!")
  *      .build();
  */
@@ -148,9 +131,8 @@ To better show this example, lets update our custom packet we've been using so t
 /**
  * The following is a packet wrapper for the following example packet:
  * GenericPacket packet = new GenericPacket.Builder()
- *      .id(PacketIdentification.from("MY_MODULE", "CUSTOM_PACKET"))
- *      .address(target_address)
- *      .origin(PacketOrigin.PROXY)
+ *      .identification(PacketIdentification.from("MY_MODULE", "CUSTOM_PACKET"))
+ *      .toMCLoader(target_uuid)
  *      .parameter("username", "Notch")
  *      .build();
  */
@@ -168,11 +150,10 @@ public class CustomPacket extends GenericPacket {
         String USERNAME = "username";
     }
 
-    public static CustomPacket create(InetSocketAddress address, PacketOrigin origin, String username) {
+    public static CustomPacket create(UUID target_uuid, String username) {
         return new GenericPacket.Builder()
-            .id(PacketIdentification.from("MY_MODULE", "CUSTOM_PACKET"))
-            .address(address)
-            .origin(origin)
+            .identification(PacketIdentification.from("MY_MODULE", "CUSTOM_PACKET"))
+            .toMCLoader(target_uuid)
             .parameter(Parameter.USERNAME, username)
             .build();
     }
@@ -185,7 +166,7 @@ Below is an example using the `CustomPacket` that we've build. But you can also 
 directly to the `.publish()` method.
 ```java title="Proxy Plugin"
 tinder.onStart(flame -> {
-    CustomPacket packet = CustomPacket.create(target_address, PacketOrigin.PROXY, "Notch");
+    CustomPacket packet = CustomPacket.create(target_uuid, "Notch");
 
     flame.services().magicLink().connection().orElseThrow().publish(packet);
 });
