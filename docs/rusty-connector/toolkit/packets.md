@@ -18,16 +18,28 @@ Magic Link also employs AES 256-bit end-to-end encryption via its Secure Transit
 
 ## Custom Packets
 Custom Packets can be created during runtime using the packet builder.
+PacketBuilder is a service, which means if has to be fetched from the RustyConnector Flame.
+This is done because the builder that you receive from PacketBuilder contains some already necessary metadata about your environment (for example is it a packet from an MCLoader or from the Proxy?) which you'd otherwise have to provide yourself.
+
+Here's a basic example of creating a custom packet.
 ```java title="Proxy Plugin"
-GenericPacket packet = new GenericPacket.Builder()
+tinder.onStart(flame -> {
+    GenericPacket packet = flame.services().packetBuilder().createNew()
         .identification(PacketIdentification.from("RC_MY_MODULE", "NAME_OF_PACKET"))
-        .toMCLoader(target_uuid)
+        .sendingToMCLoader(target_uuid)
         .build();
+});
 ```
 
-`identification` - The ID of the packet. This is important for when you create Packet Listeners.
+It's important to note that this code block will not actually send the packet, we'll get to that in a bit; this simply creates a packet which can be sent.
+Every packet has two required fields:
 
-`toMCLoader` - Marks the MCLoader that this packet should be sent to.
+- `identification` - The ID of the packet. This is important for when you create Packet Listeners.
+- `sendingMethod` - Marks where this packet needs to be delivered to.
+
+:::info
+For your convenience we've constructed the Packet Builder so that you don't even have access to the `.build()` method until you've provided the required information. This way it's one less exception or check you have to worry about while coding. Once you see the `.build()` method, you know that your packet is already a valid packet.
+:::
 
 ### Packet Identification
 When a packet is created, it needs to be assigned identification.
@@ -51,7 +63,7 @@ else's plugin. Your packets will intercept eachother and cause issues.
 Adding a custom parameter is as easy as using the `.parameter()` method along with the `PacketParameter` wrapper.
 `PacketParameter` lets you set parameters of type `int`, `long`, `double`, `String`, and `boolean`.
 ```java title="Proxy Plugin"
-GenericPacket packet = new GenericPacket.Builder()
+GenericPacket packet = flame.services().packetBuilder().createNew()
         .identification(PacketIdentification.from("MY_MODULE", "NAME_OF_PACKET"))
         .toMCLoader(target_uuid)
         .parameter("example_int", new PacketParameter(1000))
@@ -86,7 +98,7 @@ All packets are of type `GenericPacket`. However, you can make a simple wrapper 
 ```java
 /**
  * The following is a packet wrapper for the following example packet:
- * GenericPacket packet = new GenericPacket.Builder()
+ * GenericPacket packet = flame.services().packetBuilder().createNew()
  *      .identification(PacketIdentification.from("MY_MODULE", "CUSTOM_PACKET"))
  *      .toMCLoader(target_uuid)
  *      .parameter("example_data", "hello!")
@@ -130,7 +142,7 @@ To better show this example, lets update our custom packet we've been using so t
 ```java
 /**
  * The following is a packet wrapper for the following example packet:
- * GenericPacket packet = new GenericPacket.Builder()
+ * GenericPacket packet = flame.services().packetBuilder().createNew()
  *      .identification(PacketIdentification.from("MY_MODULE", "CUSTOM_PACKET"))
  *      .toMCLoader(target_uuid)
  *      .parameter("username", "Notch")
@@ -150,8 +162,8 @@ public class CustomPacket extends GenericPacket {
         String USERNAME = "username";
     }
 
-    public static CustomPacket create(UUID target_uuid, String username) {
-        return new GenericPacket.Builder()
+    public static CustomPacket create(VelocityFlame flame, UUID target_uuid, String username) {
+        return flame.services().packetBuilder().createNew()
             .identification(PacketIdentification.from("MY_MODULE", "CUSTOM_PACKET"))
             .toMCLoader(target_uuid)
             .parameter(Parameter.USERNAME, username)
@@ -166,7 +178,7 @@ Below is an example using the `CustomPacket` that we've build. But you can also 
 directly to the `.publish()` method.
 ```java title="Proxy Plugin"
 tinder.onStart(flame -> {
-    CustomPacket packet = CustomPacket.create(target_uuid, "Notch");
+    CustomPacket packet = CustomPacket.create(flame, target_uuid, "Notch");
 
     flame.services().magicLink().connection().orElseThrow().publish(packet);
 });
