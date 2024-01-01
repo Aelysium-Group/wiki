@@ -17,8 +17,8 @@ It's sole directive is ensuring that all MCLoaders on the Proxy are active and r
 Magic Link also employs AES 256-bit end-to-end encryption via its Secure Transit module as well as packet filtering and caching via its Data Transit module.
 
 ## Custom Packets
-Custom Packets can be created during runtime using the packet builder.
-PacketBuilder is a service, which means if has to be fetched from the RustyConnector Flame.
+Custom Packets can be created during runtime using the PacketBuilder service.
+Since PacketBuilder is a service, it has to be fetched from the RustyConnector Flame.
 This is done because the builder that you receive from PacketBuilder contains some already necessary metadata about your environment (for example is it a packet from an MCLoader or from the Proxy?) which you'd otherwise have to provide yourself.
 
 Here's a basic example of creating a custom packet.
@@ -31,7 +31,8 @@ tinder.onStart(flame -> {
 });
 ```
 
-It's important to note that this code block will not actually send the packet, we'll get to that in a bit; this simply creates a packet which can be sent.
+It's important to note that this code block will not actually send the packet, we'll get to that in a bit. This simply creates a packet which, once sent, will be sent to an MCLoader with the specified UUID.
+
 Every packet has two required fields:
 
 - `identification` - The ID of the packet. This is important for when you create Packet Listeners.
