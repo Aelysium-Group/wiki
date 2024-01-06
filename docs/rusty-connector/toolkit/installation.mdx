@@ -41,11 +41,11 @@ You can import the RustyConnector Toolkit via Maven and Gradle.
 </Tabs>
 
 Once imported, you can access the RustyConnector Toolkit from either the Proxy or MCLoader.
-In order to be used properly, you must ensure that RustyConnector is added as a dependency in your plugin.
+In order to use Toolkit, you must ensure that RustyConnector is added as a dependency in your plugin.
 
 ## Accessing Toolkit
 Toolkit can be accessed using the `RustyConnector.Toolkit` package.
-When writing a proxy plugin, you access toolkit using either the `.proxy()` or `.mcLoader()` accessors which will return an `Optional`.
+You can access Toolkit using either the `.proxy()` or `.mcLoader()` accessors which will return an `Optional`.
 The Optional will throw an exception if the api for the specific RustyConnector loader hasn't been registered yet.
 If you properly set RustyConnector as a dependency in your plugin, this shouldn't happen.
 ```java title="Proxy Plugin"
