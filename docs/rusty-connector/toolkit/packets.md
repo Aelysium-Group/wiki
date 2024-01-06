@@ -175,6 +175,9 @@ public class CustomPacket extends GenericPacket {
 
 Notice how we pass `CustomPacket.class` to the build method? This allows the builder to return a packet of type `CustomPacket`. If we dont pass anything, the builder will return a `GenericPacket`.
 
+Please note that if you don't properly define the constructor for your packet as weve listed above, calling `.build(CustomPacket.class)` will throw a 
+`NullPointerException`.
+
 ## Sending Custom Packets
 Once you've created a packet, sending it is super easy. You just have to access the Magic Link service via the Flame and publish it.
 Below is an example using the `CustomPacket` that we've build. But you can also just use the `GenericPacket.Builder` and pass the `GenericPacket`
