@@ -140,7 +140,7 @@ public class CustomPacketListener implements PacketListener<CustomPacket> {
 
 If you want to take your packet wrapper a step further you can add a custom `GenericPacket.Builder` implementation.
 To better show this example, lets update our custom packet we've been using so that its example parameter holds a player's username.
-```java
+```java title="Proxy Plugin"
 /**
  * The following is a packet wrapper for the following example packet:
  * GenericPacket packet = flame.services().packetBuilder().createNew()
