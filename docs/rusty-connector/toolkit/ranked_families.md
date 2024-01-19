@@ -38,3 +38,5 @@ to their parent Family.
         IRankedGameInterfaceService service = flame.rankedGameInterface().orElseThrow();
     });
 ```
+
+It's worth noting that `.rankedGameInterface()` returns an `Optional`. This is because an MCLoader's Ranked Game Interface will only activate if that MCLoader is registered into a Ranked Family. If the MCLoader is loaded into something like a Scalar Family, the Ranked Game Interface won't be activated.

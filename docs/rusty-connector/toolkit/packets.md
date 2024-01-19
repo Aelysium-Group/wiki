@@ -24,7 +24,7 @@ This is done because the builder that you receive from PacketBuilder contains so
 Here's a basic example of creating a custom packet.
 ```java title="Proxy Plugin"
 tinder.onStart(flame -> {
-    GenericPacket packet = flame.services().packetBuilder().createNew()
+    Packet packet = flame.services().packetBuilder().newBuilder()
         .identification(PacketIdentification.from("RC_MY_MODULE", "NAME_OF_PACKET"))
         .sendingToMCLoader(target_uuid)
         .build();
@@ -32,6 +32,7 @@ tinder.onStart(flame -> {
 ```
 
 It's important to note that this code block will not actually send the packet, we'll get to that in a bit. This simply creates a packet which, once sent, will be sent to an MCLoader with the specified UUID.
+By default the packet builder will always return Packet. If you want to create packets of a specific type, read on!
 
 Every packet has two required fields:
 
@@ -64,7 +65,7 @@ else's plugin. Your packets will intercept eachother and cause issues.
 Adding a custom parameter is as easy as using the `.parameter()` method along with the `PacketParameter` wrapper.
 `PacketParameter` lets you set parameters of type `int`, `long`, `double`, `String`, and `boolean`.
 ```java title="Proxy Plugin"
-GenericPacket packet = flame.services().packetBuilder().createNew()
+Packet packet = flame.services().packetBuilder().newBuilder()
         .identification(PacketIdentification.from("MY_MODULE", "NAME_OF_PACKET"))
         .toMCLoader(target_uuid)
         .parameter("example_int", new PacketParameter(1000))
@@ -94,24 +95,25 @@ When creating a `PacketListener` we implement `.target()` which tells us what `P
 Additionally, we implement `.execute()` which lets us act upon the specific packet.
 
 ## Packet Wrappers
-All packets are of type `GenericPacket`. However, you can make a simple wrapper using the template below.
+Once you start adding parameters to packets you'll probably want to make a wrapper to more easily interact with those parameters.
+Packet Wrappers effectivly allow you to create custom types that you can use in your Packet Listeners.
 
-```java
+```java title="CustomPacket.java"
 /**
  * The following is a packet wrapper for the following example packet:
- * GenericPacket packet = flame.services().packetBuilder().createNew()
+ * Packet packet = flame.services().packetBuilder().newBuilder()
  *      .identification(PacketIdentification.from("MY_MODULE", "CUSTOM_PACKET"))
  *      .toMCLoader(target_uuid)
  *      .parameter("example_data", "hello!")
  *      .build();
  */
 
-public class CustomPacket extends GenericPacket {
-    private CustomPacket() { super(); }
+public class CustomPacket extends Packet.Wrapper {
+    public CustomPacket(Packet packet) { super(packet); }
 
     // Convenience getter for fetching a custom parameter so we don't have to manually every time.
     public String exampleData() {
-        return this.parameters.get(Parameters.EXAMPLE_DATA).getAsString();
+        return this.parameter(Parameters.EXAMPLE_DATA).getAsString();
     }
 
     // Convenience enum which lists all the valid Parameters that this custom packet supports
@@ -132,30 +134,35 @@ public class CustomPacketListener implements PacketListener<CustomPacket> {
     }
 
     @Override
+    public CustomPacket wrap(Packet packet) {
+        return new CustomPacket(packet);
+    }
+
+    @Override
     public void execute(CustomPacket packet) throws Exception {
         System.out.println(packet.exampleData());
     }
 }
 ```
 
-If you want to take your packet wrapper a step further you can add a custom `GenericPacket.Builder` implementation.
+If you want to take your packet wrapper a step further you can add a custom `Packet.Builder` implementation.
 To better show this example, lets update our custom packet we've been using so that its example parameter holds a player's username.
 ```java
 /**
  * The following is a packet wrapper for the following example packet:
- * GenericPacket packet = flame.services().packetBuilder().createNew()
+ * Packet packet = flame.services().packetBuilder().newBuilder()
  *      .identification(PacketIdentification.from("MY_MODULE", "CUSTOM_PACKET"))
  *      .toMCLoader(target_uuid)
  *      .parameter("username", "Notch")
  *      .build();
  */
 
-public class CustomPacket extends GenericPacket {
-    private CustomPacket() { super(); }
+public class CustomPacket extends Packet.Wrapper {
+    private CustomPacket(Packet packet) { super(packet); }
 
     // Convenience getter for fetching a custom parameter so we don't have to manually every time.
     public String username() {
-        return this.parameters.get(Parameters.USERNAME).getAsString();
+        return this.parameter(Parameters.USERNAME).getAsString();
     }
 
     // Convenience enum which lists all the valid Parameters that this custom packet supports
@@ -164,18 +171,19 @@ public class CustomPacket extends GenericPacket {
     }
 
     public static CustomPacket create(VelocityFlame flame, UUID target_uuid, String username) {
-        return flame.services().packetBuilder().createNew()
+        Packet packet = flame.services().packetBuilder().newBuilder()
             .identification(PacketIdentification.from("MY_MODULE", "CUSTOM_PACKET"))
             .toMCLoader(target_uuid)
             .parameter(Parameter.USERNAME, username)
             .build();
+        return new CustomPacket(packet);
     }
 }
 ```
 
-## Sending Custom Packets
+## Sending Custom Packet Wrappers
 Once you've created a packet, sending it is super easy. You just have to access the Magic Link service via the Flame and publish it.
-Below is an example using the `CustomPacket` that we've build. But you can also just use the `GenericPacket.Builder` and pass the `GenericPacket`
+Below is an example using the `CustomPacket` that we've build. But you can also just use the `Packet.Builder` and pass the `Packet`
 directly to the `.publish()` method.
 ```java title="Proxy Plugin"
 tinder.onStart(flame -> {
