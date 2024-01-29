@@ -17,30 +17,24 @@ It's sole directive is ensuring that all MCLoaders on the Proxy are active and r
 Magic Link also employs AES 256-bit end-to-end encryption via its Secure Transit module as well as packet filtering and caching via its Data Transit module.
 
 ## Custom Packets
-Custom Packets can be created during runtime using the PacketBuilder service.
-Since PacketBuilder is a service, it has to be fetched from the RustyConnector Flame.
-This is done because the builder that you receive from PacketBuilder contains some already necessary metadata about your environment (for example is it a packet from an MCLoader or from the Proxy?) which you'd otherwise have to provide yourself.
+The Packet Builder can be fetched from the MagicLink service.
+Since MagicLink is a service it means it must be fetched from the Flame.
+This is done because the builder that you receive from MagicLink contains some already necessary metadata about your environment (for example is it a packet from an MCLoader or from the Proxy?) which you'd otherwise have to provide yourself.
 
 Here's a basic example of creating a custom packet.
 ```java title="Proxy Plugin"
 tinder.onStart(flame -> {
-    Packet packet = flame.services().packetBuilder().newBuilder()
+    Packet packet = flame.services().magicLink().packetManager().newPacketBuilder()
         .identification(PacketIdentification.from("RC_MY_MODULE", "NAME_OF_PACKET"))
-        .sendingToMCLoader(target_uuid)
-        .build();
+        .sendTo(Packet.Target.mcLoader(target_uuid));
 });
 ```
 
-It's important to note that this code block will not actually send the packet, we'll get to that in a bit. This simply creates a packet which, once sent, will be sent to an MCLoader with the specified UUID.
-By default the packet builder will always return Packet. If you want to create packets of a specific type, read on!
-
-Every packet has two required fields:
-
-- `identification` - The ID of the packet. This is important for when you create Packet Listeners.
-- `sendingMethod` - Marks where this packet needs to be delivered to.
+It's important to note that the `.sendTo` and `.replyTo` both build and send the packet.
+There is no way to build a packet without building it.
 
 :::info
-For your convenience we've constructed the Packet Builder so that you don't even have access to the `.build()` method until you've provided the required information. This way it's one less exception or check you have to worry about while coding. Once you see the `.build()` method, you know that your packet is already a valid packet.
+`identification` is always required before you can send or add parameters to a packet.
 :::
 
 ### Packet Identification
@@ -65,34 +59,39 @@ else's plugin. Your packets will intercept eachother and cause issues.
 Adding a custom parameter is as easy as using the `.parameter()` method along with the `PacketParameter` wrapper.
 `PacketParameter` lets you set parameters of type `int`, `long`, `double`, `String`, and `boolean`.
 ```java title="Proxy Plugin"
-Packet packet = flame.services().packetBuilder().newBuilder()
-        .identification(PacketIdentification.from("MY_MODULE", "NAME_OF_PACKET"))
-        .toMCLoader(target_uuid)
-        .parameter("example_int", new PacketParameter(1000))
-        .parameter("example_long", new PacketParameter(1000000000000))
-        .parameter("example_double", new PacketParameter(2.5))
-        .parameter("example_string", new PacketParameter("hello!"))
-        .parameter("example_boolean", new PacketParameter(true))
-        .build();
+Packet packet = flame.services().magicLink().packetManager().newPacketBuilder()
+    .identification(PacketIdentification.from("MY_MODULE", "NAME_OF_PACKET"))
+    .parameter("example_int", new PacketParameter(1000))
+    .parameter("example_long", new PacketParameter(1000000000000))
+    .parameter("example_double", new PacketParameter(2.5))
+    .parameter("example_string", new PacketParameter("hello!"))
+    .parameter("example_boolean", new PacketParameter(true))
+    .sendTo(Packet.Target.mcLoader(target_uuid));
 ```
 
 ## Listening for packets
 Listening for packets is a similar ordeal to listening for Events.
 ```java title="CustomPacketListener.java"
-public class CustomPacketListener implements PacketListener<GenericPacket> {
+public class CustomPacketListener implements PacketListener<CustomPacket> {
     @Override
     public PacketIdentification target() {
         return PacketIdentification.from("MY_MODULE", "NAME_OF_PACKET");
     }
 
+    @OVerride
+    public CustomPacket wrap(Packet packet) {
+        return new CustomPacket(packet);
+    }
+
     @Override
-    public void execute(GenericPacket packet) throws Exception {
+    public void execute(CustomPacket packet) throws Exception {
         System.out.println(packet);
     }
 }
 ```
 When creating a `PacketListener` we implement `.target()` which tells us what `PacketIdentification` to listen for.
 Additionally, we implement `.execute()` which lets us act upon the specific packet.
+And finally, we implement `.wrap()` which will wrap our packet using a custom `Packet.Wrapper` that we've defined.
 
 ## Packet Wrappers
 Once you start adding parameters to packets you'll probably want to make a wrapper to more easily interact with those parameters.
@@ -101,11 +100,10 @@ Packet Wrappers effectivly allow you to create custom types that you can use in 
 ```java title="CustomPacket.java"
 /**
  * The following is a packet wrapper for the following example packet:
- * Packet packet = flame.services().packetBuilder().newBuilder()
+ * Packet packet = flame.services().magicLink().packetManger().newPacketBuilder()
  *      .identification(PacketIdentification.from("MY_MODULE", "CUSTOM_PACKET"))
- *      .toMCLoader(target_uuid)
  *      .parameter("example_data", "hello!")
- *      .build();
+ *      .sendTo(Packet.Target.allAvailableProxies());
  */
 
 public class CustomPacket extends Packet.Wrapper {
@@ -150,11 +148,10 @@ To better show this example, lets update our custom packet we've been using so t
 ```java
 /**
  * The following is a packet wrapper for the following example packet:
- * Packet packet = flame.services().packetBuilder().newBuilder()
+ * Packet packet = flame.services().magicLink().packetManager().newPacketBuilder()
  *      .identification(PacketIdentification.from("MY_MODULE", "CUSTOM_PACKET"))
- *      .toMCLoader(target_uuid)
  *      .parameter("username", "Notch")
- *      .build();
+ *      .sendTo(Packet.Target.allAvailableProxies());
  */
 
 public class CustomPacket extends Packet.Wrapper {
@@ -170,25 +167,50 @@ public class CustomPacket extends Packet.Wrapper {
         String USERNAME = "username";
     }
 
-    public static CustomPacket create(VelocityFlame flame, UUID target_uuid, String username) {
-        Packet packet = flame.services().packetBuilder().newBuilder()
-            .identification(PacketIdentification.from("MY_MODULE", "CUSTOM_PACKET"))
-            .toMCLoader(target_uuid)
-            .parameter(Parameter.USERNAME, username)
-            .build();
-        return new CustomPacket(packet);
+    public static CustomPacket createAndSend(VelocityFlame flame, UUID target_uuid, String username) {
+        return new CustomPacket(
+            flame.services().magicLink().packetManager().newPacketBuilder()
+                .identification(PacketIdentification.from("MY_MODULE", "CUSTOM_PACKET"))
+                .parameter("username", "Notch")
+                .sendTo(Packet.Target.allAvailableProxies())
+        );
     }
 }
 ```
 
-## Sending Custom Packet Wrappers
-Once you've created a packet, sending it is super easy. You just have to access the Magic Link service via the Flame and publish it.
-Below is an example using the `CustomPacket` that we've build. But you can also just use the `Packet.Builder` and pass the `Packet`
-directly to the `.publish()` method.
-```java title="Proxy Plugin"
-tinder.onStart(flame -> {
-    CustomPacket packet = CustomPacket.create(flame, target_uuid, "Notch");
-
-    flame.services().magicLink().connection().orElseThrow().publish(packet);
-});
+## Packet Conversations
+As of RC `v1` you'll be able to reply to packets you've received.
+This lets you chain packets together in conversations.
+Replying to a packet is as easy as building a packet and using `.replyTo` instead of `.sendTo`.
+```java
+Packet packet = flame.services().magicLink().packetManager().newPacketBuilder()
+     .identification(PacketIdentification.from("MY_MODULE", "CUSTOM_PACKET"))
+     .parameter("username", "Notch")
+     .replyTo(someOtherPacket);
 ```
+
+Listening to a packet reply is similarally as easy via CompletableFutures.
+```java
+Packet packet = flame.services().magicLink().packetManager().newPacketBuilder()
+     .identification(PacketIdentification.from("MY_MODULE", "CUSTOM_PACKET"))
+     .parameter("username", "Notch")
+     .sendTo(Packet.Target.allAvailableProxies());
+
+Packet response = packet.response().get(15, TimeUnit.SECONDS);
+```
+Packet's are only able to be replied to within a window of time. If a reply isn't received within that timeframe, a TimeoutException will be thrown regardless of if you define a timeout in the `.get()` method or not.
+
+If you only care about a packet response and not a packet itself, you can compress the above code block down to:
+```java
+Packet response = flame.services().magicLink().packetManager().newPacketBuilder()
+     .identification(PacketIdentification.from("MY_MODULE", "CUSTOM_PACKET"))
+     .parameter("username", "Notch")
+     .sendTo(Packet.Target.allAvailableProxies())
+     .response().get(15, TimeUnit.SECONDS);
+```
+
+
+:::danger
+Packet responses will only accept the first response it received.
+If multiple remote resources send responses to a packet, all responses except for the first received will be ignored.
+:::
