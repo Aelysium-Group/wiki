@@ -198,7 +198,7 @@ Packet packet = flame.services().magicLink().packetManager().newPacketBuilder()
      .sendTo(Packet.Target.allAvailableProxies());
 
 packet.response(response -> {
-    // Do something with the response
+    // Do something with the response.
 });
 ```
 Packet's are only able to be replied to within a window of time. If a reply isn't received within that timeframe, a TimeoutException will be thrown regardless of if you define a timeout in the `.get()` method or not.
@@ -221,7 +221,7 @@ flame.services().magicLink().packetHandler().newPacketBuilder()
      .parameter(“username”,”Notch”)
      .sendTo(Packet.Target.allAvailableProxies())
      .firstResponse(response -> {
-        // Do spmething with the response.
+        // Do something with the response.
      })
 ```
 :::danger
