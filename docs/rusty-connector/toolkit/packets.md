@@ -217,7 +217,7 @@ flame.services().magicLink().packetManager().newPacketBuilder()
 If you only want to accept the first response your packet receives, you can call `.firstResponse()`.
 ```java
 flame.services().magicLink().packetHandler().newPacketBuilder()
-     .identification(PacketIdentification.fr(“MY_MODULE”, “CUSTOM_PACKET”))
+     .identification(PacketIdentification.from(“MY_MODULE”, “CUSTOM_PACKET”))
      .parameter(“username”,”Notch”)
      .sendTo(Packet.Target.allAvailableProxies())
      .firstResponse(response -> {
