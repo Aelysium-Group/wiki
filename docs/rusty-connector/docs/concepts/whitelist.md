@@ -28,4 +28,4 @@ With RustyConnector whitelists, you can create as many pre-defined whitelists as
 - Restart RC-Velocity
 
 # Server-Specific Whitelists
-RustyConnectior doesn't have a custom implementation for Loader-specific whitelists. Instead, use your MCLoader's built-in whitelist system via the `/whitelist` command.
+RustyConnector doesn't have a custom implementation for Loader-specific whitelists. Instead, use your MCLoader's built-in whitelist system via the `/whitelist` command.
