@@ -1,10 +1,6 @@
 ---
-title: 🏆 Ranked Families (Matchmaking)
+title: 🏆 Matchmaker API
 ---
-
-:::danger
-This page is still under construction
-:::
 
 Ranked Families are a specific type of Family in RustyConnector which allow for matchmaking a player ranks.
 Ranked Families __require__ Toolkit implementation in order for them to work.

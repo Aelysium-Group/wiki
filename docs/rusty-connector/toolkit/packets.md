@@ -3,10 +3,6 @@ title: 📦 Packets
 sidebar_position: 4
 ---
 
-:::danger
-This page is still under construction
-:::
-
 Packets are a major backbone of RustyConnector.
 This page will help you plug into RustyConnector's Magic Link service and issue your own packets!
 
@@ -177,54 +173,3 @@ public class CustomPacket extends Packet.Wrapper {
     }
 }
 ```
-
-## Packet Conversations
-As of RC `v1` you'll be able to reply to packets you've received.
-This lets you chain packets together in conversations.
-Replying to a packet is as easy as building a packet and using `.replyTo` instead of `.sendTo`.
-```java
-Packet packet = flame.services().magicLink().packetManager().newPacketBuilder()
-     .identification(PacketIdentification.from("MY_MODULE", "CUSTOM_PACKET"))
-     .parameter("username", "Notch")
-     .replyTo(someOtherPacket);
-```
-
-Listening to a packet reply is similarally as easy by passing a Packet Consumer to the `.response()` method.
-Anytime this packet receives a response, the consumer will be called. It’s possible for this consumer to be called multiple times for any one packet. If you only want it to run once, keep reading!
-```java
-Packet packet = flame.services().magicLink().packetManager().newPacketBuilder()
-     .identification(PacketIdentification.from("MY_MODULE", "CUSTOM_PACKET"))
-     .parameter("username", "Notch")
-     .sendTo(Packet.Target.allAvailableProxies());
-
-packet.response(response -> {
-    // Do something with the response.
-});
-```
-Packet's are only able to be replied to within a window of time. If a reply isn't received within that timeframe, a TimeoutException will be thrown regardless of if you define a timeout in the `.get()` method or not.
-
-If you only care about a packet response and not a packet itself, you can compress the above code block down to:
-```java
-flame.services().magicLink().packetManager().newPacketBuilder()
-     .identification(PacketIdentification.from("MY_MODULE", "CUSTOM_PACKET"))
-     .parameter("username", "Notch")
-     .sendTo(Packet.Target.allAvailableProxies())
-     .response(response -> {
-        // Do something with the response.
-     });
-```
-
-If you only want to accept the first response your packet receives, you can call `.firstResponse()`.
-```java
-flame.services().magicLink().packetHandler().newPacketBuilder()
-     .identification(PacketIdentification.from(“MY_MODULE”, “CUSTOM_PACKET”))
-     .parameter(“username”,”Notch”)
-     .sendTo(Packet.Target.allAvailableProxies())
-     .firstResponse(response -> {
-        // Do something with the response.
-     })
-```
-:::danger
-Packet responses will only accept the first response it received.
-If multiple remote resources send responses to a packet, all responses except for the first received will be ignored.
-:::

@@ -4,10 +4,6 @@ description: "Events make the world go round..."
 sidebar_position: 3
 ---
 
-:::danger
-This page is still under construction
-:::
-
 The RustyConnector Proxy Toolkit provides a handful of events that can be acted upon.
 The RustyConnector Event API is a particularly simple one, extra features such as event canceling and priority don't exist currently. 
 

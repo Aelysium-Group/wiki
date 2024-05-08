@@ -3,10 +3,6 @@ title: 🛜 Services
 sidebar_position: 2
 ---
 
-:::danger
-This page is still under construction
-:::
-
 Services are the framework that RustyConnector is based off of.
 Every process in RustyConnector is a Service.
 Sometimes Services might contain sub-services.

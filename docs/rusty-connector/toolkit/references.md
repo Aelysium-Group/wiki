@@ -3,10 +3,6 @@ title: 📲 Item References
 sidebar_position: 5
 ---
 
-:::danger
-This page is still under construction
-:::
-
 Item References provide shorthand methods for fetching commonly searched for resources.
 Using an Item Reference is as simple as calling the Reference constructor along with a specific identification key.
 Then when you're ready to fetch the Referenced item, you can use `.get()`.

@@ -7,10 +7,6 @@ sidebar_position: 1
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-:::danger
-This page is still under construction
-:::
-
 :::caution
 This page is for the RustyConnector API.
 For the plugin wiki, go [here](/rusty-connector/docs/installation).
@@ -26,19 +22,42 @@ You can import the RustyConnector Toolkit via Maven and Gradle.
 
 <Tabs>
     <TabItem value="maven" label="Maven">
-        <pre><code>
-            <span>&lt;dependency&gt;</span><br />
-            <span>    &lt;groupId&gt;maven.modrinth&lt;/groupId&gt;</span><br />
-            <span>    &lt;artifactId&gt;rusty-connector&lt;/artifactId&gt;</span><br />
-            <span>    &lt;version&gt;0.8.0&lt;/version&gt;</span><br />
-            <span>    &lt;classifier&gt;rustyconnector-toolkit&lt;/classifier&gt;</span><br />
-            <span>&lt;/dependency&gt;</span><br />
-        </code></pre>
+        <pre><code>{"\
+<repositories>\n\
+    <repository>\n\
+        <id>mrnavastar-releases</id>\n\
+        <name>MrNavaStar's Repository</name>\n\
+        <url>https://maven.mrnavastar.rocks/releases</url>\n\
+    </repository>\n\
+</repositories>\n\
+<dependencies>\n\
+    <dependency>\n\
+        <groupId>group.aelysium</groupId>\n\
+        <artifactId>rustyconnector-toolkit</artifactId>\n\
+        <version>0.8.0</version>\n\
+    </dependency>\n\
+</dependencies>\
+        "}</code></pre>
     </TabItem>
     <TabItem value="gradle" label="Gradle">
-        <pre><code>compileOnly "maven.modrinth:rusty-connector:0.8.0:rustyconnector-toolkit"</code></pre>
+        <pre><code>{"\
+repositories {\n\
+    maven { url \"https://maven.mrnavastar.rocks/snapshots\" }\n\
+}\n\
+\n\
+dependencies {\n\
+    implementation \"group.aelysium:rustyconnector-toolkit:0.8.0\"\n\
+}\
+        "}</code></pre>
     </TabItem>
 </Tabs>
+
+:::caution
+If you're unable to install the Toolkit API, it's possible that our Maven Repository is down.
+You can check it's status [here](https://status.mrnavastar.rocks/status/services).
+
+If it is down, [join our Discord](https://join.aelysium.group) and let us know.
+:::
 
 Once imported, you can access the RustyConnector Toolkit from either the Proxy or MCLoader.
 In order to use Toolkit, you must ensure that RustyConnector is added as a dependency in your plugin.
