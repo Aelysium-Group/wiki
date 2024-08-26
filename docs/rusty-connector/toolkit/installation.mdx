@@ -40,7 +40,7 @@ You can import the RustyConnector Toolkit via Maven and Gradle.
 </dependencies>\
         "}</code></pre>
     </TabItem>
-    <TabItem value="gradle" label="Gradle">
+    <TabItem value="gradle-groovy" label="Gradle (Groovy DSL)">
         <pre><code>{"\
 repositories {\n\
     maven { url \"https://maven.mrnavastar.rocks/releases\" }\n\
@@ -48,6 +48,17 @@ repositories {\n\
 \n\
 dependencies {\n\
     compileOnly \"group.aelysium:rustyconnector-toolkit:0.8.0\"\n\
+}\
+        "}</code></pre>
+    </TabItem>
+    <TabItem value="gradle-kotlin" label="Gradle (Kotlin DSL)">
+        <pre><code>{"\
+repositories {\n\
+    maven(\"https://maven.mrnavastar.rocks/releases\")\n\
+}\n\
+\n\
+dependencies {\n\
+    compileOnly(\"group.aelysium:rustyconnector-toolkit:0.8.0\")\n\
 }\
         "}</code></pre>
     </TabItem>
