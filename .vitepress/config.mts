@@ -9,17 +9,13 @@ export default defineConfig({
       label: 'English',
       lang: 'en'
     },
-    fr: {
-      label: 'French',
-      lang: 'fr',
-      link: '/fr/'
-    }
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: 'RustyConnector', link: '/rusty-connector' },
+      { text: 'ARA', link: '/ara' },
+      { text: 'Declarative YAML', link: '/declarative-yaml' }
     ],
 
     sidebar: {
