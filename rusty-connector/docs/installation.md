@@ -74,7 +74,7 @@ Notice how there's a file called `private.key`? This key is used to encrypt and 
 :::
 3. Open `families.yml` and set up your RC families.
 :::note
-You can read more about Families [here](./concepts/families). Make sure you edit `root-family.name` to match whichever family should be your default.
+You can read more about Families [here](./concepts/families/index.md). Make sure you edit `root-family.name` to match whichever family should be your default.
 :::
 4. In `connectors.yml` enter your Redis and MariaDB information.
 :::info

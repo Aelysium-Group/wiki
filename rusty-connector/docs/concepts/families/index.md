@@ -19,8 +19,3 @@ When reading family docs, keep a look out for info tabs with a ☁️ emoji.
 :::
 
 Different families are optimized for different usecases. Follow one of the links below to read up on them all!
-
-<Menu>
-    <MenuItem href="concepts/families/scalar" title={"🌧️ Scalar Family"} description={"Families optimized for stateless Minecraft"} />
-    <MenuItem href="concepts/families/static" title={"🌩️ Static Family"} description={"Families optimized for stateful Minecraft"} />
-</Menu>
