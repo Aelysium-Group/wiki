@@ -7,4 +7,4 @@ sidebar_position: 1
 
 # 👋 Welcome to Aelysium Wiki
 
-Get docs for [RustyConnector](./rusty-connector/docs/installation.md)
+Click on an entry in the navigation bar to go to that wiki.
