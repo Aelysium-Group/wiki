@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -10,16 +11,26 @@ export default defineConfig({
       lang: 'en'
     },
   },
+  markdown: {
+    config(md) {
+      md.use(tabsMarkdownPlugin)
+    }
+  },
+  head: [['link', { rel: 'icon', type: 'image/png', href: '/logo.png' }]],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    logo: '/logo.png',
     nav: [
       { text: 'RustyConnector', link: '/rusty-connector' },
       { text: 'ARA', link: '/ara' },
       { text: 'Declarative YAML', link: '/declarative-yaml' }
     ],
-
+    footer: {
+      message: 'Released under the XXX License.',
+      copyright: 'Copyright © 2019-2024 AELYSIUM'
+    },
     sidebar: {
-      '/': [
+      'rusty-connector/': [
         {
           text: 'RustyConnector',
           link: '/rusty-connector/',
@@ -46,9 +57,9 @@ export default defineConfig({
                 },
                 { text: '👮 Whitelist', link: '/rusty-connector/docs/concepts/whitelist' },
                 { text: '🔖 Discord Webhooks', link: '/rusty-connector/docs/concepts/discord-webhooks' },
-                { text: '🌊 Liquid Timestamp', link: '/rusty-connector/docs/concepts/liquid-timestamp' },
+                { text: '🌊 Liquid Timestamp', link: '/rusty-connector/docs/concepts/liquid-timestamps' },
                 { text: '⤵️ Load Balancing', link: '/rusty-connector/docs/concepts/load-balancing' },
-                { text: '📦 MCLoaders', link: '/rusty-connector/docs/concepts/mcloaders' },
+                { text: '📦 MCLoaders', link: '/rusty-connector/docs/concepts/loader' },
                 { text: '🟥 Redis', link: '/rusty-connector/docs/concepts/redis' }
               ]
             },
@@ -80,11 +91,17 @@ export default defineConfig({
               ]
             }]
         }
+      ],
+      'declarative-yaml/': [
+        { text: '📥 Installation', link: '/rusty-connector/toolkit/installation' }
+      ],
+      'ara/': [
+        { text: '📥 Installation', link: '/rusty-connector/toolkit/installation' }
       ]
     },
-
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/Aelysium-Group/wiki' },
+      { icon: 'discord', link: 'https://discord.com/invite/jAZkAXf7zT' }
     ]
   }
 })

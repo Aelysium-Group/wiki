@@ -2,31 +2,23 @@
 title: 🌩️ Static Family
 sidebar_position: 2
 ---
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 Static Families are optimized to work best with stateful <MCLoaderTag>Minecraft Loaders</MCLoaderTag>.
 
-<details>
-    <summary>What is a Stateful Minecraft Loader?</summary>
-    <p>
-        A stateful <MCLoaderTag>Minecraft Loader</MCLoaderTag> is a Loader which store it's own state.
-        <br /><br />
-        For example, if a player joins a Loader and places a block. That action will be remembered next time the Loader restarts.
-        Ideally, stateful Loaders will always hold some form of state which changes over a longterm.
-        <br /><br />
-        Examples of stateful Loaders would be Survival, Skyblock, or Plots.
-        <br /><br />
-        The inverse of a stateful Loader is a stateless Loader; such as a Lobby Loader, or PVP Loader.
-    </p>
-</details>
+::: details What is a Stateful Minecraft Loader?
+A stateful **Minecraft Loader** is a Loader which store it's own state.
+
+For example, if a player joins a Loader and places a block. That action will be remembered next time the Loader restarts.
+Ideally, stateful Loaders will always hold some form of state which changes over a longterm.
+
+Examples of stateful Loaders would be Survival, Skyblock, or Plots.
+
+The inverse of a stateful Loader is a stateless Loader; such as a Lobby Loader, or PVP Loader.
+:::
 
 ## ☁️ Cloud Angle
-<details>
-    <summary>What is this?</summary>
-    <p>Cloud angles provide explanations of family opperations through the usage of analogies.</p>
-</details>
+::: details What is this?
+Cloud angles provide explanations of family opperations through the usage of analogies.
+:::
 
 Static Families can be thought of as a 🌩️ Lightning Cloud over the land; where a lightning bold represents the player, and the land is the collection of <MCLoaderTag>Loaders</MCLoaderTag> contained in the family.
 
@@ -52,7 +44,7 @@ If a parent family isn't established, the player will be connected to the root f
 
 If you setup the hub feature in Dynamic Teleport, it will also direct a player to the parent family of the one they're connected to. 
 
-:::danger
+::: danger
 Setting a parent family for the root familly is forbidden and will be ignored.
 :::
 
@@ -64,23 +56,19 @@ Once a player is connected to a Loader for the first time, that Loader will be r
 
 When the player attempts to connect to the family again in the future; they will be connected back into that Loader again in the future.
 
-:::info
+::: info
 If a player's residence isn't available, you can assign an algorithm which will respond to the request:
-<Tabs>
-    <TabItem value="cancel" label="Cancel The Request">
-        Stops the player from connecting to this family and tell them that their residence was unavailable and that they should try again later.
-    </TabItem>
-    <TabItem value="assignNew" label="Assign a New Residence">
-        Connect the player to the load balancer and give them a new residence.
-        This option does not display an error to the player.
-    </TabItem>
-    <TabItem value="error" label="Connect With an Error">
-        Connect the player to a random Loader in the family (in accordance with the load balancer) and inform them that their residence was unavailable.
-    </TabItem>
-</Tabs>
+
+:::tabs
+== Cancel The Request
+Stops the player from connecting to this family and tell them that their residence was unavailable and that they should try again later.
+== Assign a New Residence
+Connect the player to the load balancer and give them a new residence.
+This option does not display an error to the player
+== Connect With an Error
+Connect the player to a random Loader in the family (in accordance with the load balancer) and inform them that their residence was unavailable.
 :::
 
-<br /><br />
 <Menu>
     <MenuItem href="concepts/load_balancing" title="⤵️ Load Balancing" description="Read up more on Load Balancing in RC." />
     <MenuItem href="concepts/whitelist" title="👮 Whitelist" description="Read up more on Whitelists in RC." />

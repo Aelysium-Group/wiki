@@ -25,6 +25,6 @@ tinder.onStart(flame -> {
 });
 ```
 
-:::caution
+::: danger
 All events are fire-and-forget. As such you'll have to ensure you implement proper Thread-safety in your module.
 :::
