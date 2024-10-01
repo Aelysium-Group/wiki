@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -9,6 +10,11 @@ export default defineConfig({
       label: 'English',
       lang: 'en'
     },
+  },
+  markdown: {
+    config(md) {
+      md.use(tabsMarkdownPlugin)
+    }
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
@@ -85,7 +91,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/Aelysium-Group/wiki' }
     ]
   }
 })
