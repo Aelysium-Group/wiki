@@ -2,12 +2,7 @@
 title: 📖 Installation
 description: "Ready to switch? Let's go!"
 sidebar_position: 1
-displayed_sidebar: plugins_wiki_rusty_connector
 ---
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 So you'd like to switch to RustyConnector?
 Here's a crash course on how to get started!
 
@@ -15,36 +10,33 @@ First thing first, let's understand how the plug-in works.
 
 ## How it works
 Creating a RustyConnector network involves setting up RC on your Proxy server as well as on your individual MCLoaders.
-<details>
-<summary>Did you catch that?</summary>
-RustyConnector supports a whole slew of different sources! Expand the tabs below to get an idea of how we refer to things in these docs.
+::: details Did you catch that?
+RustyConnector supports a whole slew of different sources! Expand the tabs below to get an idea of how we refer to things in
 
-<Tabs>
-    <TabItem value="proxy" label="Proxy">
-        While reading the RustyConnector docs, you'll see us refer to "Proxy" a lot.
-        "Proxy" always refers to the copy of RustyConnector running on Velocity. In fact sometimes we might just say "Velocity".
-        <br />
-        When we refer to "Velocity" or "Proxy" we are referring RustyConnector, not necessarily the proxy itself.
-        If we are referring to the Velocity proxy itself we will specifically refer to it as "Velocity Server".
-    </TabItem>
-    <TabItem value="mcloader" label="MCLoader">
-        RustyConnector supports loads of different Minecraft loaders like Paper, Folia, Purpur, Pufferfish, and Fabric.
-        These softwares are referred to as "MCLoader" or just "Loader" (Always a capital <code>L</code>). "MCLoader" refers to the copy of RC that runs on a loader like Paper, Folia, or Fabric. 
-        <br />
-        When we refer to "MCLoader" we are referring RustyConnector, not necessarily the minecraft loader itself.
-    </TabItem>
-</Tabs>
+:::tabs
+== Proxy
+While reading the RustyConnector docs, you'll see us refer to "Proxy" a lot.
+"Proxy" always refers to the copy of RustyConnector running on Velocity. In fact sometimes we might just say "Velocity".
 
-::: warning
+When we refer to "Velocity" or "Proxy" we are referring RustyConnector, not necessarily the proxy itself.
+If we are referring to the Velocity proxy itself we will specifically refer to it as "Velocity Server".
+
+== MCLoader
+RustyConnector supports loads of different Minecraft loaders like Paper, Folia, Purpur, Pufferfish, and Fabric.
+These softwares are referred to as "MCLoader" or just "Loader" (Always a capital <code>L</code>). "MCLoader" refers to the copy of RC that runs on a loader like Paper, Folia, or Fabric. 
+
+When we refer to "MCLoader" we are referring RustyConnector, not necessarily the minecraft loader itself.
+:::
+
+::: danger
 You'll just about never see the word "server" used in the RustyConnector docs.
 This is because using "server" is too ambiguous, are you referring to the proxy? An MCLoader? The physical machine running one of your MCLoaders?
 
 Because of the ambiguity, don't use "server" when working with RustyConnector.
 :::
 
-</details>
 
-:::info
+::: info
 You must have working Redis and MariaDB databases for RustyConnector to operate!
 :::
 
@@ -73,11 +65,11 @@ This will cause RustyConnector to load some initial config files for you to mess
 Notice how there's a file called `private.key`? This key is used to encrypt and decrypt packets transported over Redis. When you set up your MCLoaders you'll want to copy this file over to them.
 :::
 3. Open `families.yml` and set up your RC families.
-:::tip
+::: tip
 You can read more about Families [here](./concepts/families/index.md). Make sure you edit `root-family.name` to match whichever family should be your default.
 :::
 4. In `connectors.yml` enter your Redis and MariaDB information.
-:::info
+::: info
 Redis requires that you set a username, however you aren't required to set a password.
 :::
 
@@ -123,5 +115,5 @@ It's important to take note that RustyConnector is specifically written in a top
 :::
 
 :::danger Lets be clear
-Once you setup RustyConnector, you are now a **RustyConnector Network** and you need to follow <TheLawTag>The Law</TheLawTag>.
+Once you setup RustyConnector, you are now a **RustyConnector Network** and you need to follow [**📜 The Law**](the-law.md).
 :::

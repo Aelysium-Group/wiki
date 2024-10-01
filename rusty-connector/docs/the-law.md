@@ -1,8 +1,6 @@
 ---
 title: 📜 The Law
 description: "RustyConnector demands your tithes."
-sidebar_position: 2
-displayed_sidebar: plugins_wiki_rusty_connector
 ---
 
 So you've become a RustyConnector Network? Congratulations!
