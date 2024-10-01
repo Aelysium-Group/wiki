@@ -15,8 +15,8 @@ First thing first, let's understand how the plug-in works.
 
 ## How it works
 Creating a RustyConnector network involves setting up RC on your Proxy server as well as on your individual MCLoaders.
- <details>
-  <summary>Did you catch that?</summary>
+<details>
+<summary>Did you catch that?</summary>
 RustyConnector supports a whole slew of different sources! Expand the tabs below to get an idea of how we refer to things in these docs.
 
 <Tabs>
@@ -35,7 +35,7 @@ RustyConnector supports a whole slew of different sources! Expand the tabs below
     </TabItem>
 </Tabs>
 
-:::caution
+::: warning
 You'll just about never see the word "server" used in the RustyConnector docs.
 This is because using "server" is too ambiguous, are you referring to the proxy? An MCLoader? The physical machine running one of your MCLoaders?
 
@@ -73,7 +73,7 @@ This will cause RustyConnector to load some initial config files for you to mess
 Notice how there's a file called `private.key`? This key is used to encrypt and decrypt packets transported over Redis. When you set up your MCLoaders you'll want to copy this file over to them.
 :::
 3. Open `families.yml` and set up your RC families.
-:::note
+:::tip
 You can read more about Families [here](./concepts/families/index.md). Make sure you edit `root-family.name` to match whichever family should be your default.
 :::
 4. In `connectors.yml` enter your Redis and MariaDB information.
@@ -82,7 +82,7 @@ Redis requires that you set a username, however you aren't required to set a pas
 :::
 
 5. Restart your velocity server.
-:::note
+:::tip
 RustyConnector will process your information and create family configs in the `families` folder. Be sure to take a look at these configs and make changes to them as you see fit.
 :::
 At this point, we are now ready to set up our first MCLoader!
