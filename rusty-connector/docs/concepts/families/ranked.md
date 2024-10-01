@@ -13,19 +13,16 @@ In order to leverage them, you must write a custom Toolkit leveraged RC Module.
 
 Ranked Families are built to work best with stateless <MCLoaderTag>Minecraft Loaders</MCLoaderTag>.
 
-<details>
-    <summary>What is a Stateless Minecraft Loader?</summary>
-    <p>
-        A stateless <MCLoaderTag>Minecraft Loader</MCLoaderTag> is a Loader which doesn't store it's own state.
-        <br /><br />
-        For example, if a player joins a Loader and places a block. That action will be forgotten next time the Loader restarts.
-        Ideally, stateless Loaders wouldn't actually allow players to do anything that would attempt alter state (For example, by using <a href="https://enginehub.org/worldguard">WorldGuard</a> to prevent players from placing blocks).
-        <br /><br />
-        Examples of stateless Loaders would be Lobby, KitPVP, or Bedwars.
-        <br /><br />
-        The inverse of a stateless Loader is a stateful Loader; such as a Survival Loader, or Plots Loader.
-    </p>
-</details>
+::: details What is a Stateless Minecraft Loader?
+A stateless **Minecraft Loader** is a Loader which doesn't store it's own state.
+
+For example, if a player joins a Loader and places a block. That action will be forgotten next time the Loader restarts.
+Ideally, stateless Loaders wouldn't actually allow players to do anything that would attempt alter state (For example, by using <a href="https://enginehub.org/worldguard">WorldGuard</a> to prevent players from placing blocks).
+
+Examples of stateless Loaders would be Lobby, KitPVP, or Bedwars.
+
+The inverse of a stateless Loader is a stateful Loader; such as a Survival Loader, or Plots Loader.
+:::
 
 ## Configuration
 Ranked Families can be configured in the `families` folder. They are represented by a configuration file containing the family's name followed by the suffix `.ranked.yml`.

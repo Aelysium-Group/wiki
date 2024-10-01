@@ -5,25 +5,21 @@ sidebar_position: 1
 
 Scalar Families are optimized to work best with stateless <MCLoaderTag>Minecraft Loaders</MCLoaderTag>.
 
-<details>
-    <summary>What is a Stateless Minecraft Loader?</summary>
-    <p>
-        A stateless <MCLoaderTag>Minecraft Loader</MCLoaderTag> is a Loader which doesn't store it's own state.
-        <br /><br />
-        For example, if a player joins a Loader and places a block. That action will be forgotten next time the Loader restarts.
-        Ideally, stateless Loaders wouldn't actually allow players to do anything that would attempt alter state (For example, by using <a href="https://enginehub.org/worldguard">WorldGuard</a> to prevent players from placing blocks).
-        <br /><br />
-        Examples of stateless Loaders would be Lobby, KitPVP, or Bedwars.
-        <br /><br />
-        The inverse of a stateless Loader is a stateful Loader; such as a Survival Loader, or Plots Loader.
-    </p>
-</details>
+::: details What is a Stateless Minecraft Loader?
+A stateless **Minecraft Loader** is a Loader which doesn't store it's own state.
+
+For example, if a player joins a Loader and places a block. That action will be forgotten next time the Loader restarts.
+Ideally, stateless Loaders wouldn't actually allow players to do anything that would attempt alter state (For example, by using <a href="https://enginehub.org/worldguard">WorldGuard</a> to prevent players from placing blocks).
+
+Examples of stateless Loaders would be Lobby, KitPVP, or Bedwars.
+
+The inverse of a stateless Loader is a stateful Loader; such as a Survival Loader, or Plots Loader.
+:::
 
 ## ☁️ Cloud Angle
-<details>
-    <summary>What is this?</summary>
-    <p>Cloud angles provide explanations of family opperations through the usage of analogies.</p>
-</details>
+::: details What is this?
+Cloud angles provide explanations of family opperations through the usage of analogies.
+:::
 
 Scalar Families can be thought of as a 🌧️ Rain Cloud over the ocean; where a single raindrop is the player, and the ocean is the collection of <MCLoaderTag>Loaders</MCLoaderTag> contained in the family.
 
@@ -43,7 +39,7 @@ If a parent family isn't established, the player will be connected to the root f
 
 If you setup the hub feature in Dynamic Teleport, it will also direct a player to the parent family of the one they're connected to. 
 
-:::danger
+::: danger
 Setting a parent family for the root familly is forbidden and will be ignored.
 :::
 
