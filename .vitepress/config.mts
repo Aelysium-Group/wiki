@@ -143,8 +143,8 @@ export default defineConfig({
       ]
     },
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/Aelysium-Group/wiki' },
-      { icon: 'discord', link: 'https://discord.com/invite/jAZkAXf7zT' }
+      { icon: 'github', link: 'https://github.com/Aelysium-Group' },
+      { icon: 'discord', link: 'https://join.aelysium.group/' }
     ]
   }
 })
