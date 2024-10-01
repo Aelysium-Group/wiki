@@ -93,7 +93,50 @@ export default defineConfig({
         }
       ],
       'declarative-yaml/': [
-        { text: '📥 Installation', link: '/rusty-connector/toolkit/installation' }
+        {
+          text: 'Declarative YAML',
+          link: '/declarative-yaml/',
+          items: [
+            {
+              text: '📖 Getting Started',
+              link: '/declarative-yaml/getting-started'
+            },
+            {
+              text: '🛜 Nodes',
+              link: '/declarative-yaml/nodes',
+              items: [
+                {
+                  text: '🔀 Ordering',
+                  link: '/declarative-yaml/nodes#ordering'
+                },
+                {
+                  text: '🎯 Targeting',
+                  link: '/declarative-yaml/nodes#targeting-nodes'
+                },
+              ]
+            },
+            {
+              text: '💬 Comments',
+              link: '/declarative-yaml/comments'
+            },
+            {
+              text: '🔣 Data Types',
+              link: '/declarative-yaml/data-types'
+            },
+            {
+              text: "🎨 Custom Objects",
+              link: "/declarative-yaml/custom-objects"
+            },
+            {
+              text: "⤵️ Path Parameters",
+              link: "/declarative-yaml/path-parameters"
+            },
+            {
+              text: "🔽 All Contents",
+              link: "/declarative-yaml/all-contents"
+            }
+          ]
+        }
       ],
       'ara/': [
         { text: '📥 Installation', link: '/rusty-connector/toolkit/installation' }

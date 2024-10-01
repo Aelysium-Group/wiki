@@ -19,7 +19,7 @@ You can import the RustyConnector Toolkit via Maven and Gradle.
 
 ::: tabs
 == Maven
-``` xml
+```xml
 <repositories>
     <repository>
         <id>mrnavastar-releases</id>
@@ -37,7 +37,7 @@ You can import the RustyConnector Toolkit via Maven and Gradle.
 </dependencies>
 ```
 == Gradle (Groovy DSL)
-``` json
+```java
 repositories {
     maven { url "https://maven.mrnavastar.me/releases" }
 }
@@ -47,7 +47,7 @@ dependencies {\
 }
 ```
 == Gradle (Kotlin DSL)
-``` json
+```java
 repositories {
     maven("https://maven.mrnavastar.me/releases")
 }
