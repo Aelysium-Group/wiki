@@ -25,7 +25,10 @@ export default defineConfig({
       { text: 'ARA', link: '/ara' },
       { text: 'Declarative YAML', link: '/declarative-yaml' }
     ],
-
+    footer: {
+      message: 'Released under the XXX License.',
+      copyright: 'Copyright © 2019-2024 AELYSIUM'
+    },
     sidebar: {
       'rusty-connector/': [
         {
