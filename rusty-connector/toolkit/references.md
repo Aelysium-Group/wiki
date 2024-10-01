@@ -36,7 +36,7 @@ Searches for an MCLoader with the specified `UUID`.
 MCLoader mcLoader = new MCLoader.Reference(uuid).get();
 ```
 
-:::info
+::: info
 `MCLoader.Reference` is backed by HashMap and should have near-instant responses.
 :::
 
@@ -46,7 +46,7 @@ Searches for a player based on their UUID.
 ```java
 Player player = new Player.Reference(UUID.randomUUID()).get();
 ```
-:::info
+::: info
 `Player.Reference` is backed by a database-synced HashMap. Theoretically there should be near-instant responses, however, databases can be weird at times.
 :::
 
@@ -56,7 +56,7 @@ Searches for a player based on their Username.
 String username = "Notch";
 Player player = new Player.UsernameReference(username).get();
 ```
-:::info
+::: info
 `Player.UsernameReference` is backed by two Hash-Map references, one of them is backed by the database. Responses should be pretty fast but may be delayed.
 :::
 
@@ -64,7 +64,7 @@ Player player = new Player.UsernameReference(username).get();
 Item References will __only__ ever return the item they're referencing.
 If an Item Reference is unable to fetch the item, it will throw a `NoSuchElementException`.
 
-:::caution
+::: danger
 It should be noted that Item References make direct static calls to the RustyConnector Flame.
 Make sure you only ever use them inside of `Tinder#onStart`!
 :::

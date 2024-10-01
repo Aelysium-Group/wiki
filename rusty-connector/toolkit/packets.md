@@ -29,7 +29,7 @@ tinder.onStart(flame -> {
 It's important to note that the `.sendTo` and `.replyTo` both build and send the packet.
 There is no way to build a packet without building it.
 
-:::info
+::: info
 `identification` is always required before you can send or add parameters to a packet.
 :::
 
@@ -44,7 +44,7 @@ PacketIdentification.from("MY_MODULE", "NAME_OF_PACKET");
 ```
 Both values can technically be whatever you want. But it's suggested that you set both to be in `UPPER_SNAKE_CASE` format.
 
-:::caution
+::: danger
 You should set the `pluginID` to be something unique, preferably the name of your plugin.
 
 It should be noted that if your packet happens to have a `PacketIdentification` that is equal to the `PacketIdentification` of someone

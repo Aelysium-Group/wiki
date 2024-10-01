@@ -4,10 +4,7 @@ description: "Ready to switch? Let's go!"
 sidebar_position: 1
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-:::caution
+::: danger Wait a minute!
 This page is for the RustyConnector API.
 For the plugin wiki, go [here](/rusty-connector/docs/installation).
 :::
@@ -20,51 +17,48 @@ The RustyConnector Toolkit grants you access to the power of RustyConnector thro
 ## Getting Started
 You can import the RustyConnector Toolkit via Maven and Gradle.
 
-<Tabs>
-    <TabItem value="maven" label="Maven">
-        <pre><code>{"\
-<repositories>\n\
-    <repository>\n\
-        <id>mrnavastar-releases</id>\n\
-        <name>MrNavaStar's Repository</name>\n\
-        <url>https://maven.mrnavastar.me/releases</url>\n\
-    </repository>\n\
-</repositories>\n\
-<dependencies>\n\
-    <dependency>\n\
-        <groupId>group.aelysium</groupId>\n\
-        <artifactId>rustyconnector-toolkit</artifactId>\n\
-        <version>0.8.0</version>\n\
-        <scope>provided</scope>\n\
-    </dependency>\n\
-</dependencies>\
-        "}</code></pre>
-    </TabItem>
-    <TabItem value="gradle-groovy" label="Gradle (Groovy DSL)">
-        <pre><code>{"\
-repositories {\n\
-    maven { url \"https://maven.mrnavastar.me/releases\" }\n\
-}\n\
-\n\
-dependencies {\n\
-    compileOnly \"group.aelysium:rustyconnector-toolkit:0.8.0\"\n\
-}\
-        "}</code></pre>
-    </TabItem>
-    <TabItem value="gradle-kotlin" label="Gradle (Kotlin DSL)">
-        <pre><code>{"\
-repositories {\n\
-    maven(\"https://maven.mrnavastar.me/releases\")\n\
-}\n\
-\n\
-dependencies {\n\
-    compileOnly(\"group.aelysium:rustyconnector-toolkit:0.8.0\")\n\
-}\
-        "}</code></pre>
-    </TabItem>
-</Tabs>
+::: tabs
+== Maven
+``` xml
+<repositories>
+    <repository>
+        <id>mrnavastar-releases</id>
+        <name>MrNavaStar's Repository</name>
+        <url>https://maven.mrnavastar.me/releases</url>
+    </repository>
+</repositories>
+<dependencies>
+    <dependency>
+        <groupId>group.aelysium</groupId>
+        <artifactId>rustyconnector-toolkit</artifactId>
+        <version>0.8.0</version>
+        <scope>provided</scope>
+    </dependency>
+</dependencies>
+```
+== Gradle (Groovy DSL)
+``` json
+repositories {
+    maven { url "https://maven.mrnavastar.me/releases" }
+}
 
-:::caution
+dependencies {\
+    compileOnly "group.aelysium:rustyconnector-toolkit:0.8.0"
+}
+```
+== Gradle (Kotlin DSL)
+``` json
+repositories {
+    maven("https://maven.mrnavastar.me/releases")
+}
+
+dependencies {
+    compileOnly("group.aelysium:rustyconnector-toolkit:0.8.0")
+}
+```
+:::
+
+::: danger Having Issues ?
 If you're unable to install the Toolkit API, it's possible that our Maven Repository is down.
 You can check it's status [here](https://status.mrnavastar.me/status/services).
 

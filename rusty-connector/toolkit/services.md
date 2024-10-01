@@ -40,7 +40,7 @@ tinder.onStop(() -> {
 Notice how we have to access Flame from within an `.onStart()` method? Flame itself is a Service, which means that it isn't guaranteed to be active.
 When we call `.onStart()` we know that we'll be able to access Flame once it's active. Alternatively `.onStop()` will run when `.kill()` is used on Flame.
 
-:::info
+::: info
 While building your RustyConnector Module; it's a good practice to write as much logic outside of `.onStart()` as you possibly can.
 
 You should only need `.onStart()` for RustyConnector specific functions such as registering Event Listeners.

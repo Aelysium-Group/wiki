@@ -54,9 +54,9 @@ export default defineConfig({
                 },
                 { text: '👮 Whitelist', link: '/rusty-connector/docs/concepts/whitelist' },
                 { text: '🔖 Discord Webhooks', link: '/rusty-connector/docs/concepts/discord-webhooks' },
-                { text: '🌊 Liquid Timestamp', link: '/rusty-connector/docs/concepts/liquid-timestamp' },
+                { text: '🌊 Liquid Timestamp', link: '/rusty-connector/docs/concepts/liquid-timestamps' },
                 { text: '⤵️ Load Balancing', link: '/rusty-connector/docs/concepts/load-balancing' },
-                { text: '📦 MCLoaders', link: '/rusty-connector/docs/concepts/mcloaders' },
+                { text: '📦 MCLoaders', link: '/rusty-connector/docs/concepts/loader' },
                 { text: '🟥 Redis', link: '/rusty-connector/docs/concepts/redis' }
               ]
             },

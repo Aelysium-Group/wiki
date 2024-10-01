@@ -5,7 +5,7 @@ title: 🔖 Discord Webhooks
 Discord webhooks allow you to send alerts directly to Discord channels.
 All webhook messages are referred to as "alerts." When a particular event occurs, an alert will be sent to the proper webhooks.
 
-:::note Privacy
+::: tip Privacy
 Discord Webhooks will NEVER include private details such as IP Addresses in alerts!
 Instead they will use the family and server names that you set in your config files!
 Because of this, you should make sure you are setting human-readable names in your RC configurations.
@@ -20,7 +20,7 @@ Available options are:
 | `Proxy` | The proxy scope, alerts will be sent no matter what. |
 | `Family` | A family scope (the name of the family to target should be provided using the `target-family` tag.) Alerts will only trigger if they are related to this specific family. |
 
-:::caution
+::: danger Beware !
 Alerts will only fire if they're used in the correct scope.
 :::
 

@@ -5,7 +5,7 @@ title: 📦 MCLoaders
 MCLoaders, or "Loaders", are the equivalent of the server software being run in order to allow players to play Minecraft on a remote server.
 
 Examples of what we consider as MCLoaders to be would include Paper, Folia, Fabric, Forge, or Sponge. loader
-:::caution
+::: danger
 Proxies such as Velocity, Bungeecord, or Waterfall, are never considered as "Loaders" because they don't actually hold any data related to a Minecraft instance.
 :::
 
