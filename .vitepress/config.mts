@@ -88,11 +88,17 @@ export default defineConfig({
               ]
             }]
         }
+      ],
+      'declarative-yaml/': [
+        { text: '📥 Installation', link: '/rusty-connector/toolkit/installation' }
+      ],
+      'ara/': [
+        { text: '📥 Installation', link: '/rusty-connector/toolkit/installation' }
       ]
     },
-
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/Aelysium-Group/wiki' }
+      { icon: 'github', link: 'https://github.com/Aelysium-Group/wiki' },
+      { icon: 'discord', link: 'https://discord.com/invite/jAZkAXf7zT' }
     ]
   }
 })
