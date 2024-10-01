@@ -12,6 +12,7 @@ export default defineConfig({
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    logo: '/logo.png',
     nav: [
       { text: 'RustyConnector', link: '/rusty-connector' },
       { text: 'ARA', link: '/ara' },
@@ -19,7 +20,7 @@ export default defineConfig({
     ],
 
     sidebar: {
-      '/': [
+      'rusty-connector/': [
         {
           text: 'RustyConnector',
           link: '/rusty-connector/',
