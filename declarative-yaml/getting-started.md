@@ -1,6 +1,3 @@
----
-title: Getting Started
----
 # Getting Started
 The entry point for any config is the `@Config` annotation.
 It can be used on any class declaration and provides the location data for your config's path location.

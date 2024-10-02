@@ -1,7 +1,3 @@
----
-title: Introduction
-sidebar_position: 1
----
 # Declarative YAML
 Declarative YAML (dYAML), much like many of Aelysium's other projects, aims to provide a "magical" YAML experience.
 We've put in an effort to abstract as much of the complicated YAML details away so that you can write your YAML definitions faster.
