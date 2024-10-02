@@ -42,7 +42,7 @@ If used without any other consideration, YAML nodes would be randomly distribute
 To address this, dYAML has two ordering systems in-place.
 By default, all nodes are ordered alphabetically in descending order.
 
-To add an extra level of control to users that want it, you can also specify the exact index order you want nodes to appear in via the `@Node` annotation.
+To add an extra level of control for users that want it, you can also specify the exact index order you want nodes to appear in via the `@Node` annotation.
 ```java
 @Config("config.yml")
 public class DefaultConfig {
@@ -57,7 +57,7 @@ public class DefaultConfig {
     }
 }
 ```
-If two nodes happen to have the same index value, they will then be alphabetically ordered in descending order to decide which will be renderd first.
+If two nodes happen to have the same index value, they will then be alphabetically ordered in descending order to decide which will be rendered first.
 
 ## Targeting Nodes
 dYAML will automatically parse the field name and use it as the name of the node in YAML. This parsing system expects field names to be written in `camelCase` as a default as it's the defacto-standard for Java field names.
