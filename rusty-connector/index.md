@@ -24,10 +24,8 @@ RustyConnector operates via Redis messaging to communicate with sub-servers. Onc
 
 ## Need Support?
 If you run into an issue or need help setting up RC, join our [Discord server](http://join.aelysium.group/) and get support!
-If you have a bug to report, feel free to open an issue in our Discord! If your bug report falls under a support issue and not an actual bug it will be closed immediately.
 
 ## Want to request a feature?
-We accept feature requests from paying Discord members!
 Join our [Discord server](http://join.aelysium.group/) and let us know what features you’d like to see!
 
 # FAQ
