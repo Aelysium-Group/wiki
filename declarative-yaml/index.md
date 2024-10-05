@@ -20,7 +20,7 @@ Lets get started!
     <dependency>
         <groupId>group.aelysium</groupId>
         <artifactId>declarative-yaml</artifactId>
-        <version>0.1.4</version>
+        <version>0.1.5</version>
     </dependency>
 </dependencies>
 ```
@@ -32,7 +32,7 @@ repositories {
 }
 
 dependencies {
-    implementation "group.aelysium:declarative-yaml:0.1.4"
+    implementation "group.aelysium:declarative-yaml:0.1.5"
 }
 ```
 
@@ -43,7 +43,7 @@ repositories {
 }
 
 dependencies {
-    implementation("group.aelysium:declarative-yaml:0.1.4")
+    implementation("group.aelysium:declarative-yaml:0.1.5")
 }
 ```
 :::
