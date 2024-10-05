@@ -3,7 +3,9 @@
 dYAML uses a powerfull serialization system for converting Java objects to and from YAML. The supported data types are:
 - `String`
 - [`Serializable`](/declarative-yaml/custom-objects.md)
-::: details Primitives
+- `Enum`
+- `Record`
+:::details Primitives
 - `byte`
 - `short`
 - `int`
@@ -13,7 +15,7 @@ dYAML uses a powerfull serialization system for converting Java objects to and f
 - `char`
 - `boolean`
 :::
-::: details Primitive Wrappers
+:::details Primitive Wrappers
 - `Byte`
 - `Short`
 - `Integer`
@@ -23,7 +25,7 @@ dYAML uses a powerfull serialization system for converting Java objects to and f
 - `Character`
 - `Boolean`
 :::
-::: details Lists
+:::details Lists
 - `List<Byte>`
 - `List<Short>`
 - `List<Integer>`
@@ -34,8 +36,10 @@ dYAML uses a powerfull serialization system for converting Java objects to and f
 - `List<Boolean>`
 - `List<String>`
 - `List<Serializable>`
+- `List<Enum>`
+- `List<Record>`
 :::
-::: details Sets
+:::details Sets
 - `Set<Byte>`
 - `Set<Short>`
 - `Set<Integer>`
@@ -46,8 +50,10 @@ dYAML uses a powerfull serialization system for converting Java objects to and f
 - `Set<Boolean>`
 - `Set<String>`
 - `Set<Serializable>`
+- `Set<Enum>`
+- `Set<Record>`
 :::
-::: details Maps
+:::details Maps
 - `Map<String, Byte>`
 - `Map<String, Short>`
 - `Map<String, Integer>`
@@ -58,4 +64,6 @@ dYAML uses a powerfull serialization system for converting Java objects to and f
 - `Map<String, Boolean>`
 - `Map<String, String>`
 - `Map<String, Serializable>`
+- `Map<String, Enum>`
+- `Map<String, Record>`
 :::
