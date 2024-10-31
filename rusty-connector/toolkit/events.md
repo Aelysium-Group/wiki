@@ -11,7 +11,7 @@ The RustyConnector Event API is a particularly simple one, extra features such a
 Creating an event listener is a simple custom class creation. Below is an example of an Event Listener that
 listens for when new MCLoaders are registered.
 ```java title="OnMCLoaderRegister.java"
-public class OnMCLoaderRegister extends Listener<RegisterEvent> {
+public class OnMCLoaderRegister implements Listener<RegisterEvent> {
     public void handler(RegisterEvent event) {
         System.out.println(event.mcLoader() + " was registered to the family "+event.family().id());
     }
