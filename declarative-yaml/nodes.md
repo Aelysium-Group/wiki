@@ -88,7 +88,7 @@ We understand that not all users will want to use this field name method for dec
 ```java
 @Node(key = "users-names.first-name")
 public final String someFieldName = "John";
-@Node(value = 1, key = "users-names.first-name")
+@Node(value = 1, key = "users-names.last-name")
 public final String someOtherFieldName = "Doe";
 ```
 ```yaml
