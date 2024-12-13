@@ -3,6 +3,8 @@ title: 🌨️ Ranked Family
 sidebar_position: 3
 ---
 
+# 🌨️ Ranked Family
+
 :::danger
 Ranked Families require you use the <ToolkitTag>Toolkit API</ToolkitTag> in order to operate.
 This will require that you understand how to program in Java and are able to write your own plugins!

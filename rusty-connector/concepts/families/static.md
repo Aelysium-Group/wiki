@@ -2,6 +2,9 @@
 title: 🌩️ Static Family
 sidebar_position: 2
 ---
+
+# 🌩️ Static Family
+
 Static Families are optimized to work best with stateful <MCLoaderTag>Minecraft Loaders</MCLoaderTag>.
 
 ::: details What is a Stateful Minecraft Loader?

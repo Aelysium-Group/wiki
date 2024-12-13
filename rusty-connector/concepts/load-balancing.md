@@ -1,3 +1,7 @@
+---
+title: ⤵️ Load Balancing
+---
+
 # ⤵️ Load Balancing
 
 Load balancing is how [Families](rusty-connector/concepts/families/index.md) decide which MCLoaders to send players to.

@@ -17,12 +17,13 @@ const vitePressConfigs = {
     }
   },
   ignoreDeadLinks: true,
-  //head: [['link', { rel: 'icon', type: 'image/png', href: '/logo.png' }]],
+  head: [['link', { rel: 'icon', type: 'image/png', href: '/logo.png' }]],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: '/logo.png',
     nav: [
       { text: 'RustyConnector', link: '/rusty-connector' },
+      { text: 'Rusty for devs', link: '/rusty-dev' },
       { text: 'ARA', link: '/ara' },
       { text: 'Declarative YAML', link: '/declarative-yaml' }
     ],
@@ -43,14 +44,23 @@ export default defineConfig(
       documentRootPath: '/',
       scanStartPath: 'rusty-connector',
       resolvePath: '/rusty-connector/',
-      useTitleFromFileHeading: true,
+      useTitleFromFrontmatter: true,
+      useFolderTitleFromIndexFile: true,
+      sortMenusByFrontmatterOrder: true,
     },
     {
       documentRootPath: '/',
       scanStartPath: 'declarative-yaml',
       resolvePath: '/declarative-yaml/',
-      useTitleFromFrontmatter: true
+      useTitleFromFrontmatter: true,
+      useFolderTitleFromIndexFile: true,
+    },
+    {
+      documentRootPath: '/',
+      scanStartPath: 'rusty-dev',
+      resolvePath: '/rusty-dev/',
+      useTitleFromFrontmatter: true,
+      useFolderTitleFromIndexFile: true,
     }
   ])
 );
-
