@@ -16,6 +16,7 @@ const vitePressConfigs = {
       md.use(tabsMarkdownPlugin)
     }
   },
+  ignoreDeadLinks: true,
   //head: [['link', { rel: 'icon', type: 'image/png', href: '/logo.png' }]],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
