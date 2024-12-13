@@ -1,8 +1,7 @@
 ---
 title: 📌 Permissions
 description: "RustyConnector Permission Commands"
-sidebar_position: 3
-displayed_sidebar: plugins_wiki_rusty_connector
+order: 3
 ---
 Any permission can have the wildcard `*` added to the end to allow all sub-permission of that node.
 

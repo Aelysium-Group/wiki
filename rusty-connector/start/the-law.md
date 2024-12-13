@@ -1,6 +1,7 @@
 ---
 title: 📜 The Law
 description: "RustyConnector demands your tithes."
+order: 5
 ---
 
 So you've become a RustyConnector Network? Congratulations!
