@@ -2,5 +2,9 @@ node_modules
 yarn.lock
 cache
 dist
-
+.vitepress/cache/deps
 workspace-mobile.json
+_metadata.json
+
+.obsidian
+!data.json
