@@ -1,3 +1,3 @@
 ---
-title: Redis Magic Link
+title: 🪄 Redis Magic Link
 ---

@@ -1,8 +1,11 @@
 ---
 title: ⚙️ Commands
 description: "RustyConnector Commands"
-order: 2
+order: 3
 ---
+
+# ⚙️ Commands
+
 Commands marked with an asterisk `*` are player useable. Otherwise, all commands are only allowed to be used from the console.
 If you want to allow players to use some commands, use a plugin like EssentialsX or CMI to make a command alias.
 

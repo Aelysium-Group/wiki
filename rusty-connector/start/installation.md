@@ -3,6 +3,9 @@ title: 📖 Installation
 description: "Ready to switch? Let's go!"
 order: 1
 ---
+
+# 📖 Installation
+
 So you'd like to switch to RustyConnector?
 Here's a crash course on how to get started!
 
@@ -52,7 +55,7 @@ If you have ten MCLoaders, they can all start and stop at any time and their Mag
 ## Pre-Requisites
 RustyConnector completely replaces the `[servers]` part of your `velocity.toml` configuration file.
 As such, once your RC network is built and ready to go, you won't have to open this config anymore to manage your servers.
-That said, the Velocity Server itself **REQUIRES** that you have at least one server defined in it. Feel free to just set this to a loopback address like `127.0.0.1:0`.
+That said, the Velocity Server itself **REQUIRES** that you have atned in it. Feel free to just set this to a loopback address like `127.0.0.1:0`. least one server defi
 
 Additionally you'll have to have both a Redis and MariaDB database ready to go in order to use RustyConnector. 
 

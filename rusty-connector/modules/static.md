@@ -1,3 +1,3 @@
 ---
-title: Static Families
+title: 🧊 Static Families
 ---

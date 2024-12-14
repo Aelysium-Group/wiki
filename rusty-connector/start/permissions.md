@@ -1,8 +1,11 @@
 ---
 title: 📌 Permissions
 description: "RustyConnector Permission Commands"
-order: 3
+order: 4
 ---
+
+# 📌 Permissions
+
 Any permission can have the wildcard `*` added to the end to allow all sub-permission of that node.
 
 
