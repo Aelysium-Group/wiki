@@ -15,6 +15,13 @@ const vitePressConfigs = {
   markdown: {
     config(md) {
       md.use(tabsMarkdownPlugin)
+    },
+    container: {
+      tipLabel: '💡 TIP',
+      warningLabel: '⚠️ WARNING',
+      dangerLabel: '🔥 DANGER',
+      infoLabel: '🔎 INFO',
+      detailsLabel: '*️⃣ DETAILS',
     }
   },
   ignoreDeadLinks: true,
