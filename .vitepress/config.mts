@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
 import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs'
 import { withSidebar } from 'vitepress-sidebar';
+import ContentToggle from '../lib/components/ContentToggle';
 
 const vitePressConfigs = {
   title: "Aelysium Wiki",
@@ -35,6 +36,12 @@ const vitePressConfigs = {
       { icon: 'github', link: 'https://github.com/Aelysium-Group' },
       { icon: 'discord', link: 'https://join.aelysium.group/' }
     ]
+  },
+  sitemap: {
+    hostname: 'https://wiki.aelysium.group'
+  },
+  enhanceApp({ app }) {
+    app.component('ToggleComponent', ContentToggle);
   }
 }
 

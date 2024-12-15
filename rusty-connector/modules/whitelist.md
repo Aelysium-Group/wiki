@@ -1,6 +1,6 @@
 ---
 title: 👮 Whitelist
-sidebar_position: 3
+order: 4
 ---
 RustyConnector allows you to set whitelists for both your entire network and specific families!
 

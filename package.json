@@ -1,4 +1,5 @@
 {
+  "name": "aelysium-wiki",
   "devDependencies": {
     "vitepress": "^1.3.4",
     "vitepress-plugin-tabs": "^0.5.0",
@@ -9,5 +10,8 @@
     "expose": "vitepress dev --host",
     "build": "vitepress build",
     "preview": "vitepress preview"
+  },
+  "dependencies": {
+    "js-cookie": "^3.0.5"
   }
 }

@@ -1,5 +1,6 @@
 ---
 title: 🔖 Discord Webhooks
+order: 5
 ---
 
 Discord webhooks allow you to send alerts directly to Discord channels.

@@ -1,6 +1,6 @@
 ---
 title: 🌨️ Ranked Family
-sidebar_position: 3
+order: 3
 ---
 
 # 🌨️ Ranked Family
