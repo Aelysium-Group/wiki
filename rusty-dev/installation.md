@@ -1,7 +1,7 @@
 ---
 title: ⚒️ Installation
 description: "Ready to switch? Let's go!"
-sidebar_position: 1
+order: 1
 ---
 
 ::: danger Wait a minute!

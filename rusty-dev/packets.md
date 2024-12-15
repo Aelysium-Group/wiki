@@ -1,6 +1,6 @@
 ---
 title: 📦 Packets
-sidebar_position: 4
+order: 4
 ---
 
 Packets are a major backbone of RustyConnector.

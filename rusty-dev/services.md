@@ -1,6 +1,6 @@
 ---
 title: 🛜 Services
-sidebar_position: 2
+order: 2
 ---
 
 Services are the framework that RustyConnector is based off of.

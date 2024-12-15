@@ -1,7 +1,7 @@
 ---
 title: 🎟️ Events
 description: "Events make the world go round..."
-sidebar_position: 3
+order: 3
 ---
 
 The RustyConnector Proxy Toolkit provides a handful of events that can be acted upon.

@@ -1,6 +1,6 @@
 ---
 title: 📲 Item References
-sidebar_position: 5
+order: 5
 ---
 
 Item References provide shorthand methods for fetching commonly searched for resources.
