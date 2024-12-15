@@ -1,4 +1,9 @@
+---
+title: All Contents
+---
+
 # All Contents
+
 In some cases you may just want to load all the contents of a file into a single field.
 This can be done using the `@AllContents` annotation.
 ```java

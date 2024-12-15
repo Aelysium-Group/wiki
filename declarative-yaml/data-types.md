@@ -1,3 +1,7 @@
+---
+title: Data Types
+---
+
 # Data Types
 
 dYAML uses a powerfull serialization system for converting Java objects to and from YAML. The supported data types are:

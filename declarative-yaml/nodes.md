@@ -1,4 +1,9 @@
+---
+title: Nodes
+---
+
 # Nodes
+
 Declaring a new configuration node is as easy as adding a class member to your class and annotating it with `@Node`.
 ```java
 @Config("config.yml")

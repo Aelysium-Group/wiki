@@ -1,4 +1,9 @@
+---
+title: Path Parameters
+---
+
 # Path Parameters
+
 When declaring a config via the `@Config` annotation. You can also declare path parameters which can be changed and fetched dynamically.
 Consider the basic config.
 ```java
