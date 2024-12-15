@@ -69,7 +69,7 @@ Notice how there's a file called `private.key`? This key is used to encrypt and 
 :::
 3. Open `families.yml` and set up your RC families.
 ::: tip
-You can read more about Families [here](rusty-connector/concepts/families/index.md). Make sure you edit `root-family.name` to match whichever family should be your default.
+You can read more about Families [here](/rusty-connector/concepts/families.md). Make sure you edit `root-family.name` to match whichever family should be your default.
 :::
 4. In `connectors.yml` enter your Redis and MariaDB information.
 ::: info
@@ -118,5 +118,5 @@ It's important to take note that RustyConnector is specifically written in a top
 :::
 
 :::danger Lets be clear
-Once you setup RustyConnector, you are now a **RustyConnector Network** and you need to follow [**📜 The Law**](the-law.md).
+Once you setup RustyConnector, you are now a **RustyConnector Network** and you need to follow [**📜 The Law**](/rusty-connector/concepts/the-law.md).
 :::

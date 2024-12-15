@@ -6,7 +6,7 @@ sidebar_position: 1
 
 ::: danger Wait a minute!
 This page is for the RustyConnector API.
-For the plugin wiki, go [here](rusty-connector/installation.md).
+For the plugin wiki, go [here](/rusty-connector/start/installation.md).
 :::
 
 The RustyConnector Toolkit grants you access to the power of RustyConnector through a custom Java API!

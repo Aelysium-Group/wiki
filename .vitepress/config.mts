@@ -24,7 +24,7 @@ const vitePressConfigs = {
       detailsLabel: '*️⃣ DETAILS',
     }
   },
-  ignoreDeadLinks: true,
+  //ignoreDeadLinks: true,
   head: [['link', { rel: 'icon', type: 'image/png', href: '/logo.png' }]],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
