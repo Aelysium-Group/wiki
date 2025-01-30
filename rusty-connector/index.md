@@ -10,7 +10,7 @@ RustyConnector operates via Redis messaging to communicate with sub-servers. Onc
 
 
 - ✅ Built for large networks
-- ✅ Register brand new servers to the proxy during runtime
+- ✅ Register brand-new servers to the proxy during runtime
 - ✅ Blazing fast data transmission with Redis integration
 - ✅ Create pre-defined whitelist configs and activate them dynamically
 - ✅ Register similar servers into families with family-level whitelists and load balancing

@@ -26,7 +26,7 @@ export default defineConfig({
       { text: 'Declarative YAML', link: '/declarative-yaml' }
     ],
     footer: {
-      message: 'Released under the XXX License.',
+      message: 'Released under the GPL-3.0 License.',
       copyright: 'Copyright © 2019-2024 AELYSIUM'
     },
     sidebar: {
@@ -35,32 +35,26 @@ export default defineConfig({
           text: 'RustyConnector',
           link: '/rusty-connector/',
           items: [
+            { text: '📥 Installation', link: '/rusty-connector/docs/installation' },
             {
-              text: '📥 Installation',
-              link: '/rusty-connector/docs/installation',
-              items: [
-                { text: '📜 The Law', link: '/rusty-connector/docs/the-law' },
-                { text: '⚙️ Commands', link: '/rusty-connector/docs/commands' },
-                { text: '📌 Permissions', link: '/rusty-connector/docs/permissions' },
-              ]
+                text: "📖 Usage",
+                items: [
+                    { text: '⚙️ Commands', link: '/rusty-connector/docs/commands' },
+                    { text: '📌 Permissions', link: '/rusty-connector/docs/permissions' },
+                    { text: '⤵️ Load Balancing', link: '/rusty-connector/docs/concepts/load-balancing' },
+                    { text: '☁️ Families', link: '/rusty-connector/docs/concepts/families' },
+                    { text: '🌧️ Scalar Family', link: '/rusty-connector/docs/concepts/families#🌧%EF%B8%8F-scalar-family' },
+                    { text: '🌊 Liquid Timestamp', link: '/rusty-connector/docs/concepts/liquid-timestamps' },
+                ]
             },
             {
-              text: '📖 Concepts',
+              text: '🧩 Addons',
+              collapsed: true,
               items: [
-                {
-                  text: '☁️ Families', link: '/rusty-connector/docs/concepts/families/',
-                  items: [
-                    { text: '🌧️ Scalar Family', link: '/rusty-connector/docs/concepts/families/scalar.md' },
-                    { text: '🌩️ Static Family', link: '/rusty-connector/docs/concepts/families/static.md' },
-                    { text: '🌨️ Ranked Family', link: '/rusty-connector/docs/concepts/families/ranked.md' }
-                  ]
-                },
+                { text: '🌩️ Static Family', link: '/rusty-connector/docs/addons/static.md' },
+                { text: '🌨️ Ranked Family', link: '/rusty-connector/docs/addons/ranked.md' },
                 { text: '👮 Whitelist', link: '/rusty-connector/docs/concepts/whitelist' },
                 { text: '🔖 Discord Webhooks', link: '/rusty-connector/docs/concepts/discord-webhooks' },
-                { text: '🌊 Liquid Timestamp', link: '/rusty-connector/docs/concepts/liquid-timestamps' },
-                { text: '⤵️ Load Balancing', link: '/rusty-connector/docs/concepts/load-balancing' },
-                { text: '📦 MCLoaders', link: '/rusty-connector/docs/concepts/loader' },
-                { text: '🟥 Redis', link: '/rusty-connector/docs/concepts/redis' }
               ]
             },
             {
@@ -74,13 +68,8 @@ export default defineConfig({
               ]
             },
             {
-              text: '📖Lang',
-              items: [
-                { text: '⚠️ WIP', link: '/rusty-connector/lang/installation' }
-              ]
-            },
-            {
-              text: '⚒️ Toolkit',
+              text: '⚒️ SDK',
+              collapsed: true,
               items: [
                 { text: '📥 Installation', link: '/rusty-connector/toolkit/installation' },
                 { text: '🛜 Services', link: '/rusty-connector/toolkit/services' },
@@ -89,7 +78,8 @@ export default defineConfig({
                 { text: '📲 Item References', link: '/rusty-connector/toolkit/references' },
                 { text: '🏆 Matchmaker API', link: '/rusty-connector/toolkit/ranked-families' }
               ]
-            }]
+            }
+          ]
         }
       ],
       'declarative-yaml/': [

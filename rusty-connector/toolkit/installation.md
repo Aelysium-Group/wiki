@@ -5,17 +5,17 @@ sidebar_position: 1
 ---
 
 ::: danger Wait a minute!
-This page is for the RustyConnector API.
+This page is for the RustyConnector SDK.
 For the plugin wiki, go [here](/rusty-connector/docs/installation).
 :::
 
-The RustyConnector Toolkit grants you access to the power of RustyConnector through a custom Java API!
+The RustyConnector SDK grants you access to the power of RustyConnector through a custom Java API!
 
 ## Requirements
 - Java 17 or later
 
 ## Getting Started
-You can import the RustyConnector Toolkit via Maven and Gradle.
+You can import the RustyConnector SDK via Maven and Gradle.
 
 ::: tabs
 == Maven
@@ -30,8 +30,8 @@ You can import the RustyConnector Toolkit via Maven and Gradle.
 <dependencies>
     <dependency>
         <groupId>group.aelysium</groupId>
-        <artifactId>rustyconnector-toolkit</artifactId>
-        <version>0.8.0</version>
+        <artifactId>rustyconnector-core</artifactId>
+        <version>0.9.0</version>
         <scope>provided</scope>
     </dependency>
 </dependencies>
@@ -43,7 +43,7 @@ repositories {
 }
 
 dependencies {\
-    compileOnly "group.aelysium:rustyconnector-toolkit:0.8.0"
+    compileOnly "group.aelysium:rustyconnector-core:0.9.0"
 }
 ```
 == Gradle (Kotlin DSL)
@@ -53,46 +53,61 @@ repositories {
 }
 
 dependencies {
-    compileOnly("group.aelysium:rustyconnector-toolkit:0.8.0")
+    compileOnly("group.aelysium:rustyconnector-core:0.9.0")
 }
 ```
 :::
 
 ::: danger Having Issues ?
 If you're unable to install the Toolkit API, it's possible that our Maven Repository is down.
-You can check it's status [here](https://status.mrnavastar.me/status/services).
+You can check its status [here](https://status.mrnavastar.me/status/services).
 
 If it is down, [join our Discord](https://join.aelysium.group) and let us know.
 :::
 
-Once imported, you can access the RustyConnector Toolkit from either the Proxy or MCLoader.
-In order to use Toolkit, you must ensure that RustyConnector is added as a dependency in your plugin.
+Once imported, you can access the RustyConnector SDK from either the proxy or server.
+In order to use the SDK properly, you must ensure that RustyConnector is added as a dependency in your plugin.
 
-## Accessing Toolkit
-Toolkit can be accessed using the `RustyConnector.Toolkit` package.
-You can access Toolkit using either the `.proxy()` or `.mcLoader()` accessors which will return an `Optional`.
-The Optional will throw an exception if the api for the specific RustyConnector loader hasn't been registered yet.
-If you properly set RustyConnector as a dependency in your plugin, this shouldn't happen.
-```java title="Proxy Plugin"
-VelocityTinder tinder = RustyConnector.Toolkit.proxy().orElseThrow();
+## Accessing The Kernel
+The kernel can be accessed using the `RustyConnector` class.
+You can access your Kernel of choice using either the `.Proxy()` or `.Server()` accessors which will return an `Optional`.
+The `Optional` will throw an exception if the kernel for that specific platform isn't available (Like if you try to access the proxy kernel from a server.),
+if you properly set RustyConnector as a dependency in your plugin, this shouldn't happen.
+```java
+ProxyKernel tinder = RustyConnector.Proxy().orElseThrow();
 ```
-```java title="MCLoader Plugin"
-MCLoaderTinder tinder = RustyConnector.Toolkit.mcLoader().orElseThrow();
+```java
+ServerKernel tinder = RustyConnector.Server().orElseThrow();
 ```
 
-## Accessing Flame
-The Flame is the running kernel of RustyConnector.
-As a module developer, you have no way of knowing if or when the Flame is available.
-Instead you hook into the `Tinder#onStart` and `Tinder#onStop` methods to react to Flame availability.
-```java title="Proxy Plugin"
-VelocityTinder tinder = RustyConnector.Toolkit.proxy().orElseThrow();
-
-tinder.onStart(flame -> {
-    System.out.println(flame.versionAsString());
-});
-
-tinder.onStop(() -> {
-    logger.log("Lost connection to RustyConnector! Waiting for it to restart...");
-});
+RustyConnector also offers a plethora of helpful utility methods for common requests via the `RC` class.
+```java
+ProxyKernel kernel = RC.P.Kernel();
 ```
-If a flame already exists and you call `Tinder#onStart`, it will immediately return the existing flame to the passed `Consumer`.
+```java
+ServerKernel kernel = RC.S.Kernel();
+```
+::: warning
+Something to note of the `RC` utility classes is that they have zero fault tolerance.
+If a specific item is unavailable, they will immediately throw a `NoSuchElementException`.
+:::
+
+## ARA (Absolute Redundancy Architecture)
+This wiki contains a whole site dedicated to ARA, so we won't cover all of it here.
+ARA is a virtualized microservice architecture which RustyConnector uses to separate major code blocks from each-other.
+
+Imagine you have a family which, after some configuration changes, you'd like to reload without having to reload all of RustyConnector;
+or worst, the entire proxy.
+ARA allows you to reload just that one specific family without disrupting any other aspects of RustyConnector.
+
+ARA effectively separates each individual module into its own self-contained unit which we call a `Particle`.
+All Particles exist inside a `Flux` object. When you have a `Flux`, you don't ever know if its `Particle` exists until you actually try to access it (Notice the correlation with quantum mechanics?)
+
+The `Flux` object then contains lots of helpful methods you can use to handle a particle's presence or absence with.
+
+::: info
+A major difference between using the full-hand `RustyConnector` class versus the `RC` class to interact with the SDK is that
+the `RC` class will bypass much of the fail-safe functionality of ARA and attempt to fetch the desired particle immedealty.
+
+If you need more fault tolerance when making a Particle request, using `RustyConnector` may be the best move.
+:::

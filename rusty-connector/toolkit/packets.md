@@ -1,175 +1,146 @@
----
-title: 📦 Packets
-sidebar_position: 4
----
+# 📦 Packets
 
 Packets are a major backbone of RustyConnector.
 This page will help you plug into RustyConnector's Magic Link service and issue your own packets!
 
 ## Magic Link
-Magic Link is the connection backbone used by RustyConnector for handling connections between the Proxy and MCLoaders.
-It's sole directive is ensuring that all MCLoaders on the Proxy are active and ready to handle tasks.
+Magic Link is the connection backbone used by RustyConnector for handling connections between the proxy and servers.
+Its sole directive is ensuring that all servers on the proxy are active and ready to handle tasks.
 
-Magic Link also employs AES 256-bit end-to-end encryption via its Secure Transit module as well as packet filtering and caching via its Data Transit module.
+## Anatomy of a Packet
+Consider the following string.
+```
+{"v":3,"i":"RC-P","s":{"u":"be59b56e-30b5-415f-a790-f70fa04cc3cc","n":2,"r":"49FVco5nRjUDC6zS"},"t":{"n":1},"p":{"a":"127.0.0.1:25565","pc":0,"n":"","sr":"default"}}
+```
+This string represents a simple ping packet.
+The ping packet is used by servers to declare themselves for proxies to register.
+The ping packet also exists as a connection keep-alive. If Magic Link doesn't receive a ping packet from a server within an elapsed time, that server will be disconnected from the proxy; this way servers that overload and are frozen won't be able to accept player connections.
 
-## Custom Packets
-The Packet Builder can be fetched from the MagicLink service.
-Since MagicLink is a service it means it must be fetched from the Flame.
-This is done because the builder that you receive from MagicLink contains some already necessary metadata about your environment (for example is it a packet from an MCLoader or from the Proxy?) which you'd otherwise have to provide yourself.
-
-Here's a basic example of creating a custom packet.
-```java title="Proxy Plugin"
-tinder.onStart(flame -> {
-    Packet packet = flame.services().magicLink().packetManager().newPacketBuilder()
-        .identification(PacketIdentification.from("RC_MY_MODULE", "NAME_OF_PACKET"))
-        .sendTo(Packet.Target.mcLoader(target_uuid));
-});
+Let's break this packet down into it's component parts.
+```json
+{
+    "v": 3, // The MagicLink Version used to compile this packet: 3
+    "i": "RC-P", // The type of packet
+    "s": { // The source machine of the packet
+        "u": "be59b56e-30b5-415f-a790-f70fa04cc3cc", // The uuid of the RustyConnector instance
+        "n": 2, // The type: 2 - A server
+        "r": "49FVco5nRjUDC6zS" // The packet ID
+    },
+    "t": { // The target machine of the packet
+      "n": 1 // The type: 1 - Any available proxy
+    },
+    "p": { // The packet payload
+        "a": "127.0.0.1:25565", // The connection address of the server
+        "pc": 0, // The current player count on the server
+        "n": "", // The display name of the server
+        "sr": "default" // The server registration
+    }
+}
 ```
 
-It's important to note that the `.sendTo` and `.replyTo` both build and send the packet.
-There is no way to build a packet without building it.
+We're not going to give you a crash-course on the packet syntax, as all of it is abstracted away.
+But it's a good idea to get an idea of how the data is laid out before continuing.
 
-::: info
-`identification` is always required before you can send or add parameters to a packet.
+## Sending Packets
+To create a new packet, all you have to do is call the packet builder using `Packet.New()`.
+The builder is written in a way so that you won't be able to send a syntactically incorrect packet.
+
+```java
+Packet.New()
+        .type(PacketType.from("RC_MY_MODULE", "NAME_OF_PACKET"))
+        .addressTo(SourceIdentifier.allAvailableServers())
+        .send();
+```
+
+::: warning
+The packet builder makes calls to `RC`, make sure you're only making calls to the builder from within
+`RustyConnector.Kernel()::onStart`.
 :::
 
-### Packet Identification
-When a packet is created, it needs to be assigned identification.
-A packet's ID contains two values; the Module that the packet is from (`pluginID`), and the ID of the packet itself (`packetID`).
-You can create a new PacketIdentification using:
+### Packet Type
+When a packet is created, it needs to be assigned a type.
+A packet's type contains two values; the namespace that the packet belongs to (typically your module name), and the type of the packet itself.
+You can create a new PacketType using:
 ```java
-// pluginID = "MY_MODULE"
-// packetID = "NAME_OF_PACKET"
-PacketIdentification.from("MY_MODULE", "NAME_OF_PACKET");
+// namespace = "MY_MODULE"
+// packetType = "NAME_OF_PACKET"
+PacketType.from("MY_MODULE", "NAME_OF_PACKET");
 ```
 Both values can technically be whatever you want. But it's suggested that you set both to be in `UPPER_SNAKE_CASE` format.
 
 ::: danger
-You should set the `pluginID` to be something unique, preferably the name of your plugin.
-
-It should be noted that if your packet happens to have a `PacketIdentification` that is equal to the `PacketIdentification` of someone
+It should be noted that if your packet happens to have a `PacketType` that is the same as someone
 else's plugin. Your packets will intercept eachother and cause issues.
 :::
 
 ### Adding Parameters
 Adding a custom parameter is as easy as using the `.parameter()` method along with the `PacketParameter` wrapper.
 `PacketParameter` lets you set parameters of type `int`, `long`, `double`, `String`, and `boolean`.
-```java title="Proxy Plugin"
-Packet packet = flame.services().magicLink().packetManager().newPacketBuilder()
-    .identification(PacketIdentification.from("MY_MODULE", "NAME_OF_PACKET"))
+```java
+Packet.New()
+    .type(PacketType.from("RC_MY_MODULE", "NAME_OF_PACKET"))
     .parameter("example_int", new PacketParameter(1000))
     .parameter("example_long", new PacketParameter(1000000000000))
     .parameter("example_double", new PacketParameter(2.5))
     .parameter("example_string", new PacketParameter("hello!"))
     .parameter("example_boolean", new PacketParameter(true))
-    .sendTo(Packet.Target.mcLoader(target_uuid));
+    .addressTo(SourceIdentifier.allAvailableServers())
+    .send();
 ```
+
+## Custom Packets
+Now that you know all the fancy details of sending a custom packet, lets make a wrapper to handle this logic for us!
+```java
+@PacketType("RC_MY_MODULE-CUSTOM_PACKET")
+public class CustomPacket extends Packet.Remote {
+    public CustomPacket(Packet packet) {
+        super(packet);
+    }
+    
+    public String testValue() {
+        return this.parameters().get("testValue").getAsString();
+    }
+    
+    public static Packet.Local createAndSend(SourceIdentifier target, String testValue) {
+        return Packet.New()
+                .type(PacketType.from("RC_MY_MODULE", "CUSTOM_PACKET"))
+                .parameter("testValue", testValue)
+                .addressTo(target)
+                .send();
+    }
+}
+```
+With this code, we'll be able to send a new `CustomPacket` using `CustomPacket#createAndSend`!
+```java
+Packet.Local local = CustomPacket.createAndSend(SourceIdentifier.allAvailableProxies(), "hello this is a test!");
+```
+
+::: info Why did my static method return an instance of Packet.Local?
+Even though we made a custom packet class, we don't actually get to use it until we use a PacketListener.
+Read on to see how it's used!
+:::
 
 ## Listening for packets
 Listening for packets is a similar ordeal to listening for Events.
-```java title="CustomPacketListener.java"
-public class CustomPacketListener implements PacketListener<CustomPacket> {
-    @Override
-    public PacketIdentification target() {
-        return PacketIdentification.from("MY_MODULE", "NAME_OF_PACKET");
-    }
-
-    @OVerride
-    public CustomPacket wrap(Packet packet) {
-        return new CustomPacket(packet);
-    }
-
-    @Override
-    public void execute(CustomPacket packet) throws Exception {
-        System.out.println(packet);
-    }
-}
-```
-When creating a `PacketListener` we implement `.target()` which tells us what `PacketIdentification` to listen for.
-Additionally, we implement `.execute()` which lets us act upon the specific packet.
-And finally, we implement `.wrap()` which will wrap our packet using a custom `Packet.Wrapper` that we've defined.
-
-## Packet Wrappers
-Once you start adding parameters to packets you'll probably want to make a wrapper to more easily interact with those parameters.
-Packet Wrappers effectivly allow you to create custom types that you can use in your Packet Listeners.
-
-```java title="CustomPacket.java"
-/**
- * The following is a packet wrapper for the following example packet:
- * Packet packet = flame.services().magicLink().packetManger().newPacketBuilder()
- *      .identification(PacketIdentification.from("MY_MODULE", "CUSTOM_PACKET"))
- *      .parameter("example_data", "hello!")
- *      .sendTo(Packet.Target.allAvailableProxies());
- */
-
-public class CustomPacket extends Packet.Wrapper {
-    public CustomPacket(Packet packet) { super(packet); }
-
-    // Convenience getter for fetching a custom parameter so we don't have to manually every time.
-    public String exampleData() {
-        return this.parameter(Parameters.EXAMPLE_DATA).getAsString();
-    }
-
-    // Convenience enum which lists all the valid Parameters that this custom packet supports
-    public interface Parameters {
-        String EXAMPLE_DATA = "example_data";
-    }
-}
-
-```
-
-Then, with this new wrapper we can update our PacketListener:
-
-```java title="CustomPacketListener.java"
-public class CustomPacketListener implements PacketListener<CustomPacket> {
-    @Override
-    public PacketIdentification target() {
-        return PacketIdentification.from("MY_MODULE", "CUSTOM_PACKET");
-    }
-
-    @Override
-    public CustomPacket wrap(Packet packet) {
-        return new CustomPacket(packet);
-    }
-
-    @Override
-    public void execute(CustomPacket packet) throws Exception {
-        System.out.println(packet.exampleData());
-    }
-}
-```
-
-If you want to take your packet wrapper a step further you can add a custom `Packet.Builder` implementation.
-To better show this example, lets update our custom packet we've been using so that its example parameter holds a player's username.
+Let's use our custom packet we made in the last block here!
 ```java
-/**
- * The following is a packet wrapper for the following example packet:
- * Packet packet = flame.services().magicLink().packetManager().newPacketBuilder()
- *      .identification(PacketIdentification.from("MY_MODULE", "CUSTOM_PACKET"))
- *      .parameter("username", "Notch")
- *      .sendTo(Packet.Target.allAvailableProxies());
- */
-
-public class CustomPacket extends Packet.Wrapper {
-    private CustomPacket(Packet packet) { super(packet); }
-
-    // Convenience getter for fetching a custom parameter so we don't have to manually every time.
-    public String username() {
-        return this.parameter(Parameters.USERNAME).getAsString();
-    }
-
-    // Convenience enum which lists all the valid Parameters that this custom packet supports
-    public interface Parameters {
-        String USERNAME = "username";
-    }
-
-    public static CustomPacket createAndSend(VelocityFlame flame, UUID target_uuid, String username) {
-        return new CustomPacket(
-            flame.services().magicLink().packetManager().newPacketBuilder()
-                .identification(PacketIdentification.from("MY_MODULE", "CUSTOM_PACKET"))
-                .parameter("username", "Notch")
-                .sendTo(Packet.Target.allAvailableProxies())
-        );
+public class CustomPacketListener implements PacketListener<CustomPacket> {
+    public Packet.Response handle(CustomPacket packet) {
+        return Packet.Response.success("Successfully handled the custom packet! "+packet.testValue());
     }
 }
 ```
+You can then register your packet listener via the MagicLink provider.
+```java
+Particle.Flux<? extends ProxyKernel> kernelFlux = RustyConnector.Proxy().orElseThrow();
+kernelFlux.onStart(kernel -> {
+    kernel.fetchPlugin("MagicLink").onStart(m -> {
+        m.listen(new CustomPacketListener());
+    });
+});
+```
+
+::: info
+When using/creating a custom packet to use in a packet listener you need to ensure that the packet extends `Packet.Remote`
+and is also annotated by `@PacketType`.
+:::

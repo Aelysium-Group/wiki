@@ -42,8 +42,3 @@ If you setup the hub feature in Dynamic Teleport, it will also direct a player t
 ::: danger
 Setting a parent family for the root familly is forbidden and will be ignored.
 :::
-
-<Menu>
-    <MenuItem href="concepts/load_balancing" title="⤵️ Load Balancing" description="Read up more on Load Balancing in RC." />
-    <MenuItem href="concepts/whitelist" title="👮 Whitelist" description="Read up more on Whitelists in RC." />
-</Menu>
