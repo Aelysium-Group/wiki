@@ -1,5 +1,5 @@
 ---
-title: 📦 MCLoaders
+title: 📦 MCLoaders (Servers)
 ---
 
 MCLoaders, or "Loaders", are the equivalent of the server software being run in order to allow players to play Minecraft on a remote server.

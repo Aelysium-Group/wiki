@@ -1,6 +1,7 @@
 ---
 title: 🌊 Liquid Timestamp
 ---
+
 While working with RustyConnector configurations. You may encounter a liquid timestamp.
 These data types allow you to define a string value which will be translated into a unit of time.
 

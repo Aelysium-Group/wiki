@@ -1,4 +1,11 @@
+---
+title: 📖 Installation
+description: "Ready to switch? Let's go!"
+order: 1
+---
+
 # 📖 Installation
+
 So you'd like to switch to RustyConnector?
 Here's a crash course on how to get started!
 

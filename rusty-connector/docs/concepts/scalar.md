@@ -3,6 +3,8 @@ title: 🌧️ Scalar Family
 sidebar_position: 1
 ---
 
+# 🌧️ Scalar Family
+
 Scalar Families are optimized to work best with stateless <MCLoaderTag>Minecraft Loaders</MCLoaderTag>.
 
 ::: details What is a Stateless Minecraft Loader?

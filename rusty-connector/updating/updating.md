@@ -12,10 +12,10 @@ You can click on any of the upgrade buttons to see the docs on how to update you
 | Config Version | Plugin Versions | Upgrade |
 | -----------    | -----------     | ------- |
 | Config v1 | `v0.3.x (beta)` |  |
-| Config v2 | `v0.4.x (beta)` | [![Wiki](https://badgen.net/badge/From/Config%20v1/blue?icon=codeclimate)](./update-from-config-v1-to-v2.md) |
-| Config v3 | `v0.5.x (beta)` | [![Wiki](https://badgen.net/badge/From/Config%20v2/blue?icon=codeclimate)](./update-from-config-v2-to-v3) |
-| Config v4 | `v0.6.x (beta)` | [![Wiki](https://badgen.net/badge/From/Config%20v3/blue?icon=codeclimate)](./update-from-config-v2-to-v3) |
-| Config v5 (Latest) | `v0.7.x (beta)` | [![Wiki](https://badgen.net/badge/From/Config%20v4/blue?icon=codeclimate)](./update-from-config-v4-to-v5) |
+| Config v2 | `v0.4.x (beta)` | [![Wiki](update-from-config-v1-to-v2.md) |
+| Config v3 | `v0.5.x (beta)` | [![Wiki](update-from-config-v2-to-v3.md) |
+| Config v4 | `v0.6.x (beta)` | [![Wiki](update-from-config-v2-to-v3.md) |
+| Config v5 (Latest) | `v0.7.x (beta)` | [![Wiki](update-from-config-v4-to-v5.md) |
 
 :::caution
 We do not provide "leap upgrade" documentation. If you wish to upgrade between multiple config versions (for example: from v1 to v4.) You will need to step up the ladder until you are at the desired configuration version.

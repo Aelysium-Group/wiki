@@ -1,4 +1,9 @@
+---
+title: ✒️ Comments
+----
+
 # Comments
+
 Comments are an integral part of any YAML experience. They can make or break how easy your configs are.
 Comments can be declared the `@Comment` annotation. Comments can be attached to both the class declaration (called a header comment) or to individual nodes.
 ```java
