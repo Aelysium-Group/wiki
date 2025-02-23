@@ -5,7 +5,7 @@ Consider the basic config.
 @Config("config.yml")
 public class DefaultConfig {
     public static DefaultConfig New() {
-        return DeclarativeYAML.load(DefaultConfig.class)
+        return DeclarativeYAML.From(DefaultConfig.class)
     }
 }
 ```
@@ -17,7 +17,7 @@ If we wanted to change the name of the config based on a parameter we could adju
 public class DefaultConfig {
     public static DefaultConfig New(String name) {// [!code focus]
         Printer printer = new Printer().pathParameters(Map.of("name", name));// [!code focus]
-        return DeclarativeYAML.load(DefaultConfig.class, printer)// [!code focus]
+        return DeclarativeYAML.From(DefaultConfig.class, printer)// [!code focus]
     }
 }
 ```
@@ -32,7 +32,7 @@ Path parameters also work on directory names as well.
 public class DefaultConfig {
     public static DefaultConfig New(String name) {
         Printer printer = new Printer().pathParameters(Map.of("name", name));
-        return DeclarativeYAML.load(DefaultConfig.class, printer)
+        return DeclarativeYAML.From(DefaultConfig.class, printer)
     }
 }
 ```
@@ -48,7 +48,7 @@ public class DefaultConfig {
 
     public static DefaultConfig New(String name) {
         Printer printer = new Printer().pathParameters(Map.of("name", name));
-        return DeclarativeYAML.load(DefaultConfig.class, printer)
+        return DeclarativeYAML.From(DefaultConfig.class, printer)
     }
 }
 ```
