@@ -7,7 +7,7 @@ public class DefaultConfig {
     public final String name = "John Doe";// [!code focus]
 
     public static DefaultConfig New() {
-        return DeclarativeYAML.load(DefaultConfig.class)
+        return DeclarativeYAML.From(DefaultConfig.class)
     }
 }
 ```
@@ -18,7 +18,7 @@ name: "John Doe"
 It's important to note that whatever value you assign to a node will be considered the default value. Now that the name node exists in the config file, it can be edited and that new value will injected into the `name` field even if it's final!
 If we edit the value of the config to be a different name:
 ```yaml
-name: "Sam Doe" // [!code warning]
+name: "Sam Doe"
 ```
 Accessing the field via the `New()` method will return the following:
 ```java
@@ -53,7 +53,7 @@ public class DefaultConfig {
     public final String email = "contact@example.com";
 
     public static DefaultConfig New() {
-        return DeclarativeYAML.load(DefaultConfig.class)
+        return DeclarativeYAML.From(DefaultConfig.class)
     }
 }
 ```
