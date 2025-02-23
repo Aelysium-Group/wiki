@@ -83,7 +83,7 @@ public class DefaultConfig {
     public final CustomObject user = new CustomObject();
 
     public static DefaultConfig New() {
-        return DeclarativeYAML.load(DefaultConfig.class)
+        return DeclarativeYAML.From(DefaultConfig.class)
     }
 }
 ```
