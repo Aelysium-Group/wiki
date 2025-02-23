@@ -20,7 +20,7 @@ public class DefaultConfig {
     public final String email = "contact@example.com";
 
     public static DefaultConfig New() {
-        return DeclarativeYAML.load(DefaultConfig.class)
+        return DeclarativeYAML.From(DefaultConfig.class)
     }
 }
 ```
@@ -48,7 +48,7 @@ public class DefaultConfig {
     public final String email = "contact@example.com";
 
     public static DefaultConfig New() {
-        return DeclarativeYAML.load(DefaultConfig.class)
+        return DeclarativeYAML.From(DefaultConfig.class)
     }
 }
 ```
@@ -64,7 +64,7 @@ public class DefaultConfig {
 
     public static DefaultConfig New(String name) {// [!code focus]
         Printer printer = new Printer().commentReplacements(Map.of("persons_name", name));// [!code focus]
-        return DeclarativeYAML.load(DefaultConfig.class)
+        return DeclarativeYAML.From(DefaultConfig.class)
     }
 }
 ```
