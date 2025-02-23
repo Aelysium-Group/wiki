@@ -8,7 +8,7 @@ public class DefaultConfig {
     public final byte[] contents;// [!code focus]
 
     public static DefaultConfig New() {
-        return DeclarativeYAML.load(DefaultConfig.class)
+        return DeclarativeYAML.From(DefaultConfig.class)
     }
 }
 ```
