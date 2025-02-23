@@ -14,7 +14,7 @@ We like to put this into a static method which will return an instance of the cl
 @Config("config.yml")
 public class DefaultConfig {
     public static DefaultConfig New() {// [!code focus]
-        return DeclarativeYAML.load(DefaultConfig.class)// [!code focus]
+        return DeclarativeYAML.From(DefaultConfig.class)// [!code focus]
     }// [!code focus]
 }
 ```
