@@ -5,20 +5,24 @@ title: ☁️ Families
 # ☁️ Families
 
 Families are the backbone of RustyConnector.
-They can be thought of as "server collections." MCLoaders always have a "theme" and therefore they always belong to a family.
+A family can be thought of as a collection of servers.
+Consider a server. Servers always have a purpose or theme; whether that's to function as a lobby, pvp arena, or survival world,
+every server has a function, as such every server has a family it belongs to.
 
-The hard part about setting up a RustyConnector Network is deciding how to setup your families. If you can master that, you've mastered RustyConnector.
-
-Let's dive in!
+Families exist to group servers together into individual chunks.
+From there, players can connect to a family, and that family is in charge of choosing which of its servers the player should be sent to.
+This process is called Load Balancing.
 
 ## How do they work?
-You configure your families in `families.yml`, from there RustyConnector will create a custom config for your family in the `families` folder. This config will allow you to make further edits to your family!
-If you remove a family from `families.yml` that family will no longer be registered on RustyConnector and MCLoaders will no longer be able to register to it.
-When you setup your families you must define a family as your `root-family`. This is the family that players will automatically load into when they log onto your network.
+When a server registers to RustyConnector that server must describe which family it wants to be registered to.
+Servers are not allowed to register without specifying a family to connect to.
 
-:::info What's with all the clouds?
-Families can be complex, we use Clouds to help us describe certain behaviors of families.
-When reading family docs, keep a look out for info tabs with a ☁️ emoji.
-:::
+Once servers successfully register, they will then be managed by their family.
+The family is responsible for managing player connections with servers and other families.
 
-Different families are optimized for different usecases. Follow one of the links below to read up on them all!
+## Family Types
+RustyConnector Core comes with Scalar Families built in.
+Additional family types are available as RC Modules.
+
+## 🌧️ Scalar Family
+Scalar Families are built to complement stateless servers.

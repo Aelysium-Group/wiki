@@ -58,7 +58,7 @@ dependencies {
 ```
 :::
 
-::: danger Having Issues ?
+::: danger Having Issues?
 If you're unable to install the Toolkit API, it's possible that our Maven Repository is down.
 You can check its status [here](https://status.mrnavastar.me/status/services).
 
@@ -78,47 +78,19 @@ Creating a new RCM is pretty simple.
 5. In `rc-module.json` set the `main` attribute to be the classpath to this new `Tinder` class you've made.
 
 ### `rc-module.json`
+```json
+{
+  "main": "com.example.MainClass$Tinder",
+  "name": "ExampleName",
+  "description": "Provides an example of rc-module.json",
+  "details": "example-rootPluginDetails",
+  "dependencies": []
+}
+```
 
 ## Platform Modules
+When writing a platform specific module, you do not have the ability to use `ExternalModuleTinder<?>`
+
 The kernel can be accessed using the `RustyConnector` class.
-You can access your Kernel of choice using either the `.Proxy()` or `.Server()` accessors which will return an `Optional`.
-The `Optional` will throw an exception if the kernel for that specific platform isn't available (Like if you try to access the proxy kernel from a server.),
-if you properly set RustyConnector as a dependency in your plugin, this shouldn't happen.
-```java
-ProxyKernel tinder = RustyConnector.Proxy().orElseThrow();
-```
-```java
-ServerKernel tinder = RustyConnector.Server().orElseThrow();
-```
-
-RustyConnector also offers a plethora of helpful utility methods for common requests via the `RC` class.
-```java
-ProxyKernel kernel = RC.P.Kernel();
-```
-```java
-ServerKernel kernel = RC.S.Kernel();
-```
-::: warning
-Something to note of the `RC` utility classes is that they have zero fault tolerance.
-If a specific item is unavailable, they will immediately throw a `NoSuchElementException`.
-:::
-
-## ARA (Absolute Redundancy Architecture)
-This wiki contains a whole site dedicated to ARA, so we won't cover all of it here.
-ARA is a virtualized microservice architecture which RustyConnector uses to separate major code blocks from each-other.
-
-Imagine you have a family which, after some configuration changes, you'd like to reload without having to reload all of RustyConnector;
-or worst, the entire proxy.
-ARA allows you to reload just that one specific family without disrupting any other aspects of RustyConnector.
-
-ARA effectively separates each individual module into its own self-contained unit which we call a `Particle`.
-All Particles exist inside a `Flux` object. When you have a `Flux`, you don't ever know if its `Particle` exists until you actually try to access it (Notice the correlation with quantum mechanics?)
-
-The `Flux` object then contains lots of helpful methods you can use to handle a particle's presence or absence with.
-
-::: info
-A major difference between using the full-hand `RustyConnector` class versus the `RC` class to interact with the SDK is that
-the `RC` class will bypass much of the fail-safe functionality of ARA and attempt to fetch the desired particle immedealty.
-
-If you need more fault tolerance when making a Particle request, using `RustyConnector` may be the best move.
-:::
+It'll be your job to make sure you properly configure your platform module to work with RustyConnector's ARA framework.
+Check out the next page to see details on the ARA framework as it pertains to RustyConnector.

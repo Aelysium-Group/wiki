@@ -2,7 +2,7 @@
 title: 📦 Packets
 order: 4
 ---
-
+# 📦 Packets
 Packets are a major backbone of RustyConnector.
 This page will help you plug into RustyConnector's Magic Link service and issue your own packets!
 
@@ -96,7 +96,7 @@ Now that you know all the fancy details of sending a custom packet, lets make a 
 ```java
 @PacketType("RC_MY_MODULE-CUSTOM_PACKET")
 public class CustomPacket extends Packet.Remote {
-    public CustomPacket(Packet packet) {
+    protected CustomPacket(Packet packet) {
         super(packet);
     }
     
@@ -106,7 +106,7 @@ public class CustomPacket extends Packet.Remote {
     
     public static Packet.Local createAndSend(SourceIdentifier target, String testValue) {
         return Packet.New()
-                .type(PacketType.from("RC_MY_MODULE", "CUSTOM_PACKET"))
+                .type(Packet.Type.from("RC_MY_MODULE", "CUSTOM_PACKET"))
                 .parameter("testValue", testValue)
                 .addressTo(target)
                 .send();
@@ -127,22 +127,24 @@ Read on to see how it's used!
 Listening for packets is a similar ordeal to listening for Events.
 Let's use our custom packet we made in the last block here!
 ```java
-public class CustomPacketListener implements PacketListener<CustomPacket> {
-    public Packet.Response handle(CustomPacket packet) {
-        return Packet.Response.success("Successfully handled the custom packet! "+packet.testValue());
+public class Listener {
+    @PacketListener(CustomPacket.class)
+    public PacketListener.Response handle(CustomPacket packet) {
+        return PacketListener.Response.success("Successfully handled the custom packet! "+packet.testValue());
     }
 }
 ```
 You can then register your packet listener via the MagicLink provider.
 ```java
-Particle.Flux<? extends ProxyKernel> kernelFlux = RustyConnector.Proxy().orElseThrow();
-kernelFlux.onStart(kernel -> {
-    kernel.fetchPlugin("MagicLink").onStart(m -> {
+    RC.Kernel().fetchModule("MagicLink").onStart(m -> {
         m.listen(new CustomPacketListener());
     });
-});
 ```
-
+::: info
+When registering listeners, you want to call the `.onStart()` method on the MagicLink's Flux.
+This way, any time MagicLink ends up getting restarted, your listeners will be re-applied.
+If you don't add an `.onStart()` listener, then next time MagicLink is restarted your listeners will no-longer be applied.
+:::
 ::: info
 When using/creating a custom packet to use in a packet listener you need to ensure that the packet extends `Packet.Remote`
 and is also annotated by `@PacketType`.

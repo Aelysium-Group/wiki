@@ -37,7 +37,7 @@ const vitePressConfigs = {
     ],
     footer: {
       message: 'Released under the GPL-3.0 License.',
-      copyright: 'Copyright © 2019-2024 AELYSIUM'
+      copyright: 'Copyright © 2019-2025 AELYSIUM'
     },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/Aelysium-Group' },
@@ -68,6 +68,7 @@ export default defineConfig(
       resolvePath: '/declarative-yaml/',
       useTitleFromFrontmatter: true,
       useFolderTitleFromIndexFile: true,
+      sortMenusByFrontmatterOrder: true,
     },
     {
       documentRootPath: '/',
@@ -75,6 +76,7 @@ export default defineConfig(
       resolvePath: '/rusty-dev/',
       useTitleFromFrontmatter: true,
       useFolderTitleFromIndexFile: true,
+      sortMenusByFrontmatterOrder: true,
     }
   ])
 );

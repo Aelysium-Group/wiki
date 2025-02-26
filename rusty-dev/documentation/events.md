@@ -1,4 +1,10 @@
+---
+title: 🎟️ Events
+order: 3
+---
+
 # 🎟️ Events
+
 RustyConnector provides a [handful of events](https://maven.mrnavastar.me/javadoc/releases/group/aelysium/rustyconnector-core/0.9.0) for many actions.
 
 ## Event Listeners
@@ -16,13 +22,15 @@ public class OnServerRegister {
 ```
 The event listener can then be registered to RustyConnector's event manager.
 ```java
-Particle.Flux<? extends ProxyKernel> kernelFlux = RustyConnector.Proxy().orElseThrow();
-kernelFlux.onStart(kernel -> {
-    kernel.fetchPlugin(EventManager.class).onStart(m -> {
+    RC.Kernel().fetchPlugin(EventManager.class).onStart(m -> {
         m.listen(OnMCLoaderRegister.class);
     });
-});
 ```
+::: info
+When registering listeners, you want to call the `.onStart()` method on the EventListener's Flux.
+This way, any time the EventManager ends up getting restarted, your listeners will be re-applied.
+If you don't add an `.onStart()` listener, then next time the EventManager is restarted your listeners will no-longer be applied.
+:::
 
 ## Priority
 Event listeners will run in the order of their priority.
