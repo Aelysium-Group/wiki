@@ -83,7 +83,10 @@ Creating a new RCM is pretty simple.
   "main": "com.example.MainClass$Tinder",
   "name": "ExampleName",
   "description": "Provides an example of rc-module.json",
-  "details": "example-rootPluginDetails",
+  "environments": [
+    "proxy",
+    "server"
+  ],
   "dependencies": [
     "haze"
   ],
