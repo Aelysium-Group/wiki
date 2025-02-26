@@ -84,7 +84,10 @@ Creating a new RCM is pretty simple.
   "name": "ExampleName",
   "description": "Provides an example of rc-module.json",
   "details": "example-rootPluginDetails",
-  "dependencies": []
+  "dependencies": [
+    "haze"
+  ],
+  "softDependencies": []
 }
 ```
 
