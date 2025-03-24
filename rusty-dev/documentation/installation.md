@@ -29,8 +29,8 @@ You can import the RustyConnector SDK via Maven and Gradle.
 </repositories>
 <dependencies>
     <dependency>
-        <groupId>group.aelysium</groupId>
-        <artifactId>rustyconnector-core</artifactId>
+        <groupId>group.aelysium.rustyconnector</groupId>
+        <artifactId>core</artifactId>
         <version>0.9.0</version>
         <scope>provided</scope>
     </dependency>
@@ -43,7 +43,7 @@ repositories {
 }
 
 dependencies {\
-    compileOnly "group.aelysium:rustyconnector-core:0.9.0"
+    compileOnly "group.aelysium.rustyconnector:core:0.9.0"
 }
 ```
 == Gradle (Kotlin DSL)
@@ -53,7 +53,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("group.aelysium:rustyconnector-core:0.9.0")
+    compileOnly("group.aelysium.rustyconnector:core:0.9.0")
 }
 ```
 :::
@@ -74,28 +74,26 @@ Creating a new RCM is pretty simple.
 1. Create a new empty Gradle or Maven project.
 2. Add the RustyConnector Core SDK (See above.)
 3. In your project's `resources` directory, create a file called `rc-module.json`
-4. In your project's root class, create an inner class called `Tinder` which extends `ExternalModuleTinder<?>`
-5. In `rc-module.json` set the `main` attribute to be the classpath to this new `Tinder` class you've made.
+4. In your project's root class, create an inner class called `Builder` which extends `ExternalModuleBuilder<?>`
+5. In your `resources` directory create a `rc-module.json` and set the `main` attribute to be the classpath to this new `Builder` class you've made.
 
 ### `rc-module.json`
 ```json
 {
-  "main": "com.example.MainClass$Tinder",
+  "main": "com.example.MainClass$Builder",
   "name": "ExampleName",
   "description": "Provides an example of rc-module.json",
   "environments": [
-    "proxy",
-    "server"
+    // The environments you want your module to load in.
+    // "proxy" or "server"
   ],
-  "dependencies": [
-    "haze"
-  ],
+  "dependencies": [],
   "softDependencies": []
 }
 ```
 
 ## Platform Modules
-When writing a platform specific module, you do not have the ability to use `ExternalModuleTinder<?>`
+When writing a platform specific module, you do not have the ability to use `ExternalModuleBuilder<?>`
 
 The kernel can be accessed using the `RustyConnector` class.
 It'll be your job to make sure you properly configure your platform module to work with RustyConnector's ARA framework.

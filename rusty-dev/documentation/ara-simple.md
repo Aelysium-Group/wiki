@@ -3,19 +3,22 @@ title: 🛜 Flux, Tinder, and Particles
 order: 2
 ---
 
-# 🛜 Flux, Tinder, and Particles
+# 🛜 ARA
 
-RustyConnector leverages ARA (Absolute Redundancy Architecture) for its code partitioning paradymn.
-The way it works, if you have Tinder, Flux, and Particles.
+RustyConnector leverages ARA (Absolute Redundancy Architecture) for its code partitioning paradigm.
+This paradigm leverages "Particles" and "Flux" elements.
 
 Particles are "living, breathing" blocks of code which actively perform tasks and handle resources.
+A Particle could be a websocket connection server, an event manager, or a DTO cache.
 
 Particles can only be formed out of a Flux.
 Flux is a paradigm that hides the existence of the underlying Particle (similar to a WeakReference), so that the underlying object can be stopped, started, and restarted, as needed.
 Flux is the beating heart of this system because it allows system administrators to specifically restart entire sections of code without needing to restart their entire server.
 
-Every Flux is backed by a Tinder. The Tinder can be thought of as the "configurator".
-Any time the Flux needs to create a new Particle (maybe the previous one was stopped). The Flux will ignite the Tinder, thus configuring and returning a brand-new Particle instance.
+Every Flux contains a configurator function.
+Any time the Flux needs to create a new Particle (maybe the previous one was stopped). The Flux will generate it using the specific configurator, thus configuring and returning a brand-new Particle instance.
+
+This wiki has an entire page on how ARA works which you can read. The following content on this page goes into the details of ARA as it pertains to RustyConnector.
 
 ## Longform References
 You can use the full-length `RustyConnector` class to access the kernel and then attempt to access resources from there.
@@ -24,6 +27,8 @@ how your application reacts to certain edge-cases.
 Below is one of the many ways you could fetch a family starting from the very beginning using `RustyConnector`.
 ```java
 RustyConnector.Kernel(kernel -> {
+    if(!(kernel instanceof ProxyKernel)) return;
+    
     try {
         FamilyRegistry families = kernel.fetchModule("FamilyRegistry").observe(10, TimeUnit.SECONDS);
         Family family = families.find("default").orElseThrow().observe(10, TimeUnit.SECONDS);
@@ -34,9 +39,11 @@ RustyConnector.Kernel(kernel -> {
 });
 ```
 ::: warning
-`RustyConnector.Kernel(Consumer)` is very much an `.onStart()` method.
-So don't just throw it into your code anytime you need to access the kernel.
-Instead, you should use `RustyConnector.Kernel()` or `RC.Kernel()` to first check if the kernel even exists.
+`RustyConnector.Kernel(Consumer)` is specifically a `.onStart()` method;
+you'll cause memory leaks and unexpected behavior if you execute it anytime you want the kernel.
+
+Instead, you can access the Kernel via either `RustyConnector.Kernel()` or `RC.Kernel()`.
+Read further on to see the difference between these two methods.
 :::
 
 This implementation has an express advantage over the shorthand `RC` implementation you'll see in a moment
@@ -53,7 +60,7 @@ Let's look at our family fetching example from earlier but using the `RC` shorth
 
 ```java
 try {
-    Family family = RC.Family("default");
+    Family family = RC.P.Family("default");
 } catch(Exception e) {
     RC.Error(Error.from(r));
 }
@@ -66,6 +73,15 @@ The `RC` shorthand strictly enforces a best-case scenario when it's used.
 It's still running the same exact code we saw in our longform example, the only difference is that every single check in the chain is replaced with `.orElseThrow()`.
 
 The `RC` shorthand will always resolve immediately: Either the expected response will be returned, or a NoSuchElementException will be thrown.
+:::
+
+Something to note about the `RC` shorthand is that it has specific namespaces for server and proxy environments.
+You can use `RC.P` to access proxy specific resources, and you can use `RC.S` for server specific resources.
+Any resources that are shared between both proxy and server can be accessed via the root `RC` namespace.
+
+:::info
+Because of inheritance, if you use the root `RC` namespace for accessing specific resources,
+you may not be able to access environment specific methods because they're only available in specific environments.
 :::
 
 ## Which Should I Use?
@@ -81,12 +97,12 @@ If your request is both critical and time sensitive, you could consider one of t
 
 ### 2. Is my request time-sensitive?
 Consider if your call is of a time-sensitive manner.
-Obviously you never want code to take long than it needs to.
+Obviously you never want code to take longer than it needs to.
 But what's the context?
 
-Is a player requesting a resource and can be told to try again later? In this case, consider trying the `RC` shorthand, if it doesn't resolve immediately, just tell them to try again later.
+Is a player requesting a resource and can wait a little bit for a response? Maybe consider using a longform method, you can set a timeout to wait, and if the timeout expires, the player can be told to try again.
 
-Is a server attempting to register to the proxy and a family is unavailable? Servers ping the proxy at even intervals, consider setting a timeout on the Family resource for some amount less than that interval.
+Is a server attempting to register to the proxy and a family is unavailable? Servers ping the proxy at even intervals, consider trying the `RC` shorthand, if it doesn't resolve immediately, the server will just ping again anyways.
 
 ### 3. Does my request have a logical backup?
 Consider if a placeholder or backup value is acceptable instead of the resource itself.
@@ -122,26 +138,17 @@ public class ExampleParticle implements Particle {
         // Executed every time a Flux is shutting down the particle.
     }
     
-    public static class Tinder extends ModuleTinder<ExampleParticle> {
-        public Tinder() {
-            super(
-                "ExampleParticle", // Name
-                "Demonstrates basic Tinder capabilities for wiki", // Description
-                "rustyconnector-wiki-exampleParticle" // Details
-            ); // Metadata pertaining to the specific particle that gets built
-        }
-        
-        @Override
-        public ExampleParticle ignite() {
-            // Configuration / preparation logic of this process.
-            // Executed every time a Flux needs a new particle.
+    public static void main() {
+        Flux<ExampleParticle> flux = Flux.of(()->{
+            // Do configure logic like loading a config file for this particle.
             return new ExampleParticle();
-        }
+        });
+        
+        // Now you have a flux!
     }
 }
 ```
 
-Every Particle must have a corresponding Tinder.
 Additionally, the Particle's constructor should be made at least `protected` so that instances can only be obtained via the Tinder.
 In the above example there's no parameters to pass around, but always keep this in mind.
 The Tinder is used by the Flux to obtain new instances of the process in question.
