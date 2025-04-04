@@ -5,39 +5,23 @@ order: 2
 
 # 🌩️ Static Family
 
-Static Families are optimized to work best with stateful <MCLoaderTag>Minecraft Loaders</MCLoaderTag>.
+Static Families are optimized to work best with stateful servers.
 
-::: details What is a Stateful Minecraft Loader?
-A stateful **Minecraft Loader** is a Loader which store it's own state.
+::: details What is a Stateful server?
+Stateful servers contain state which changes over extended periods of time.
 
-For example, if a player joins a Loader and places a block. That action will be remembered next time the Loader restarts.
-Ideally, stateful Loaders will always hold some form of state which changes over a longterm.
+For example, if a player joins a server and places a block. That action will be remembered next time the Loader restarts.
 
-Examples of stateful Loaders would be Survival, Skyblock, or Plots.
+Examples of stateful servers would be Survival, Skyblock, or Plots.
 
-The inverse of a stateful Loader is a stateless Loader; such as a Lobby Loader, or PVP Loader.
+The inverse of a stateful servers is a stateless server; such as a Lobby server, or PVP server.
+If you have stateless servers, RustyConnector already ships with Scalar Families which are great for stateless servers.
 :::
 
-## ☁️ Cloud Angle
-::: details What is this?
-Cloud angles provide explanations of family opperations through the usage of analogies.
-:::
+## Installation
+[Download](https://github.com/Aelysium-Group/rcm-staticFamily) the version of `rcm_staticFamily` that supports your current version of RustyConnector.
 
-Static Families can be thought of as a 🌩️ Lightning Cloud over the land; where a lightning bold represents the player, and the land is the collection of <MCLoaderTag>Loaders</MCLoaderTag> contained in the family.
-
-When a player enters the family for the first time, it's entered into the family's <DynamicTag href="concepts/load_balancing" emoji="⤵️" name="Load Balancer" title="A link to a page for Load Balancers" />;
-represented by the lightning bolt forming inside of the cloud.
-
-When lightning strikes the ground, it's equivalent to a player being connected to one of the Loaders.
-Because Static Families are stateful, the Loaders of the family will often have differnt states from eachother because the individual Loader states have diverged since their creation.
-Similarally when a lightning bolt strikes the ground, it might hit different things, it may hit a tree, or the top of a building.
-
-Player residences can be thought of as if someone setup a lightning rod outside.
-Now, each time lightning strikes, it will hit that lightning rod each time.
-Similarally every time the player joins the static family, they will connect to that same Loader.
-
-## Configuration
-Static families can be configured in the `families` folder. They are represented by a configuration file containing the family's name followed by the suffix `.static.yml`.
+Static families can be configured in the `static_family` folder. They are represented by a configuration file containing the family's name followed by the suffix `.static.yml`.
 
 ### Parent Family
 Parenting allows you to establish hierarchies between your families.
