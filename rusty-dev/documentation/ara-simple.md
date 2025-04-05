@@ -175,7 +175,7 @@ There are two classes that represent collections of modules in RustyConnector.
 
 ### `ModuleHolder`
 The ModuleHolder interface is the base module containment class.
-All it shows is that the class contains modules and you can fetch all of them via the `.modules()` method.
+All it shows is that the class contains modules, and you can fetch all of them via the `.modules()` method.
 The ModulesHolder interface is specifically important on platforms such as RC-Minecraft because the Lang entries
 specifically allow users to climb up and down the entire module hierarchy, and the ModuleHolder interface is how the Minecraft
 wrappers know that a module contains children.
@@ -188,7 +188,7 @@ It's the class that the RustyConnector kernel uses to handle its own modules.
 
 The Tinder system give module developers the ability to directly alter code being executed even by the kernel itself.
 Let's look at MagicLink as an example.
-By default, MagicLink operates via WebScocket.
+By default, MagicLink operates via WebSocket.
 However, if a module developer wanted to implement Redis instead of WebSocket, they could do so with relative ease.
 ```java
 public class RedisMagicLink extends MagicLinkCore.Proxy {
