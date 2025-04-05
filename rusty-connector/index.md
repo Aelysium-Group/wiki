@@ -1,44 +1,117 @@
----
-slug: "./"
-title: Introduction
-sidebar_position: 1
----
-![Aelysium Wordmark Image](https://github.com/Aelysium-Group/.github/blob/main/images/rustyconnector-wordmark.png?raw=true)
-# Wiki
-Meet RustyConnector! The premier Velocity player and server manager!
-RustyConnector operates via Redis messaging to communicate with sub-servers. Once you've configured your server groups, called *families*, all you have to do is set up your sub-servers and they'll auto-register to your proxy whenever they're ready! You'll never have to touch your `velocity.toml` again when adding new servers to your network!
+![Aelysium Wordmark Image](https://github.com/Aelysium-Group/rustyconnector-minecraft/blob/development/blob/images/banner.png?raw=true)
 
+# 👋 Welcome to RustyConnector
+![Velocity](https://flat.badgen.net/badge/Velocity/3.4.0/1197d1?icon=dockbit)
+![PaperMC](https://flat.badgen.net/badge/Paper/1.16%20-%201.21.4/F96854?icon=telegram)
+![Folia](https://flat.badgen.net/badge/Folia/Supported/E004BC?icon=flow)
+![Fabric](https://flat.badgen.net/badge/Fabric/1.16%20-%201.21.4/bf9b49?icon=telegram)
+[![Aelysium](https://flat.badgen.net/badge/Discord/Aelysium/5865F2?icon=discord)](https://join.aelysium.group/)
+[![Build](https://flat.badgen.net/github/release/Aelysium-Group/rustyconnector-minecraft?label=Latest%20Stable%20Release&icon=maven)](https://github.com/Aelysium-Group/rustyconnector-minecraft/releases)
+[![License](https://flat.badgen.net/badge/License/GPL-V3/5865F2)](https://github.com/Aelysium-Group/rustyconnector-minecraft/blob/main/LICENSE)
 
-- ✅ Built for large networks
-- ✅ Register brand-new servers to the proxy during runtime
-- ✅ Blazing fast data transmission with Redis integration
-- ✅ Create pre-defined whitelist configs and activate them dynamically
-- ✅ Register similar servers into families with family-level whitelists and load balancing
-- ✅ Automatically unregister frozen servers from the proxy
-- ✅ Set soft and hard player limits for servers
-- ✅ Whitelist players based on permission, Username, UUID, or IP Address
-- ✅ Allow players to /tpa between servers
-- ✅ Works with LuckPerms-Velocity
-- ✅ Works with Kubernetes
-- ✅ Create network-wide whitelists
+[RustyConnector] is a load-balancing plugin that can run on [Velocity]/[Paper]/[Folia] networks, which allows your proxy to automatically register or unregister sub-servers while it's running.
 
-## Need Support?
-If you run into an issue or need help setting up RC, join our [Discord server](http://join.aelysium.group/) and get support!
+<!-- Table-1 -->
+<table>
+<thead>
+<h2>🧭 Links</h2>
+</thead>
+<tbody>
+<tr>
+  <td width="80" align="center" valign="top">
+    <br>
+    <a href="https://wiki.aelysium.group/rusty-connector/"><img src="https://github.com/Aelysium-Group/rustyconnector-minecraft/blob/development/blob/images/logo.webp?raw=true"></a>
+  </td>
+  <td valign="top">
+    <h3>Wiki</h3>
+    <p>
+      Wanna learn how to get started? <a href="https://wiki.aelysium.group/rusty-connector/">Look here</a>!
+    </p>
+  </td>
+</tr>
+<tr>
+  <td width="80" align="center" valign="top">
+    <br>
+    <a href="https://github.com/Aelysium-Group/rustyconnector-minecraft/releases"><img src="https://github.com/Aelysium-Group/rustyconnector-minecraft/blob/development/blob/images/logo.webp?raw=true"></a>
+  </td>
+  <td valign="top">
+    <h3>Download</h3>
+    <p>
+      <a href="https://github.com/Aelysium-Group/rustyconnector-minecraft/releases">Download from GitHub</a>, or check out the plugin release pages.
+    </p>
+  </td>
+</tr>
+<tr>
+  <td width="80" align="center" valign="top">
+    <br>
+    <a href="https://join.aelysium.group"><img src="https://github.com/Aelysium-Group/rustyconnector-minecraft/blob/development/blob/images/logo.webp?raw=true"></a>
+  </td>
+  <td>
+    <h3>Support</h3>
+    <p>
+      Join our Discord community <a href="https://join.aelysium.group">here</a> for support!
+      <br>
+      <sup>(Support is offered to paying server members only)</sup>
+    </p>
+  </td>
+</tr>
+<tr>
+  <td width="80" align="center" valign="top">
+    <br>
+    <a href="https://github.com/Aelysium-Group/rustyconnector-minecraft/issues"><img src="https://github.com/Aelysium-Group/rustyconnector-minecraft/blob/development/blob/images/logo.webp?raw=true"></a>
+  </td>
+  <td>
+    <h3>Report Bugs</h3>
+    <p>
+    Experiencing annoying bugs while using the plugin? Report them <a href="https://github.com/Aelysium-Group/rustyconnector-minecraft/issues"> here</a> to help us squash them.
+    </p>
+  </td>
+</tr>
+</tbody>
+</table>
 
-## Want to request a feature?
-Join our [Discord server](http://join.aelysium.group/) and let us know what features you’d like to see!
+<!-- Table-2 -->
+<table>
+<thead>
+<h2>🚀 Plugin Release Page</h2>
+</thead>
+<tbody>
+<tr>
+  <td width="80" align="center" valign="center">
+    <br>
+    <a href="https://modrinth.com/plugin/rustyconnector"><img src="https://github.com/Aelysium-Group/rustyconnector-minecraft/blob/development/blob/images/modrinth.svg?raw=true"></a>
+  </td>
+  <td valign="top">
+    <h3>Modrinth</h3>
+    <p>
+      <a href="https://modrinth.com/plugin/rustyconnector">Click to go to Modrinth plugin release page.</a>
+    </p>
+  </td>
+</tr>
+<tr>
+  <td width="80" align="center" valign="top">
+    <br>
+    <a href="https://hangar.papermc.io/nathan-i-martin/RustyConnector"><img src="https://github.com/Aelysium-Group/rustyconnector-minecraft/blob/development/blob/images/hangar.svg?raw=true"></a>
+  </td>
+  <td valign="top">
+    <h3>Hangar</h3>
+    <p>
+      <a href="https://hangar.papermc.io/nathan-i-martin/RustyConnector">Click to go to Hangar plugin release page.</a>
+    </p>
+  </td>
+</tr>
+</tbody>
+</table>
 
-# FAQ
+# 🎨 Statistics
 
-## “Are you open to being sponsored?”
-Yes! If you’re interested in sponsoring me please get in touch via [Discord](https://join.aelysium.group)!
-I’ve spent lots of time working on the programs I’ve written and being able to be paid for the time I’ve spent would be wonderful.
-That said, I am my own developer and I have no intentions of changing my policies and way of doing things simply because someone wants me to.
+## 🌌 Networks Served ([Click to view](https://bstats.org/plugin/velocity/RustyConnector/17972)):
+[![RustyConnector bstats graph](https://bstats.org/signatures/velocity/RustyConnector.svg)](https://bstats.org/signatures/velocity/RustyConnector.svg)
 
-## "RustyConnector is making my players lag!"
-Unless your Velocity server is maxing out on RAM, this is not physically possible. RustyConnector doesn't actually deal with player connections. All it does is tell Velocity where to connect players. Velocity handles all of the connection details itself.
-If your network is lagging, check to make sure that your Velocity server isn't overloaded! It might be time to scale horizontally!
+2025 © [Aelysium](https://www.aelysium.group)
 
-## "Do you have plans to support other servers like Bungeecord, Spigot, or Sponge?"
-If there is enough interest in supporting a different server type, I'll certainly look into making it happen!
-Regarding Spigot and Bungeecord. Frankly, they are older server software that are slowly being replaced by Velocity and Paper. As such, I'm not entirely interested in supporting them. However, just because of principle I may go and provide support for Spigot. We'll see what people want :)
+<!-- URL LIST -->
+[Folia]:https://github.com/PaperMC/Folia
+[Paper]: https://papermc.io
+[Velocity]: https://velocitypowered.com
+[RustyConnector]: https://github.com/Aelysium-Group/rustyconnector-minecraft
