@@ -6,7 +6,7 @@ order: 1
 # ⚒️ Installation
 ::: danger Wait a minute!
 This page is for the RustyConnector SDK.
-For the plugin wiki, go [here](/rusty-connector/docs/installation).
+For the plugin wiki, go [here](/rusty-connector/).
 :::
 
 The RustyConnector SDK grants you access to the power of RustyConnector through a custom Java API!
@@ -118,7 +118,7 @@ The `Flux` object then contains lots of helpful methods you can use to handle a 
 
 ::: info
 A major difference between using the full-hand `RustyConnector` class versus the `RC` class to interact with the SDK is that
-the `RC` class will bypass much of the fail-safe functionality of ARA and attempt to fetch the desired particle immedealty.
+the `RC` class will bypass much of the fail-safe functionality of ARA and attempt to fetch the desired particle immediately.
 
 If you need more fault tolerance when making a Particle request, using `RustyConnector` may be the best move.
 :::

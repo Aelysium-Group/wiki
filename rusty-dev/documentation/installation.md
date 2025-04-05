@@ -6,7 +6,7 @@ order: 1
 # ⚒️ Installation
 ::: danger Wait a minute!
 This page is for the RustyConnector SDK.
-For the plugin wiki, go [here](/rusty-connector/docs/installation).
+For the plugin wiki, go [here](/rusty-connector/).
 :::
 
 The RustyConnector SDK grants you access to the power of RustyConnector through a custom Java API!
