@@ -1,4 +1,9 @@
+---
+title: Custom Objects
+---
+
 # Custom Objects
+
 Sometimes you want even more control over typing than basing collections and primitives.
 Custom objects provide that! To get started, make a class and extend Serializable.
 ```java
