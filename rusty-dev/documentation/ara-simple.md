@@ -159,17 +159,6 @@ Generally speaking you're allowed to put boot logic for the Particle in either t
 In practice, however, we like having the separation where the ignite method is exclusively for configuring and instantiating,
 and the constructor is for that boot logic.
 
-::: info What is ModuleTinder?
-Inside RustyConnector, we use ModuleTinder instead of the ARA native Tinder.
-A main details as to why is because ModuleTinder accepts metadata about the specific module.
-
-Any time you are wanting to create a new module/particle, you want to make sure your Tinder extends that ModuleTinder class.
-Here's a description of each option in the ModuleTinder constructor and what they do:
-1. **Name** | The unique name of the module. (ex. LangLibrary, FamilyRegistry, etc.)
-2. **Description** | Describes the general purpose and use of the module.
-3. **Details** | The name of the Lang entry that displays more details about this specific module.
-:::
-
 ## Particle/Module Collections
 There are two classes that represent collections of modules in RustyConnector.
 
@@ -183,70 +172,3 @@ wrappers know that a module contains children.
 ### `ModuleCollection`
 Implementing the `ModuleHolder` interface, the `ModuleCollection` class provides complete module management.
 It's the class that the RustyConnector kernel uses to handle its own modules.
-
-## Tinder Injection
-
-The Tinder system give module developers the ability to directly alter code being executed even by the kernel itself.
-Let's look at MagicLink as an example.
-By default, MagicLink operates via WebSocket.
-However, if a module developer wanted to implement Redis instead of WebSocket, they could do so with relative ease.
-```java
-public class RedisMagicLink extends MagicLinkCore.Proxy {
-    protected RedisMagicLink(
-            @NotNull Packet.SourceIdentifier self,
-            @NotNull AES cryptor,
-            @NotNull PacketCache cache,
-            @Nullable IPV6Broadcaster broadcaster
-    ) {
-        super(self, cryptor, cache, broadcaster);
-        // Redis Initializer logic
-    }
-
-    @Override
-    public void publish(Packet.Local packet) throws IllegalStateException {
-        // Publish using Redis
-    }
-
-    public static class Tinder extends MagicLinkCore.Tinder<RedisMagicLink> {
-        private final Packet.SourceIdentifier self;
-        private final AES cryptor;
-        private final PacketCache cache;
-        private final IPV6Broadcaster broadcaster;
-        public Tinder(
-                @NotNull URL httpAddress,
-                @NotNull Packet.SourceIdentifier self,
-                @NotNull AES cryptor,
-                @NotNull PacketCache cache,
-                @Nullable IPV6Broadcaster broadcaster
-                ) {
-            super();
-            this.cryptor = cryptor;
-            this.self = self;
-            this.cache = cache;
-            this.broadcaster = broadcaster;
-        }
-
-        @Override
-        public @NotNull RedisMagicLink ignite() throws Exception {
-            return new RedisMagicLink(
-                    this.self,
-                    this.cryptor,
-                    this.cache,
-                    this.broadcaster
-            );
-        }
-    }
-}
-```
-Naturally a module developer would also need to add parameters for Redis login details as well, that's besides the point tho.
-Remember how a Tinder is basically just a configuration class? This is where that fact truly shines.
-
-In order to inject this new Tinder so that the RustyConnector kernel uses it instead of the default WebSocket Tinder,
-you first need to acquire the current MagicLink Flux, then reload the Flux using the new Tinder.
-```java
-RC.Kernel().fetchModule("MagicLink").reignite(new RedisMagicLink.Tinder(/* params */));
-```
-
-From this point forward, any time the MagicLink Flux is stopped, started, or reloaded, the new Tinder will be used.
-The caller also has an optional `rollback` flag they can pass which, if there's an exception during the boot process of a Particle,
-will automatically discard the newly passed Tinder and revert to the previous one.
