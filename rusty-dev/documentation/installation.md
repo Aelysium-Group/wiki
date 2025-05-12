@@ -31,7 +31,7 @@ You can import the RustyConnector SDK via Maven and Gradle.
     <dependency>
         <groupId>group.aelysium.rustyconnector</groupId>
         <artifactId>core</artifactId>
-        <version>0.9.0</version>
+        <version>0.9.1</version>
         <scope>provided</scope>
     </dependency>
 </dependencies>
@@ -43,7 +43,7 @@ repositories {
 }
 
 dependencies {\
-    compileOnly "group.aelysium.rustyconnector:core:0.9.0"
+    compileOnly "group.aelysium.rustyconnector:core:0.9.1"
 }
 ```
 == Gradle (Kotlin DSL)
@@ -53,16 +53,9 @@ repositories {
 }
 
 dependencies {
-    compileOnly("group.aelysium.rustyconnector:core:0.9.0")
+    compileOnly("group.aelysium.rustyconnector:core:0.9.1")
 }
 ```
-:::
-
-::: danger Having Issues?
-If you're unable to install the Toolkit API, it's possible that our Maven Repository is down.
-You can check its status [here](https://status.mrnavastar.me/status/services).
-
-If it is down, [join our Discord](https://join.aelysium.group) and let us know.
 :::
 
 Once imported, you can access the RustyConnector SDK from either the proxy or server.
