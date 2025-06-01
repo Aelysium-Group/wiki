@@ -1,5 +1,5 @@
 ---
-title: Sending Players
+title: ✈️ Sending Players
 ---
 # Sending Players
 The RustyConnector kernel allows you to send players to different families and servers from both the proxy and server.
