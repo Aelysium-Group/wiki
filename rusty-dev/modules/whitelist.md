@@ -2,10 +2,13 @@
 order: 1
 title: 👮 Whitelist
 ---
+
 # Whitelist
+
 ## Installation
 
 ::: tabs
+
 == Maven
 ```xml
 <repositories>
@@ -15,6 +18,7 @@ title: 👮 Whitelist
         <url>https://maven.mrnavastar.me/releases</url>
     </repository>
 </repositories>
+
 <dependencies>
     <dependency>
         <groupId>group.aelysium.rustyconnector</groupId>
@@ -23,19 +27,20 @@ title: 👮 Whitelist
     </dependency>
 </dependencies>
 ```
+
 == Gradle (Groovy DSL)
-```java
+```groovy
 repositories {
     maven { url "https://maven.mrnavastar.me/releases" }
 }
 
-dependencies {\
+dependencies {
     implementation "group.aelysium.rustyconnector:rcm-whitelists:0.9.1-1"
-
 }
 ```
+
 == Gradle (Kotlin DSL)
-```java
+```kotlin
 repositories {
     maven("https://maven.mrnavastar.me/releases")
 }
@@ -44,17 +49,24 @@ dependencies {
     implementation("group.aelysium.rustyconnector:rcm-whitelists:0.9.1-1")
 }
 ```
+
 :::
 
 ## Usage
-::: warning The Whitelist module is proxy only!
-This means that you can't access the whitelist from a MC Loader, only from the proxy.
+
+::: warning
+The Whitelist module is **proxy-only**!  
+This means it is only accessible from the proxy and not from any Minecraft Loader.
 :::
 
-You can access the Whitelist Registry with the folowing code:
+You can access the Whitelist Registry using the following code:
 
 ```java
 WhitelistRegistry registry = RC.P.Module("Whitelists");
 ```
 
-Caller can CRUD a whitelist to proxy/family/server at runtime by calling `MetadataHolder#storeMetadata("whitelist", "whitelistName")`
+To manage (Create, Read, Update, Delete) a whitelist at runtime (for a proxy, family, or server), use:
+
+```java
+MetadataHolder#storeMetadata("whitelist", "whitelistName");
+```
