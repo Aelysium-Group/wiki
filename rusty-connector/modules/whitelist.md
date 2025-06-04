@@ -2,30 +2,36 @@
 title: 👮 Whitelist
 order: 4
 ---
-RustyConnector allows you to set whitelists for both your entire network and specific families!
 
-With RustyConnector whitelists, you can create as many pre-defined whitelists as you like. Switching between these whitelists is as easy as changing the name of the whitelist in your configs.
+RustyConnector allows you to set up whitelists for both your entire network and specific families!
 
-# Network Wide Whitelists
-- In config.yml on RC-Velocity, go to the `whitelist` section.
-- Set `enabled` to `true`
-- Change the whitelist `name` to whatever you'd like (For this example, we'll call it `dev-whitelist`)
-- Restart your Velocity server
-- RC-Velocity will create a new file called `dev-whitelist.yml` inside of your `whitelists` folder. This file is loaded with the whitelist.yml template.
-- Open `dev-whitelist.yml`
-- Configure `dev-whitelist.yml` however you'd like.
-- Restart RC-Velocity
+With RustyConnector whitelists, you can create as many predefined whitelist configurations as needed. Switching between them is as simple as updating the whitelist name in your config files.
 
-# Family Wide Whitelists
-- In the `families` folder. Open any particular family.yml
-- Go to the `whitelist` section of your family.yml
-- Set `enabled` to `true`
-- Change the whitelist `name` to whatever you'd like (For this example, we'll call it `dev-family-whitelist`)
-- Restart your Velocity server
-- RC-Velocity will create a new file called `dev-family-whitelist.yml` inside of your `whitelists` folder. This file is loaded with the whitelist.yml template.
-- Open `dev-family-whitelist.yml`
-- Configure `dev-family-whitelist.yml` however you'd like.
-- Restart RC-Velocity
+## 📥 Installation
 
-# Server-Specific Whitelists
-RustyConnector doesn't have a custom implementation for Loader-specific whitelists. Instead, use your MCLoader's built-in whitelist system via the `/whitelist` command.
+The whitelist feature in RustyConnector is a **module**.  
+This means you must install the corresponding JAR file for it to function.
+
+1. Visit the [whitelist module repository](https://github.com/Aelysium-Group/rcm-whitelists).
+2. Download the latest release.
+3. Place the JAR file into your proxy’s `rc-modules` folder.
+
+## 📝 Configuration
+
+The whitelist module works with **whitelist configuration files**.  
+Each config has a specific name that you will later assign to services.
+
+Within each config, you can whitelist player UUIDs, usernames, or permissions.
+
+Once your whitelist config is ready, add the following metadata to the proxy, family, or server config:
+
+```yml
+"whitelist": "<whitelistName>"
+```
+
+Finally, reload the RC kernel — and you're good to go!
+
+## ✨️ How It Works
+
+The whitelist module performs validation **at the proxy level**.  
+This means that anything attempting to filter players from within the Minecraft Loader will have no effect.

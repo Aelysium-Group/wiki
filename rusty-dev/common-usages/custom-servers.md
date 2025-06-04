@@ -1,5 +1,5 @@
 ---
-title: Custom Servers
+title: 🧭 Custom Servers
 ---
 # Custom Servers
 You can create custom server types on the Proxy by extending the `Server` class.
