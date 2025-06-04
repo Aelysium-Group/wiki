@@ -70,3 +70,5 @@ To manage (Create, Read, Update, Delete) a whitelist at runtime (for a proxy, fa
 ```java
 MetadataHolder#storeMetadata("whitelist", "whitelistName");
 ```
+
+All the avaible methods are listed on the [module's Javadoc](https://maven.mrnavastar.me/javadoc/releases/group/aelysium/rustyconnector/rcm-whitelists/0.9.1-1). Happy Codding!
