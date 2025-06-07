@@ -34,7 +34,7 @@ RustyConnector.Kernel(kernel -> {
         Family family = families.find("default").orElseThrow().observe(10, TimeUnit.SECONDS);
         // found family!
     } catch(Exception e) {
-        RC.Error(Error.from(r));
+        RC.Error(Error.from(e));
     }
 });
 ```
