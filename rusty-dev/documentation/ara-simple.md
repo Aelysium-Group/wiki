@@ -34,7 +34,7 @@ RustyConnector.Kernel(kernel -> {
         Family family = families.find("default").orElseThrow().observe(10, TimeUnit.SECONDS);
         // found family!
     } catch(Exception e) {
-        RC.Error(Error.from(r));
+        RC.Error(Error.from(e));
     }
 });
 ```
@@ -60,9 +60,10 @@ Let's look at our family fetching example from earlier but using the `RC` shorth
 
 ```java
 try {
-    Family family = RC.P.Family("default");
-} catch(Exception e) {
-    RC.Error(Error.from(r));
+    Optional<Family> f = RC.P.Family(family);
+    return f.orElse(null);
+} catch (Exception e) {
+    RC.Error(Error.from(e));
 }
 ```
 

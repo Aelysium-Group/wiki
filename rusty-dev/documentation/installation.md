@@ -61,29 +61,13 @@ dependencies {
 Once imported, you can access the RustyConnector SDK from either the proxy or server.
 In order to use the SDK properly, you must ensure that RustyConnector is added as a dependency in your plugin.
 
+::: info
+RustyConnector use the Adventure API by default.
+:::
+
 ## Native Modules (RCM)
 RustyConnector Native Modules are platform independent and are managed specifically by the RustyConnector Kernel.
-Creating a new RCM is pretty simple.
-1. Create a new empty Gradle or Maven project.
-2. Add the RustyConnector Core SDK (See above.)
-3. In your project's `resources` directory, create a file called `rc-module.json`
-4. In your project's root class, create an inner class called `Builder` which extends `ExternalModuleBuilder<?>`
-5. In your `resources` directory create a `rc-module.json` and set the `main` attribute to be the classpath to this new `Builder` class you've made.
-
-### `rc-module.json`
-```json
-{
-  "main": "com.example.MainClass$Builder",
-  "name": "ExampleName",
-  "description": "Provides an example of rc-module.json",
-  "environments": [
-    // The environments you want your module to load in.
-    // "proxy" or "server"
-  ],
-  "dependencies": [],
-  "softDependencies": []
-}
-```
+Creating a new RCM is pretty simple. You can see a basic guide [here](../common-usages/modules.md).
 
 ## Platform Modules
 When writing a platform specific module, you do not have the ability to use `ExternalModuleBuilder<?>`
