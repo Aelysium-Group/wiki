@@ -62,7 +62,7 @@ Let's look at our family fetching example from earlier but using the `RC` shorth
 try {
     Family family = RC.P.Family("default");
 } catch(Exception e) {
-    RC.Error(Error.from(r));
+    RC.Error(Error.from(e));
 }
 ```
 
