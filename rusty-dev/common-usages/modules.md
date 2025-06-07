@@ -20,43 +20,17 @@ This page will go thought all of the needed code & configuration to create a Rus
 ```java
 public class ExampleModuleRegistry implements Module, ModuleHolder<ExampleModule> {
     private final ModuleCollection<ExampleModule> ExampleModules = new ModuleCollection<>();
-    
-    public void unregister(@NotNull String ExampleModuleName) {
-        // Function to unregister your module
-        this.ExampleModules.unregisterModule(ExampleModuleName);
-    }
-
-    public void register(@NotNull Module.Builder<ExampleModule> ExampleModule) throws Exception {
-        // Function to register your module
-        this.ExampleModules.registerModule(ExampleModule.name, ExampleModule);
-    }
-
-    public @Nullable Flux<ExampleModule> fetch(@NotNull String ExampleModuleName) {
-        // WIP, waiting for juice's help
-        // Ok it's fetch but for what ?
-        return this.ExampleModules.fetchModule(ExampleModuleName);
-    }
 
     @Override
     public void close() throws Exception {
         // Function to stop your module
+        // Closes this resource, relinquishing any underlying resources.
         this.ExampleModules.close();
-    }
-
-    public @NotNull Map<String, Flux<ExampleModule>> ExampleModules() {
-        // Return your module object
-        return Map.copyOf(this.ExampleModules.modules());
-    }
-
-    @Override
-    public Map<String, Flux<ExampleModule>> modules() {
-        // Return the module(s) created by your code
-        return Collections.unmodifiableMap(this.ExampleModules.modules());
     }
     
     @Override
     public @Nullable Component details() {
-        // WIP, waiting for juice's help
+        // Returns a Component which describes the internal details of this module. If there's no details to show, can just return null.
         return join(
             JoinConfiguration.newlines(),
             RC.Lang("rustyconnector-keyValue").generate("Available ExampleModules", String.join(", ", this.ExampleModules.modules().keySet()))
@@ -66,14 +40,16 @@ public class ExampleModuleRegistry implements Module, ModuleHolder<ExampleModule
     public static class Builder extends ExternalModuleBuilder<ExampleModuleRegistry> {
         @Override
         public void bind(@NotNull ProxyKernel kernel, @NotNull ExampleModuleRegistry instance) {
-            // Here, you can listen to Rusty-Specific events.
+            // Runs after onStart(Context) successfully returns an instance and is registered into the RustyConnector kernel for the first time.
+            // This method will only be run when your module is first registered to the kernel, or when the kernel is restarted. It should be used to specifically link into kernel resources on a one-off basis.
+            // Example usages would be registering Lang nodes or adding events to the EventListener.
         }
 
         @NotNull
         @Override
         public ExampleModuleRegistry onStart(@NotNull Context context) throws Exception {
-            // Here lies your modules startup logic, like config creation, init, etc.
-            // You need to return a "registry" object.
+            // Runs when the RustyConnector kernel is ready to load your module.
+            // This method should only be used to configure and start your module, you shouldn't interact with the RustyConnector kernel here.
             ExampleModuleRegistry registry = new ExampleModuleRegistry();
             return registry;
         }
