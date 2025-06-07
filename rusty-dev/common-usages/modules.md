@@ -105,4 +105,4 @@ Want to see more code before writing some? Here is some examples to get started:
 
 - Official ExampleModule (WIP)
 - [Whitelist Module](https://github.com/Aelysium-Group/rcm-whitelists)
-- Static Module
+- [Static Module](https://github.com/Aelysium-Group/rcm-staticFamily)
