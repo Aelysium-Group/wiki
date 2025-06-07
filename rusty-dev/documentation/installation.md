@@ -61,6 +61,10 @@ dependencies {
 Once imported, you can access the RustyConnector SDK from either the proxy or server.
 In order to use the SDK properly, you must ensure that RustyConnector is added as a dependency in your plugin.
 
+::: info
+RustyConnector use the Adventure API by default.
+:::
+
 ## Native Modules (RCM)
 RustyConnector Native Modules are platform independent and are managed specifically by the RustyConnector Kernel.
 Creating a new RCM is pretty simple.
