@@ -60,8 +60,9 @@ Let's look at our family fetching example from earlier but using the `RC` shorth
 
 ```java
 try {
-    Family family = RC.P.Family("default");
-} catch(Exception e) {
+    Optional<Family> f = RC.P.Family(family);
+    return f.orElse(null);
+} catch (Exception e) {
     RC.Error(Error.from(e));
 }
 ```
