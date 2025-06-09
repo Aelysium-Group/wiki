@@ -60,11 +60,16 @@ Let's look at our family fetching example from earlier but using the `RC` shorth
 
 ```java
 try {
-    Optional<Family> f = RC.P.Family(family);
-    // the family exists
+    Optional<Family> f = RC.P.Family(familyName);
+    if (f.isPresent()) {
+        //the family exists
+        Family familyObject = f.get();
+    } else {
+        //the family doesn't exits
+    }
 } catch (Exception e) {
     RC.Error(Error.from(e));
-    // the family doesn't exists.
+    // the family doesn't exists
 }
 ```
 
