@@ -61,9 +61,10 @@ Let's look at our family fetching example from earlier but using the `RC` shorth
 ```java
 try {
     Optional<Family> f = RC.P.Family(family);
-    return f.orElse(null);
+    // the family exists
 } catch (Exception e) {
     RC.Error(Error.from(e));
+    // the family doesn't exists.
 }
 ```
 
