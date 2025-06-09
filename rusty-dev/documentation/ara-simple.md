@@ -59,6 +59,7 @@ You can use the `RC` shorthand for direct access to specific resources.
 Let's look at our family fetching example from earlier but using the `RC` shorthand this time.
 
 ```java
+// assuming familyName is a string
 try {
     Optional<Family> f = RC.P.Family(familyName);
     if (f.isPresent()) {
