@@ -77,6 +77,7 @@ export default defineConfig(
       useTitleFromFrontmatter: true,
       useFolderTitleFromIndexFile: true,
       sortMenusByFrontmatterOrder: true,
+      collapsed: true,
     }
   ])
 );

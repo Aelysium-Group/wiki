@@ -149,3 +149,98 @@ If you don't add an `.onStart()` listener, then next time MagicLink is restarted
 When using/creating a custom packet to use in a packet listener you need to ensure that the packet extends `Packet.Remote`
 and is also annotated by `@PacketType`.
 :::
+
+## Replying to packets
+In addition to statlessly listening for packets.
+You can also hold stateful packet conversations using the packet replying API.
+Lets use our `CustomPacket` implementation to shorthand our code blocks.
+Once you send a packet, you can listen for replies using `.onReply`.
+
+```java
+Packet.Local packet = CustomPacket.createAndSend();
+packet.onReply(responsePacket -> {
+    // Do something with the response.
+});
+```
+
+Alternatively you can also define the specific packet you want to listen for.
+If a packet is addressed to the one you just sent, but it doesn't have the proper @PacketType that you want, it will just be thrown away.
+```java
+Packet.Local packet = CustomPacket.createAndSend();
+packet.onReply(CustomResponsePacket.class, responsePacket -> {
+    // Do something with the response.
+});
+```
+
+The type of the `responsePacket` callback parameter will be a `Packet.Remote` if you don't target a specific packet type, and if you do target a specific type it will be that type.
+
+### Sending a custom packet response
+
+The inverse of listening for a packet reply, is actually sending the reply to a packet.
+Any time you receive a `Packet.Remote`, like from a packet listener; you can reply to it by addressing your new packet directly to the remote packet.
+
+```java
+public class Listener {
+    @PacketListener(CustomPacket.class)
+    public PacketListener.Response handle(CustomPacket receivedPacket) {
+        Packet.New()
+            .type(Packet.Type.from("RC_MY_MODULE", "CUSTOM_PACKET"))
+            .parameter("testValue", testValue)
+            .addressTo(receivedPacket)// [!code focus]
+            .send();
+
+
+        return PacketListener.Response.success("Successfully handled the custom packet! "+packet.testValue());
+    }
+}
+```
+
+### Sending a generic packet response
+After receiving a remote packet you can also send a generic packet as a response.
+
+```java
+public class Listener {
+    @PacketListener(CustomPacket.class)
+    public PacketListener.Response handle(CustomPacket receivedPacket) {
+        // Do some stuff.
+        return PacketListener.Response.success("Successfully handled the custom packet! ").asReply();// [!code focus]
+    }
+}
+```
+
+The packet listener itself will allow you to send the `PacketListener.Response` as a reply packet.
+You can also adjust the parameters of the `@PacketListener` annotation directly to automatically send a reply packet when a response is returned.
+
+```java
+public class Listener {
+    @PacketListener(value = Server.Packets.Lock.class, responsesAsPacketReplies = true)// [!code focus]
+    public PacketListener.Response handle(CustomPacket receivedPacket) {
+        // Do some stuff.
+        return PacketListener.Response.success("Successfully handled the custom packet! ");
+    }
+}
+```
+
+You can also attach ambiguous parameters to the response packets by attaching a Map to the end of the `.Response`.
+```java
+public class Listener {
+    @PacketListener(value = Server.Packets.Lock.class, responsesAsPacketReplies = true)
+    public PacketListener.Response handle(CustomPacket receivedPacket) {
+        // Do some stuff.
+        return PacketListener.Response.success(
+            "Successfully handled the custom packet!",
+            Map.of(// [!code focus]
+                "uuid", new Parameter(UUID.randomUUID().toString())// [!code focus]
+            )// [!code focus]
+        );
+    }
+}
+```
+
+:::info
+Packet listeners are automatically wrapped so exceptions will be converted into `PacketListener.Response.error`.
+This is as a shorthand for if you're using the `.Response` api for easy generic back and forth.
+If you wanna disable this, you can set `responseFromExceptions` to `false` on the annotation.
+:::
+
+
