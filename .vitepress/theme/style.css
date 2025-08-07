@@ -28,7 +28,7 @@
  *   custom containers.
  *
  * - `default`: The color used purely for subtle indication without any
- *   special meanings attched to it such as bg color for menu hover state.
+ *   special meanings attached to it such as bg color for menu hover state.
  *
  * - `brand`: Used for primary brand colors, such as link text, button with
  *   brand theme, etc.
@@ -42,6 +42,8 @@
  * - `danger`: Used to show error, or dangerous message to the users. Used
  *   in custom container, badges, etc.
  * -------------------------------------------------------------------------- */
+
+@import "tailwindcss";
 
  :root {
   --vp-c-default-1: var(--vp-c-gray-1);
@@ -136,4 +138,3 @@
 .DocSearch {
   --docsearch-primary-color: var(--vp-c-brand-1) !important;
 }
-
