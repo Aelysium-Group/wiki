@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
     <div class="relative w-screen h-full min-h-screen flex justify-center items-center">
         <div class="absolute inset-0 w-full h-full flex justify-center items-center bg-gradient1 overflow-hidden">
-            <div class="relative w-3/4 h-1/2" style="filter: blur(64px);">
+            <div class="hidden lg:block relative w-3/4 h-1/2" style="filter: blur(64px);">
                 <ClientOnly>
                     <Wiggle
                         class="absolute top-1/4 right-0 rounded-full w-1/3 aspect-square blob-red opacity-30"
