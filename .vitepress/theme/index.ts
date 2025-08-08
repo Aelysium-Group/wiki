@@ -19,6 +19,9 @@ const autoImportComponents = (app: App<any>) => {
 }
 
 const enableParticles = (app: App<any>) => {
+    if (typeof window === 'undefined') return;
+    if (typeof document === 'undefined') return;
+
     app.use(Particles, {
         init: async engine => {
             await loadSlim(engine)

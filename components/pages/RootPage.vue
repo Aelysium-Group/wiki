@@ -11,20 +11,22 @@
     <div class="relative w-screen h-screen flex justify-center items-center bg-black">
         <div class="absolute inset-0 w-full h-full flex justify-center items-center bg-gradient1 overflow-hidden">
             <div class="relative w-3/4 h-1/2" style="filter: blur(64px);">
-                <Wiggle
-                    class="absolute top-1/4 right-0 rounded-full w-1/3 aspect-square blob-red opacity-30"
-                    :min-opacity="0.1"
-                    :max-opacity="0.4"
-                />
-                <Wiggle
-                    class="absolute top-1/12 left-0 rounded-full h-3/4 aspect-square blob-yellow opacity-40"
-                    :area="30"
-                    :max-opacity="0.4"
-                />
-                <Wiggle
-                    class="absolute top-0 left-1/2 rounded-full w-1/4 aspect-square blob-blue opacity-30"
-                    :area="20"
-                />
+                <ClientOnly>
+                    <Wiggle
+                        class="absolute top-1/4 right-0 rounded-full w-1/3 aspect-square blob-red opacity-30"
+                        :min-opacity="0.1"
+                        :max-opacity="0.4"
+                    />
+                    <Wiggle
+                        class="absolute top-1/12 left-0 rounded-full h-3/4 aspect-square blob-yellow opacity-40"
+                        :area="30"
+                        :max-opacity="0.4"
+                    />
+                    <Wiggle
+                        class="absolute top-0 left-1/2 rounded-full w-1/4 aspect-square blob-blue opacity-30"
+                        :area="20"
+                    />
+                </ClientOnly>
             </div>
         </div>
         <div class="absolute inset-0 flex justify-center items-center blur-2xl">

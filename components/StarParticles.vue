@@ -39,9 +39,11 @@ const particlesConfig = {
 </script>
 
 <template>
-    <vue-particles
-        id="StarParticles"
-        class="w-full h-full"
-        :options="particlesConfig"
-    />
+    <ClientOnly>
+        <vue-particles
+            id="StarParticles"
+            class="w-full h-full"
+            :options="particlesConfig"
+        />
+    </ClientOnly>
 </template>
