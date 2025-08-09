@@ -3,7 +3,7 @@
     <div class="fixed inset-0 w-full h-full z-10 pointer-events-none">
         <StarParticles />
     </div>
-    <span class="fixed bottom-4 left-0 w-screen text-center opacity-20 text-white text-xs font-normal z-10">
+    <span class="fixed bottom-4 left-0 w-screen text-center opacity-20 text-white text-xs font-normal z-40">
         © {{currentYear}} Aelysium Group LLC. All Rights Reserved
     </span>
     <link rel="preconnect" href="https://fonts.googleapis.com">
