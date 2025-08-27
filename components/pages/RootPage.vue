@@ -136,7 +136,7 @@ import Wiggle from '../Wiggle.vue'
 const currentYear = new Date().getFullYear()
 </script>
 
-<style>
+<style scoped>
 @layer components {
     .silkscreen-regular {
         font-family: "Silkscreen", sans-serif;
