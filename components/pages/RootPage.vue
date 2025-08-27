@@ -3,7 +3,7 @@
     <div class="fixed inset-0 w-full h-full z-10 pointer-events-none">
         <StarParticles />
     </div>
-    <span class="fixed bottom-4 left-0 w-screen text-center opacity-20 text-white text-xs font-normal z-10">
+    <span class="fixed bottom-4 left-0 w-screen text-center opacity-20 text-white text-xs font-normal z-40">
         © {{currentYear}} Aelysium Group LLC. All Rights Reserved
     </span>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -59,7 +59,7 @@
                 </div>
                 <AelysiumWordmark class="pointer-events-none select-none w-full"  />
             </div>
-            <div class="h-full w-full max-w-[1000px] flex flex-col justify-start items-center" style="grid-area: subhero;">
+            <div class="pb-16 h-full w-full max-w-[1000px] flex flex-col justify-start items-center" style="grid-area: subhero;">
                 <span class="silkscreen-regular text-2xl md:text-5xl mt-8 mb-4 w-full text-center" >
                     Build to impress
                 </span>
