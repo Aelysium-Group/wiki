@@ -115,14 +115,14 @@ Firing a custom event is also pretty straightforward. There's no need to first "
 ::: tabs
 == Event
 ```java
-CustomEvent event = new CustomEvent(this, player, power);
+CustomEvent event = new CustomEvent();
 RC.EventManager().fireEvent(event);
 ```
 == Cancelable
 Firing a cancelable event will return a `CompletableFuture`.
 To properly support a cancelation you resolve the future at somepoint so you can read the cancelation state.
 ```java
-CustomEvent event = new CustomEvent(this, player, power);
+CustomEvent event = new CustomEvent();
 boolean canceled = RC.EventManager().fireEvent(event).get(1, TimeUnit.MINUTES);
 if(canceled) return;
 ```
