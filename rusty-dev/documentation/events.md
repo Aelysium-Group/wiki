@@ -83,17 +83,14 @@ public class OnServerRegister {
 Creating custom events is a pretty straightforward process.
 To start you have to determine whether you want your event to be cancelable or not.
 
-:::info
-Cancelable events can be canceled by the event handlers.
-If no event handlers cancel the event then the original process should proceed.
-If an event handler does cancel the event, then the original process should stop.
-:::
+
 
 Implementing a custom event is as simple as extending either `Event` or `Event.Cancelable`.
 The event itself is just a generic class, you are free to add any custom fields or methods you want.
 
 ::: tabs
 == Event
+
 ```java
 public class CustomEvent extends Event {
     public CustomEvent() {
@@ -101,7 +98,24 @@ public class CustomEvent extends Event {
     }
 }
 ```
-== Cancelable
+
+Firing a custom event is also pretty straightforward. There's no need to first "register" or "declare" your event, simply start firing it.
+
+```java
+CustomEvent event = new CustomEvent();
+RC.EventManager().fireEvent(event);
+```
+
+== Event.Cancelable
+<div class="info custom-block">
+    <p class="custom-block-title">🔎 Info</p>
+    <p>
+        Cancelable events can be canceled by the event handlers.
+        If no event handlers cancel the event then the original process should proceed.
+        If an event handler does cancel the event, then the original process should stop.
+    </p>
+</div>
+
 ```java
 public class CustomEvent extends Event.Cancelable {
     public CustomEvent() {
@@ -109,18 +123,12 @@ public class CustomEvent extends Event.Cancelable {
     }
 }
 ```
-:::
 
 Firing a custom event is also pretty straightforward. There's no need to first "register" or "declare" your event, simply start firing it.
-::: tabs
-== Event
-```java
-CustomEvent event = new CustomEvent();
-RC.EventManager().fireEvent(event);
-```
-== Cancelable
+
 Firing a cancelable event will return a `CompletableFuture`.
 To properly support a cancelation you resolve the future at somepoint so you can read the cancelation state.
+
 ```java
 CustomEvent event = new CustomEvent();
 boolean canceled = RC.EventManager().fireEvent(event).get(1, TimeUnit.MINUTES);
